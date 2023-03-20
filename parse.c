@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/20 23:10:23 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/20 23:11:46 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,6 @@ int	main(int ac, char **av)
 	
 	if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub))
 		return (0);
-	if(!check_and_init_the_path(&cub))
-		return 0;
+	// if(!check_and_init_the_path(&cub))
+	// 	return 0;
 }
