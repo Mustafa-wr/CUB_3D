@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/20 19:09:29 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/20 23:10:23 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,6 @@ int	file_check(int ac, char **av)
 		}
 	}
 	return (printf("there is no cub file\n"), 0);
-}
-
-void	free_strings(char **av)
-{
-	int	i;
-
-	i = 0;
-	while (av[i])
-	{
-		free(av[i]);
-		i++;
-	}
-	if (av)
-		free(av);
 }
 
 static int	calcu_map(t_cub3d *map, char *k)
@@ -105,10 +91,56 @@ int	init_map(t_cub3d *map, char *k)
 	return (1);
 }
 
+int	check_and_init_the_path(t_cub3d *p)
+{
+	t_vars v;
+	
+	v.i = 0;
+	v.j = 0;
+	v.len = 0;
+	while(p->map[v.i])
+	{
+		v.j = 0;
+		while(p->map[v.i][v.j])
+		{
+			while (p->map[v.i][v.j] == ' ')
+				v.j++;
+			if (p->map[v.i][v.j] == '1')
+			{
+				while (p->map[v.i])
+				{
+					v.i++;
+					v.len++;
+				}
+				break ;
+			}
+			if (p->map[v.i][v.j])
+				v.j++;
+		}
+		v.i++;
+	}
+	if(!v.len)
+		return (printf("Error\n"), 0);
+	p->path = malloc(sizeof(char *) * v.len);
+	v.len = 0;
+	while (p->map[v.i])
+	{
+		p->path[v.len] = ft_strdup(p->map[v.i]);
+		v.i++;
+		v.len++;
+	}
+	int i = 0;
+	while (p->path[i])
+		puts(p->path[i++]);
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	t_cub3d	cub;
 	
 	if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub))
 		return (0);
+	if(!check_and_init_the_path(&cub))
+		return 0;
 }
