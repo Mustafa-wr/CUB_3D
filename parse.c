@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/19 16:42:06 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/20 17:37:33 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,14 +185,8 @@ int	init_textures(t_cub3d *textures)
 	return (1);
 }
 
-int	store_the_rpg(t_cub3d *map)
+int	check_for_rbg(t_cub3d *map, int i, int c)
 {
-	int i;
-
-	i = 0;
-	int c = 0;
-	char *sub;
-	
 	while (map->ceiling_tmp[i])
 	{
 		if(map->ceiling_tmp[i] == ',')
@@ -200,7 +194,7 @@ int	store_the_rpg(t_cub3d *map)
 		i++;
 	}
 	if(c != 2)
-		return (printf("here"),0);
+		return (printf("Error\n"), 0);
 	i = 0;
 	c = 0;
 	while (map->floor_tmp[i])
@@ -210,9 +204,13 @@ int	store_the_rpg(t_cub3d *map)
 		i++;
 	}
 	if(c != 2)
-		return (0);
-	map->floor = malloc(sizeof(int) * 3);
-	map->cieling = malloc(sizeof(int) * 3);
+		return (printf("Error\n"), 0);
+	return (1);
+}
+
+void	store_the_floor(t_cub3d *map, int i, int c, char *sub)
+{
+	sub = NULL;
 	i = 0;
 	while (map->floor_tmp[i] != ',')
 		i++;
@@ -232,8 +230,11 @@ int	store_the_rpg(t_cub3d *map)
 	sub = ft_substr(map->floor_tmp, c, i);
 	map->floor[2] = ft_atoi(sub);
 	free(sub);
-	
+}
 
+void	store_the_cieling(t_cub3d *map, int i, int c, char *sub)
+{
+	sub = NULL;
 	i = 0;
 	while (map->ceiling_tmp[i] != ',')
 		i++;
@@ -253,6 +254,23 @@ int	store_the_rpg(t_cub3d *map)
 	sub = ft_substr(map->ceiling_tmp, c, i);
 	map->cieling[2] = ft_atoi(ft_substr(map->ceiling_tmp, c, i));
 	free(sub);
+}
+
+int	store_the_rpg(t_cub3d *map)
+{
+	int		i;
+	int		c;
+	char	*sub;
+
+	i = 0;
+	c = 0;
+	sub = NULL;
+	if(!check_for_rbg(map, i, c))
+		return(0);
+	map->floor = malloc(sizeof(int) * 3);
+	map->cieling = malloc(sizeof(int) * 3);
+	store_the_floor(map, i, c, sub);
+	store_the_cieling(map, i, c, sub);
 	printf("%d\n", map->cieling[0]);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/19 16:34:52 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/20 16:53:57 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_cub3d
 {
 	char	**map;
+	char	**path;
 	char	*no;
 	char	*so;
 	char	*we;
