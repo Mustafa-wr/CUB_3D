@@ -6,13 +6,13 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:03:14 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/20 19:06:52 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/20 20:33:01 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	textures_utils(char **dst, char *src, t_vars *var)
+static void	textures_utils(char **dst, char *src, t_vars *var)
 {
 	char	*tmp;
 
@@ -23,7 +23,7 @@ void	textures_utils(char **dst, char *src, t_vars *var)
 	var->flag++;
 }
 
-void	textures_utils2(char **dst, char *src, t_vars *var)
+static void	textures_utils2(char **dst, char *src, t_vars *var)
 {
 	char	*tmp;
 
@@ -35,6 +35,22 @@ void	textures_utils2(char **dst, char *src, t_vars *var)
 	puts(*dst);
 	var->i = -1;
 	var->flag++;
+}
+
+static void	init_helper(t_cub3d *t, t_vars *v)
+{
+	if (ft_strncmp(t->map[v->i] + v->j, "NO", 2) == 0 && v->flag == 0)
+		textures_utils(&t->no, t->map[v->i], v);
+	else if (ft_strncmp(t->map[v->i] + v->j, "SO", 2) == 0 && v->flag == 1)
+		textures_utils(&t->so, t->map[v->i], v);
+	else if (ft_strncmp(t->map[v->i] + v->j, "WE", 2) == 0 && v->flag == 2)
+		textures_utils(&t->we, t->map[v->i], v);
+	else if (ft_strncmp(t->map[v->i] + v->j, "EA", 2) == 0 && v->flag == 3)
+		textures_utils(&t->ea, t->map[v->i], v);
+	else if (ft_strncmp(t->map[v->i] + v->j, "C", 1) == 0 && v->flag == 4)
+		textures_utils2(&t->ceiling_tmp, t->map[v->i], v);
+	else if (ft_strncmp(t->map[v->i] + v->j, "F", 1) == 0 && v->flag == 5)
+		textures_utils2(&t->floor_tmp, t->map[v->i], v);
 }
 
 int	init_textures(t_cub3d *t)
@@ -52,18 +68,19 @@ int	init_textures(t_cub3d *t)
 		// printf("%d\n", v.flag);
 		if (v.flag == 6)
 			break ;
-		if (ft_strncmp(t->map[v.i] + v.j, "NO", 2) == 0 && v.flag == 0)
-			textures_utils(&t->no, t->map[v.i], &v);
-		else if (ft_strncmp(t->map[v.i] + v.j, "SO", 2) == 0 && v.flag == 1)
-			textures_utils(&t->so, t->map[v.i], &v);
-		else if (ft_strncmp(t->map[v.i] + v.j, "WE", 2) == 0 && v.flag == 2)
-			textures_utils(&t->we, t->map[v.i], &v);
-		else if (ft_strncmp(t->map[v.i] + v.j, "EA", 2) == 0 && v.flag == 3)
-			textures_utils(&t->ea, t->map[v.i], &v);
-		else if (ft_strncmp(t->map[v.i] + v.j, "C", 1) == 0 && v.flag == 4)
-			textures_utils2(&t->ceiling_tmp, t->map[v.i], &v);
-		else if (ft_strncmp(t->map[v.i] + v.j, "F", 1) == 0 && v.flag == 5)
-			textures_utils2(&t->floor_tmp, t->map[v.i], &v);
+		// if (ft_strncmp(t->map[v.i] + v.j, "NO", 2) == 0 && v.flag == 0)
+		// 	textures_utils(&t->no, t->map[v.i], &v);
+		// else if (ft_strncmp(t->map[v.i] + v.j, "SO", 2) == 0 && v.flag == 1)
+		// 	textures_utils(&t->so, t->map[v.i], &v);
+		// else if (ft_strncmp(t->map[v.i] + v.j, "WE", 2) == 0 && v.flag == 2)
+		// 	textures_utils(&t->we, t->map[v.i], &v);
+		// else if (ft_strncmp(t->map[v.i] + v.j, "EA", 2) == 0 && v.flag == 3)
+		// 	textures_utils(&t->ea, t->map[v.i], &v);
+		// else if (ft_strncmp(t->map[v.i] + v.j, "C", 1) == 0 && v.flag == 4)
+		// 	textures_utils2(&t->ceiling_tmp, t->map[v.i], &v);
+		// else if (ft_strncmp(t->map[v.i] + v.j, "F", 1) == 0 && v.flag == 5)
+		// 	textures_utils2(&t->floor_tmp, t->map[v.i], &v);
+		init_helper(t, &v);
 		v.i++;
 	}
 	if (v.flag != 6)
