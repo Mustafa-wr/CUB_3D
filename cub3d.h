@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/20 16:53:57 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/20 18:38:12 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include <stdio.h>
 # include "gnl/get_next_line.h"
 # include "libft/libft.h"
+
+typedef struct s_vars
+{
+	int	i;
+	int	j;
+	int	flag;
+}	t_vars;
+
 
 typedef struct s_cub3d
 {
@@ -32,5 +40,9 @@ typedef struct s_cub3d
 	int		y;
 	int		x;
 }	t_cub3d;
+
+/*********************        parsing         ********************/
+int	store_the_rpg(t_cub3d *map);
+int	init_textures(t_cub3d *t);
 
 #endif

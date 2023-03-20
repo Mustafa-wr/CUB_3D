@@ -2,6 +2,8 @@ NAME = cub3d
 
 SRCS =	gnl/get_next_line.c			\
 		gnl/get_next_line_utils.c	\
+		parse_rbg.c					\
+		parse_textures.c			\
 		parse.c
 
 
