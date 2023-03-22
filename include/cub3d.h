@@ -16,7 +16,12 @@
 # include <stdio.h>
 # include "get_next_line.h"
 # include "../libs/libft/libft.h"
-# include "../libs/mlx/mlx.h"
+
+#ifdef Linux
+# include "../libs/mlx-linux/mlx.h"
+#else
+# include "../libs/mlx-mac/mlx.h"
+#endif
 
 typedef struct s_vars
 {

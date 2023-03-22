@@ -7,12 +7,13 @@ SRCS =	src/gnl/get_next_line.c			\
 		src/free_functions.c				\
 		src/parse.c
 
+OS = $(shell uname)
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror -D $(OS)
 
 RM = /bin/rm
 
@@ -22,7 +23,12 @@ HEADER	= include
 
 # LIBS
 LIBFT = libs/libft
-MLX = libs/mlx
+
+ifeq ($(OS), Linux)
+	MLX = libs/mlx-linux
+else
+	MLX = libs/mlx-mac
+endif
 
 
 .c.o:
