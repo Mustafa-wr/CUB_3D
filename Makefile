@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/03/22 21:36:36 by bammar           ###   ########.fr        #
+#    Updated: 2023/03/22 22:37:49 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,9 @@ CFLAGS = -g -Wall -Wextra -Werror -D $(OS)
 
 RM = /bin/rm
 
-HEADER	= -Iinclude -I/usr/include
-
 # LIBS
 LIBFT = libs/libft
+
 
 ifeq ($(OS), Linux)
 	MLX = libs/mlx-linux
@@ -44,10 +43,12 @@ endif
 LINKS = -L $(MLX) -L libs/libft -lft
 
 ifeq ($(OS), Linux)
-	LINKS += -L/usr/lib -I$(MLX) -lmlx -lXext -lX11
+	LINKS += -L/usr/lib -lmlx -lXext -lX11
 else
 	LINKS += -l$(MLX) -framework OpenGL -framework AppKit
 endif
+
+HEADER	= -Iinclude -I/usr/include -I$(MLX) -I$(LIBFT)
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} $(HEADER)

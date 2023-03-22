@@ -6,22 +6,17 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/22 22:27:54 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/22 22:38:22 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#ifdef Linux
-# include "../libs/mlx-linux/mlx.h"
-#else
-# include "../libs/mlx-mac/mlx.h"
-#endif
-
+# include "mlx.h"
 # include <stdio.h>
 # include "get_next_line.h"
-# include "../libs/libft/libft.h"
+# include "libft.h"
 
 #ifdef Linux
 typedef enum key_map
