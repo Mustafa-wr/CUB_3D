@@ -40,7 +40,7 @@ static int	calcu_map(t_cub3d *map, char *k)
 {
 	int		fd;
 	char	*line;
-	int		i;
+	// int		i;
 
 	fd = open(k, O_RDONLY);
 	if (fd < 0)
@@ -55,7 +55,7 @@ static int	calcu_map(t_cub3d *map, char *k)
 		map->y++;
 	}
 	close(fd);
-	i = 0;
+	// i = 0;
 	map->map = malloc(sizeof(char *) * (map->y + 1));
 	if (!map->map)
 		return (0);
@@ -82,7 +82,7 @@ int	init_map(t_cub3d *map, char *k)
 	}
 	map->x = ft_strlen(map->map[0]) - 1;
 	close(fd);
-	// if (!check_the_td(map) || !check_player_and_exit(map) || \
+	// if (!check_the_td(map) || !check_player_and_exit(map) ||
 	// 	!valid_map_x(map) || !valid_map_y(map))
 	// 	return (0);
 	i = 0;

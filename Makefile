@@ -1,31 +1,49 @@
 NAME = cub3d
 
-SRCS =	gnl/get_next_line.c			\
-		gnl/get_next_line_utils.c	\
-		parse_rbg.c					\
-		parse_textures.c			\
-		free_functions.c				\
-		parse.c
+SRCS =	src/gnl/get_next_line.c			\
+		src/gnl/get_next_line_utils.c	\
+		src/parse_rbg.c					\
+		src/parse_textures.c			\
+		src/free_functions.c				\
+		src/parse.c
 
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror
+
+RM = /bin/rm
+
+LINKS = -L libs/mlx -lmlx -framework OpenGL -framework AppKit -L libs/libft -lft
+
+HEADER	= include
+
+# LIBS
+LIBFT = libs/libft
+MLX = libs/mlx
+
+
+.c.o:
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I $(HEADER)
 
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	(cd mlx && make)
-	make -C ./libft && make bonus -C ./libft
-	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) -L ./libft -lft
+	make -C $(MLX)
+	make -C $(LIBFT) && make bonus -C $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $(NAME)
 
 clean:
-	cd libft && make fclean
-	rm -f $(OBJS)
+	(cd $(LIBFT) && make clean)
+	(cd $(MLX) && make clean)
+	$(RM) -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	(cd $(LIBFT) && make fclean)
+	$(RM) -f $(NAME)
 
 re: fclean all
+
+.PHONY:		all clean fclean re bonus

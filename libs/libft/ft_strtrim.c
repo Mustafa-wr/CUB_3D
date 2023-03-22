@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "../gnl/get_next_line.h"
+// #include "libft.h"
+// #include "../gnl/get_next_line.h"
 
 // char	*ft_strtrim(char const *s1, char const *set)
 // {

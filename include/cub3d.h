@@ -14,8 +14,9 @@
 # define CUB3D_H
 
 # include <stdio.h>
-# include "gnl/get_next_line.h"
-# include "libft/libft.h"
+# include "get_next_line.h"
+# include "../libs/libft/libft.h"
+# include "../libs/mlx/mlx.h"
 
 typedef struct s_vars
 {
@@ -41,6 +42,7 @@ typedef struct s_cub3d
 	int		y;
 	int		x;
 }	t_cub3d;
+
 
 /*********************        parsing         ********************/
 int		store_the_rpg(t_cub3d *map);
