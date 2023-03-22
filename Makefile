@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
+#    Updated: 2023/03/22 21:05:16 by bammar           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = cub3d
 
 SRCS =	src/gnl/get_next_line.c			\
@@ -31,7 +43,7 @@ endif
 LINKS = -L $(MLX) -L libs/libft -lft
 
 ifeq ($(OS), Linux)
-	LINKS += -L$(MLX) -l$(MLX) -L/usr/lib -I$(MLX) -lXext -lX11 -lm -lz
+	LINKS += -L$(MLX) -L/usr/lib -I$(MLX) -lXext -lX11 -lm -lz
 else
 	LINKS += -l$(MLX) -framework OpenGL -framework AppKit
 endif
