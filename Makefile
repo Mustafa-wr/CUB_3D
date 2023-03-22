@@ -17,9 +17,7 @@ CFLAGS = -g -Wall -Wextra -Werror -D $(OS)
 
 RM = /bin/rm
 
-LINKS = -L libs/mlx -lmlx -framework OpenGL -framework AppKit -L libs/libft -lft
-
-HEADER	= include
+HEADER	= -Iinclude -I/usr/include -Imlx-linux
 
 # LIBS
 LIBFT = libs/libft
@@ -30,9 +28,16 @@ else
 	MLX = libs/mlx-mac
 endif
 
+LINKS = -L $(MLX) -L libs/libft -lft
+
+ifeq ($(OS), Linux)
+	LINKS += -L$(MLX) -l$(MLX) -L/usr/lib -I$(MLX) -lXext -lX11 -lm -lz
+else
+	LINKS += -l$(MLX) -framework OpenGL -framework AppKit
+endif
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I $(HEADER)
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} $(HEADER)
 
 all : $(NAME)
 
