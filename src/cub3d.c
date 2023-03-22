@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/22 21:23:05 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/22 22:22:45 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int temp_exit(t_hook_vars *hook_vars)
 
 int	key_hook(int keycode, t_hook_vars *hook_vars)
 {
+	printf("keycode: %d\n", keycode);
 	if (keycode == ESC)
 		temp_exit(hook_vars);
 	mlx_clear_window(hook_vars->mlx_vars->mlx_ptr,

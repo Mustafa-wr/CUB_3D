@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/22 21:24:33 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/22 22:27:54 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@
 # include "get_next_line.h"
 # include "../libs/libft/libft.h"
 
+#ifdef Linux
+typedef enum key_map
+{
+	ON_DESTROY = 17,
+	ESC = 65307,
+	KEY_UP = 65362,
+	KEY_DOWN = 65364,
+	KEY_RIGHT = 65363,
+	KEY_LEFT = 65361,
+	KEY_W = 119,
+	KEY_A = 97,
+	KEY_S = 115,
+	KEY_D = 100
+}					t_key_map;
+#else
 typedef enum key_map
 {
 	ON_DESTROY = 17,
@@ -36,7 +51,7 @@ typedef enum key_map
 	KEY_S = 1,
 	KEY_D = 2
 }					t_key_map;
-
+#endif
 typedef struct s_vars
 {
 	int	i;
