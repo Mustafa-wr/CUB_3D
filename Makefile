@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/03/22 21:05:16 by bammar           ###   ########.fr        #
+#    Updated: 2023/03/22 21:36:36 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ SRCS =	src/gnl/get_next_line.c			\
 		src/gnl/get_next_line_utils.c	\
 		src/parse_rbg.c					\
 		src/parse_textures.c			\
-		src/free_functions.c				\
-		src/parse.c
+		src/free_functions.c			\
+		src/parse.c						\
+		src/cub3d.c						\
 
 OS = $(shell uname)
 
@@ -29,7 +30,7 @@ CFLAGS = -g -Wall -Wextra -Werror -D $(OS)
 
 RM = /bin/rm
 
-HEADER	= -Iinclude -I/usr/include -Imlx-linux
+HEADER	= -Iinclude -I/usr/include
 
 # LIBS
 LIBFT = libs/libft
@@ -43,7 +44,7 @@ endif
 LINKS = -L $(MLX) -L libs/libft -lft
 
 ifeq ($(OS), Linux)
-	LINKS += -L$(MLX) -L/usr/lib -I$(MLX) -lXext -lX11 -lm -lz
+	LINKS += -L/usr/lib -I$(MLX) -lmlx -lXext -lX11
 else
 	LINKS += -l$(MLX) -framework OpenGL -framework AppKit
 endif
