@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/03/22 22:37:49 by bammar           ###   ########.fr        #
+#    Updated: 2023/03/24 02:13:53 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,12 @@ NAME = cub3d
 
 SRCS =	src/gnl/get_next_line.c			\
 		src/gnl/get_next_line_utils.c	\
-		src/parse_rbg.c					\
-		src/parse_textures.c			\
+		src/parse/parse_rbg.c			\
+		src/parse/parse_textures.c		\
 		src/free_functions.c			\
-		src/parse.c						\
+		src/parse/parse.c				\
+		src/render_pixel.c				\
+		src/draw_line.c					\
 		src/cub3d.c						\
 
 OS = $(shell uname)
@@ -26,7 +28,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -g -Wall -Wextra -Werror -D $(OS)
+CFLAGS = -Wall -Wextra -Werror -D $(OS) -g -fsanitize=address
 
 RM = /bin/rm
 
@@ -71,4 +73,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY: all clean fclean re bonus

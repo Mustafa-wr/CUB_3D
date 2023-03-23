@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/22 21:14:04 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/22 22:59:32 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	init_map(t_cub3d *map, char *k)
 	return (1);
 }
 
+// if you see "and" in your function name 
+//	just split the function to 2 functions :)
 int	check_and_init_the_path(t_cub3d *p)
 {
 	t_vars v;

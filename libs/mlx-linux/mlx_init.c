@@ -38,13 +38,11 @@ void	*mlx_init()
 	xvar->loop_param = (void *)0;
 	xvar->do_flush = 1;
 	xvar->wm_delete_window = XInternAtom (xvar->display, "WM_DELETE_WINDOW", False);
-	xvar->wm_protocols = XInternAtom (xvar->display, "WM_PROTOCOLS", False);
 	mlx_int_deal_shm(xvar);
 	if (xvar->private_cmap)
 		xvar->cmap = XCreateColormap(xvar->display,xvar->root,
 				 xvar->visual,AllocNone);
 	mlx_int_rgb_conversion(xvar);
-	xvar->end_loop = 0;
 	return (xvar);
 }
 

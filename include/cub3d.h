@@ -6,9 +6,11 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/22 22:38:22 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/24 02:17:58 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// LOCAL ENDIAN = 0
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -17,11 +19,17 @@
 # include <stdio.h>
 # include "get_next_line.h"
 # include "libft.h"
+# include <math.h>
+
+# define SWIDTH 720
+# define SHEIGHT 580
+# define PNAME "cub3d"
+# define MAINIMG "assets/500black.xpm"
 
 #ifdef Linux
 typedef enum key_map
 {
-	ON_DESTROY = 17,
+	ON_DESTROY = 36,
 	ESC = 65307,
 	KEY_UP = 65362,
 	KEY_DOWN = 65364,
@@ -47,6 +55,11 @@ typedef enum key_map
 	KEY_D = 2
 }					t_key_map;
 #endif
+
+typedef enum colors
+{
+	RED = 0xFF0000
+}		t_colors;
 typedef struct s_vars
 {
 	int	i;
@@ -75,8 +88,11 @@ typedef struct s_cub3d
 
 typedef struct s_mlx_vars
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*main_img;
+	int		height;
+	int		width;
 }	t_mlx_vars;
 
 
@@ -85,10 +101,28 @@ typedef struct s_hook_vars
 	t_mlx_vars		*mlx_vars;
 }	t_hook_vars;
 
+typedef struct s_point
+{
+	float	x;
+	float	y;
+}	t_point;
+
+
+typedef struct s_color		t_color;
+struct s_color
+{
+	double	r;
+	double	g;
+	double	b;
+	double	a;
+};
 
 /*********************        parsing         ********************/
 int		store_the_rpg(t_cub3d *map);
 int		init_textures(t_cub3d *t);
 void	free_strings(char **av);
+
+void	render_pixel(void *img, t_point p1, int color);
+void	draw_line(void *img, t_point p1, t_point p2, int color);
 
 #endif
