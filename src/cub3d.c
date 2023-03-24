@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/24 21:44:30 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/25 01:44:49 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ int	create_trgb(int t, int r, int g, int b)
 
 void draw_grid(t_mlx_vars *mlx)
 {
-    int map[7][12] =
+    int map[6][13] =
     {
         {1,1,0,0,0,0,0,0,1,1,0,1},
         {1,1,0,0,0,1,0,0,1,1,0,1},
         {1,1,0,1,0,0,0,0,0,1,0,1},
         {1,1,0,0,0,1,0,0,0,1,0,1},
         {1,1,0,0,0,0,0,0,1,1,0,1},
-        {1,1,0,0,0,0,0,0,1,1,0,1}
+        {1,1,0,0,0,0,0,0,1,1,0,1},
     };
-    int sq_width = SWIDTH/12;
-    int sq_height = SHEIGHT/7;
+    int sq_width = SWIDTH/12 - (int)(SWIDTH%12 == 0);
+    int sq_height = SHEIGHT/6 - (int)(SHEIGHT%6 == 0);
     t_size sq_size = (t_size){sq_width, sq_height};
     int i = 0;
     int j;
@@ -61,6 +61,17 @@ void draw_grid(t_mlx_vars *mlx)
     }
 }
 
+void img_init(void *img, int width, int height)
+{
+    for (int i = 0; i < height; i++)
+        for (int j = 0; j < width; j++)
+            render_pixel(img, (t_point){j, i}, 0);
+}
+
+void test(t_mlx_vars *mlx)
+{
+    draw_grid(mlx);
+}
 
 int	main(void)
 {
@@ -72,11 +83,10 @@ int	main(void)
     mlx.width = SWIDTH;
     mlx.height = SHEIGHT;
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, mlx.width, mlx.height, PNAME);	
-	mlx.main_img = mlx_xpm_file_to_image(mlx.mlx_ptr, MAINIMG, &mlx.width, &mlx.height);
-	
+    mlx.main_img = mlx_new_image(mlx.mlx_ptr, SWIDTH, SHEIGHT);
+    img_init(mlx.main_img, SWIDTH, SHEIGHT);
     // test
-    // draw_rect(mlx.main_img, (t_point){0,0}, (t_size){50,50}, RED);
-    draw_grid(&mlx);
+    test(&mlx);
     mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.main_img, 0, 0);
 	mlx_hook(mlx.win_ptr, ON_DESTROY, 0, temp_exit, &hook);
 	mlx_key_hook(mlx.win_ptr, key_hook, &(hook));

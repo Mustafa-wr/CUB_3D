@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/24 21:24:12 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/25 01:44:44 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 # include <math.h>
 # include "enums.h"
 
-# define SWIDTH 500
-# define SHEIGHT 500
+# define SWIDTH 720
+# define SHEIGHT 580
 # define PNAME "cub3d"
-# define MAINIMG "assets/500black.xpm"
 typedef struct s_vars
 {
 	int	i;
