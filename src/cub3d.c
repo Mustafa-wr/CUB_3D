@@ -6,31 +6,11 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/25 01:44:49 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/25 03:06:38 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int temp_exit(t_hook_vars *hook_vars)
-{
-	mlx_clear_window(hook_vars->mlx_vars->mlx_ptr,
-		hook_vars->mlx_vars->win_ptr);
-	exit(0);
-	return 0;
-}
-
-int	key_hook(int keycode, t_hook_vars *hook_vars)
-{
-	if (keycode == ESC)
-		temp_exit(hook_vars);
-	return (0);
-}
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
 
 void draw_grid(t_mlx_vars *mlx)
 {
@@ -39,9 +19,9 @@ void draw_grid(t_mlx_vars *mlx)
         {1,1,0,0,0,0,0,0,1,1,0,1},
         {1,1,0,0,0,1,0,0,1,1,0,1},
         {1,1,0,1,0,0,0,0,0,1,0,1},
-        {1,1,0,0,0,1,0,0,0,1,0,1},
-        {1,1,0,0,0,0,0,0,1,1,0,1},
-        {1,1,0,0,0,0,0,0,1,1,0,1},
+        {1,1,0,0,0,0,0,0,0,1,0,1},
+        {1,1,0,0,0,0,0,1,1,1,0,1},
+        {1,1,0,0,0,0,1,0,1,1,0,1},
     };
     int sq_width = SWIDTH/12 - (int)(SWIDTH%12 == 0);
     int sq_height = SHEIGHT/6 - (int)(SHEIGHT%6 == 0);
@@ -61,34 +41,40 @@ void draw_grid(t_mlx_vars *mlx)
     }
 }
 
-void img_init(void *img, int width, int height)
+
+void draw_player(t_mlx_vars *mlx, t_vec *vec)
 {
-    for (int i = 0; i < height; i++)
-        for (int j = 0; j < width; j++)
-            render_pixel(img, (t_point){j, i}, 0);
+    draw_rect(mlx->main_img, vec->p, (t_size){5,5}, RED);
 }
 
-void test(t_mlx_vars *mlx)
+void draw2d(t_hook_vars *hook_vars)
 {
-    draw_grid(mlx);
+    clear_img(hook_vars->mlx_vars->main_img, SWIDTH, SHEIGHT);
+    draw_grid(hook_vars->mlx_vars);
+    draw_player(hook_vars->mlx_vars, hook_vars->player);
+    mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,
+        hook_vars->mlx_vars->win_ptr, hook_vars->mlx_vars->main_img, 0,0);
 }
 
 int	main(void)
 {
 	t_mlx_vars	mlx;
 	t_hook_vars	hook;
+    t_vec       player;
 
 	hook.mlx_vars = &mlx;
     mlx.mlx_ptr = mlx_init();
-    mlx.width = SWIDTH;
-    mlx.height = SHEIGHT;
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, mlx.width, mlx.height, PNAME);	
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);	
     mlx.main_img = mlx_new_image(mlx.mlx_ptr, SWIDTH, SHEIGHT);
-    img_init(mlx.main_img, SWIDTH, SHEIGHT);
+    
     // test
-    test(&mlx);
+    hook.player = &player;
+    player.angle = 0;
+    player.p = (t_point){SWIDTH/2, SHEIGHT/2};
+    draw2d(&hook);
+
     mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.main_img, 0, 0);
 	mlx_hook(mlx.win_ptr, ON_DESTROY, 0, temp_exit, &hook);
-	mlx_key_hook(mlx.win_ptr, key_hook, &(hook));
+	mlx_hook(mlx.win_ptr, 2, 1L<<0, key_hook, &(hook));
 	mlx_loop(mlx.mlx_ptr);
 }
