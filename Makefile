@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/03/24 02:13:53 by bammar           ###   ########.fr        #
+#    Updated: 2023/03/24 21:22:44 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS =	src/gnl/get_next_line.c			\
 		src/parse/parse.c				\
 		src/render_pixel.c				\
 		src/draw_line.c					\
+		src/draw_rect.c					\
 		src/cub3d.c						\
 
 OS = $(shell uname)

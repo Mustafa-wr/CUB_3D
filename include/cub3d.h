@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/24 02:17:58 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/24 21:24:12 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,46 +20,12 @@
 # include "get_next_line.h"
 # include "libft.h"
 # include <math.h>
+# include "enums.h"
 
-# define SWIDTH 720
-# define SHEIGHT 580
+# define SWIDTH 500
+# define SHEIGHT 500
 # define PNAME "cub3d"
 # define MAINIMG "assets/500black.xpm"
-
-#ifdef Linux
-typedef enum key_map
-{
-	ON_DESTROY = 36,
-	ESC = 65307,
-	KEY_UP = 65362,
-	KEY_DOWN = 65364,
-	KEY_RIGHT = 65363,
-	KEY_LEFT = 65361,
-	KEY_W = 119,
-	KEY_A = 97,
-	KEY_S = 115,
-	KEY_D = 100
-}					t_key_map;
-#else
-typedef enum key_map
-{
-	ON_DESTROY = 17,
-	ESC = 53,
-	KEY_UP = 126,
-	KEY_DOWN = 125,
-	KEY_RIGHT = 124,
-	KEY_LEFT = 123,
-	KEY_W = 13,
-	KEY_A = 0,
-	KEY_S = 1,
-	KEY_D = 2
-}					t_key_map;
-#endif
-
-typedef enum colors
-{
-	RED = 0xFF0000
-}		t_colors;
 typedef struct s_vars
 {
 	int	i;
@@ -107,6 +73,12 @@ typedef struct s_point
 	float	y;
 }	t_point;
 
+typedef struct s_size
+{
+	int	width;
+	int	height;
+}	t_size;
+
 
 typedef struct s_color		t_color;
 struct s_color
@@ -117,12 +89,14 @@ struct s_color
 	double	a;
 };
 
-/*********************        parsing         ********************/
+/*********************        Parsing         ********************/
 int		store_the_rpg(t_cub3d *map);
 int		init_textures(t_cub3d *t);
 void	free_strings(char **av);
 
+/*********************       Rendering         ********************/
 void	render_pixel(void *img, t_point p1, int color);
 void	draw_line(void *img, t_point p1, t_point p2, int color);
+void	draw_rect(void *img, t_point s, t_size size, int color);
 
 #endif
