@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/25 03:06:38 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/25 17:54:11 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ void draw_grid(t_mlx_vars *mlx)
 
 void draw_player(t_mlx_vars *mlx, t_vec *vec)
 {
+    t_point p2;
+    float   r;
+
+    r = 1;
+    p2.x = r * cos(vec->angle * PI/180) + vec->p.x;
+    p2.y = r * sin(vec->angle * PI/180) + vec->p.y;
+    printf("(%.02f,%.02f), angle: %.02f\n", vec->p.x, vec->p.y, vec->angle);
+    draw_line(mlx->main_img, vec->p, p2, BLUE);
     draw_rect(mlx->main_img, vec->p, (t_size){5,5}, RED);
 }
 

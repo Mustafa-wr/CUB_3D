@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/03/25 03:04:54 by bammar           ###   ########.fr        #
+#    Updated: 2023/03/25 18:01:49 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS =	src/gnl/get_next_line.c			\
 		src/render_pixel.c				\
 		src/draw_line.c					\
 		src/draw_rect.c					\
+		src/movement.c					\
 		src/hooks.c						\
 		src/clear_img.c					\
 		src/cub3d.c						\
@@ -45,12 +46,12 @@ else
 	MLX = libs/mlx-mac
 endif
 
-LINKS = -L $(MLX) -L libs/libft -lft
+LINKS = -lm -L $(MLX) -L libs/libft -lft
 
 ifeq ($(OS), Linux)
 	LINKS += -L/usr/lib -lmlx -lXext -lX11
 else
-	LINKS += -l$(MLX) -framework OpenGL -framework AppKit
+	LINKS += -framework OpenGL -framework AppKit
 endif
 
 HEADER	= -Iinclude -I/usr/include -I$(MLX) -I$(LIBFT)
