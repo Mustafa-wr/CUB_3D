@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/25 17:54:11 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/26 02:11:06 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void draw_grid(t_mlx_vars *mlx)
         {1,1,0,0,0,0,0,1,1,1,0,1},
         {1,1,0,0,0,0,1,0,1,1,0,1},
     };
-    int sq_width = SWIDTH/12 - (int)(SWIDTH%12 == 0);
-    int sq_height = SHEIGHT/6 - (int)(SHEIGHT%6 == 0);
-    t_size sq_size = (t_size){sq_width, sq_height};
+    int side_length = SWIDTH/12 - (int)(SWIDTH%12 == 0);
+    if (SHEIGHT/6 - (SWIDTH%6 == 0) < side_length)
+        side_length = SHEIGHT/6 - (SWIDTH%6 == 0);
+    t_size sq_size = (t_size){side_length, side_length};
     int i = 0;
     int j;
     while (i < 6)
@@ -34,7 +35,7 @@ void draw_grid(t_mlx_vars *mlx)
         while (j < 12)
         {
             if (map[i][j] == 1)
-                draw_rect(mlx->main_img, (t_point){sq_width*j, sq_height*i}, sq_size, WHT);
+                draw_rect(mlx->main_img, (t_point){side_length*j, side_length*i}, sq_size, WHT);
             j++;
         }
         i++;
@@ -47,12 +48,12 @@ void draw_player(t_mlx_vars *mlx, t_vec *vec)
     t_point p2;
     float   r;
 
-    r = 1;
+    r = 10;
     p2.x = r * cos(vec->angle * PI/180) + vec->p.x;
     p2.y = r * sin(vec->angle * PI/180) + vec->p.y;
-    printf("(%.02f,%.02f), angle: %.02f\n", vec->p.x, vec->p.y, vec->angle);
-    draw_line(mlx->main_img, vec->p, p2, BLUE);
-    draw_rect(mlx->main_img, vec->p, (t_size){5,5}, RED);
+    if (p2.y < SHEIGHT && p2.x < SWIDTH && p2.y > 0 && p2.y > 0)
+        draw_line(mlx->main_img, vec->p, p2, BLUE);
+    render_pixel(mlx->main_img, vec->p, RED);
 }
 
 void draw2d(t_hook_vars *hook_vars)

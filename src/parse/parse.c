@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/22 22:59:32 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/26 01:34:31 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,12 +182,12 @@ int	check_the_valid_char(t_cub3d *check)
 	return (1);
 }
 
-int	main(int ac, char **av)
-{
-	t_cub3d	cub;
+// int	main(int ac, char **av)
+// {
+// 	t_cub3d	cub;
 	
-	if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub) || !check_the_valid_char(&cub))
-		return (0);
-	if(!check_and_init_the_path(&cub))
-		return 0;
-}
+// 	if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub) || !check_the_valid_char(&cub))
+// 		return (0);
+// 	if(!check_and_init_the_path(&cub))
+// 		return 0;
+// }
