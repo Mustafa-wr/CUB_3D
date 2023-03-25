@@ -19,6 +19,7 @@ typedef struct s_vars
 	int	j;
 	int	len;
 	int	flag;
+	int	tmp;
 }	t_vars;
 
 
