@@ -100,6 +100,8 @@ int	check_and_init_the_path(t_cub3d *p)
 	v.i = 0;
 	v.j = 0;
 	v.len = 0;
+	v.tmp = 0;
+	int i = 0;
 	while(p->map[v.i])
 	{
 		v.j = 0;
@@ -108,22 +110,27 @@ int	check_and_init_the_path(t_cub3d *p)
 			while (p->map[v.i][v.j] == ' ')
 				v.j++;
 			if (p->map[v.i][v.j] == '1')
-			{
-				while (p->map[v.i])
+			{	
+				printf("%d\n", v.i);
+				v.tmp = v.i;
+				while (p->map[v.tmp])
 				{
-					v.i++;
+					v.tmp++;
 					v.len++;
 				}
 				break ;
 			}
-			if (p->map[v.i][v.j])
-				v.j++;
+			else
+				break ;
 		}
+		if(v.len != 0)
+			break ;
 		v.i++;
 	}
 	if(!v.len)
 		return (printf("Error\n"), 0);
-	p->path = malloc(sizeof(char *) * v.len);
+	printf("%d\n", v.len);
+	p->path = malloc(sizeof(char *) * (v.len + 1));
 	v.len = 0;
 	while (p->map[v.i])
 	{
@@ -131,18 +138,56 @@ int	check_and_init_the_path(t_cub3d *p)
 		v.i++;
 		v.len++;
 	}
-	int i = 0;
+	p->path[v.len] = NULL;
+	i = 0;
+	int j = 0;
 	while (p->path[i])
-		puts(p->path[i++]);
+	{
+		j = 0;
+		while (p->path[i][j])
+		{
+			if (p->path[i][j] == ' ' || p->path[i][j] == '1' || p->path[i][j] == '0' || p->path[i][j] == 'N' || \
+					p->path[i][j] == 'S' || p->path[i][j] == 'E' || p->path[i][j] == 'W')
+				j++;
+			else
+				return (printf("Error\n") ,0);
+		}
+		i++;
+	}
+	// while (p->path[i])
+	// 	puts(p->path[i++]);
 	return (1);
 }
 
-// int	main(int ac, char **av)
-// {
-// 	t_cub3d	cub;
+int	check_the_valid_char(t_cub3d *check)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (check->map[i])
+	{
+		x = 0;
+		while (check->map[i][x])
+		{
+			if (ft_isalnum(check->map[i][x]) || check->map[i][x] == '\n' || check->map[i][x] == '.' \
+				|| check->map[i][x] == '_' || check->map[i][x] == ',' || check->map[i][x] == ' ' || check->map[i][x] == '/')
+					x++;
+			else
+				return (printf("Error\n") ,0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	main(int ac, char **av)
+{
+	t_cub3d	cub;
 	
-// 	if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub))
-// 		return (0);
-// 	// if(!check_and_init_the_path(&cub))
-// 	// 	return 0;
-// }
+	if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub) || !check_the_valid_char(&cub))
+		return (0);
+	if(!check_and_init_the_path(&cub))
+		return 0;
+}
