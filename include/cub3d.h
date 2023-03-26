@@ -26,6 +26,7 @@
 int		store_the_rpg(t_cub3d *map);
 int		init_textures(t_cub3d *t);
 void	free_strings(char **av);
+int	  main_parse(t_cub3d *cub, int ac, char **av);
 
 /*********************       Rendering         ********************/
 void	render_pixel(void *img, t_point p1, int color);
