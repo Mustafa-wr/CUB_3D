@@ -40,7 +40,7 @@ static int	calcu_map(t_cub3d *map, char *k)
 {
 	int		fd;
 	char	*line;
-	// int		i;
+	int		i;
 
 	fd = open(k, O_RDONLY);
 	if (fd < 0)
@@ -55,7 +55,7 @@ static int	calcu_map(t_cub3d *map, char *k)
 		map->y++;
 	}
 	close(fd);
-	// i = 0;
+	i = 0;
 	map->map = malloc(sizeof(char *) * (map->y + 1));
 	if (!map->map)
 		return (0);
@@ -82,7 +82,7 @@ int	init_map(t_cub3d *map, char *k)
 	}
 	map->x = ft_strlen(map->map[0]) - 1;
 	close(fd);
-	// if (!check_the_td(map) || !check_player_and_exit(map) ||
+	// if (!check_the_td(map) || !check_player_and_exit(map) || \
 	// 	!valid_map_x(map) || !valid_map_y(map))
 	// 	return (0);
 	i = 0;
@@ -91,8 +91,64 @@ int	init_map(t_cub3d *map, char *k)
 	return (1);
 }
 
-// if you see "and" in your function name 
-//	just split the function to 2 functions :)
+void	init_the_path_utils(t_cub3d *p, t_vars *v)
+{
+	while(p->map[v->i][v->j])
+	{
+		while (p->map[v->i][v->j] == ' ')
+			v->j++;
+		if (p->map[v->i][v->j] == '1')
+		{	
+			printf("%d\n", v->i);
+			v->tmp = v->i;
+			while (p->map[v->tmp])
+			{
+				v->tmp++;
+				v->len++;
+			}
+			break ;
+		}
+		else
+			break ;
+	}
+}
+
+int	check_path_chars(t_cub3d *p)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	j = 0;
+	while (p->path[i])
+	{
+		j = 0;
+		while (p->path[i][j])
+		{
+			if (p->path[i][j] == ' ' || p->path[i][j] == '1' || p->path[i][j] == '0' || p->path[i][j] == 'N' || \
+					p->path[i][j] == 'S' || p->path[i][j] == 'E' || p->path[i][j] == 'W' || p->path[i][j] == '\n')
+				j++;
+			else
+				return (printf("Error\n"),0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+void	init_the_path(t_cub3d *p, t_vars *v)
+{
+	p->path = malloc(sizeof(char *) * (v->len + 1));
+	v->len = 0;
+	while (p->map[v->i])
+	{
+		p->path[v->len] = ft_strdup(p->map[v->i]);
+		v->i++;
+		v->len++;
+	}
+	p->path[v->len] = NULL;
+}
+
 int	check_and_init_the_path(t_cub3d *p)
 {
 	t_vars v;
@@ -105,57 +161,19 @@ int	check_and_init_the_path(t_cub3d *p)
 	while(p->map[v.i])
 	{
 		v.j = 0;
-		while(p->map[v.i][v.j])
-		{
-			while (p->map[v.i][v.j] == ' ')
-				v.j++;
-			if (p->map[v.i][v.j] == '1')
-			{	
-				printf("%d\n", v.i);
-				v.tmp = v.i;
-				while (p->map[v.tmp])
-				{
-					v.tmp++;
-					v.len++;
-				}
-				break ;
-			}
-			else
-				break ;
-		}
+		init_the_path_utils(p, &v);
 		if(v.len != 0)
 			break ;
 		v.i++;
 	}
 	if(!v.len)
 		return (printf("Error\n"), 0);
-	printf("%d\n", v.len);
-	p->path = malloc(sizeof(char *) * (v.len + 1));
-	v.len = 0;
-	while (p->map[v.i])
-	{
-		p->path[v.len] = ft_strdup(p->map[v.i]);
-		v.i++;
-		v.len++;
-	}
-	p->path[v.len] = NULL;
+	init_the_path(p, &v);
+	if(!check_path_chars(p))
+		return (0);
 	i = 0;
-	int j = 0;
 	while (p->path[i])
-	{
-		j = 0;
-		while (p->path[i][j])
-		{
-			if (p->path[i][j] == ' ' || p->path[i][j] == '1' || p->path[i][j] == '0' || p->path[i][j] == 'N' || \
-					p->path[i][j] == 'S' || p->path[i][j] == 'E' || p->path[i][j] == 'W')
-				j++;
-			else
-				return (printf("Error\n") ,0);
-		}
-		i++;
-	}
-	// while (p->path[i])
-	// 	puts(p->path[i++]);
+		puts(p->path[i++]);
 	return (1);
 }
 
@@ -182,12 +200,24 @@ int	check_the_valid_char(t_cub3d *check)
 	return (1);
 }
 
+int	main_parse(t_cub3d *cub, int ac, char **av)
+{
+	if(!file_check(ac, av) || !init_map(cub, av[1]) || !init_textures(cub) || !store_the_rpg(cub) || !check_the_valid_char(cub))
+		return (0);
+	if(!check_and_init_the_path(cub))
+		return (0);
+	return(1);
+}
+
 // int	main(int ac, char **av)
 // {
 // 	t_cub3d	cub;
 	
-// 	if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub) || !check_the_valid_char(&cub))
+// 	// if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub) || !check_the_valid_char(&cub))
+// 	// 	return (0);
+// 	// if(!check_and_init_the_path(&cub))
+// 	// 	return 0;
+// 	if(!main_parse(&cub, ac, av))
 // 		return (0);
-// 	if(!check_and_init_the_path(&cub))
-// 		return 0;
 // }
+
