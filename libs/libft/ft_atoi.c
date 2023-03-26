@@ -3,42 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/22 20:46:46 by mradwan           #+#    #+#             */
-/*   Updated: 2022/08/10 01:11:01 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/27 21:49:30 by bammar            #+#    #+#             */
+/*   Updated: 2022/08/14 17:14:38 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	is_space(int c)
+{
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\r');
+}
+
+static int	super_bad_case(int sign)
+{
+	if (sign == 1)
+		return (-1);
+	else if (sign == -1)
+		return (0);
+	return (1);
+}
+
+static int	bad_case(char *x, int sign, int y, int zrs)
+{
+	int		i;
+	char	*max;
+
+	if (y - zrs > 19)
+		return (super_bad_case(sign));
+	max = "9223372036854775808";
+	if (sign == 1)
+		max = "9223372036854775807";
+	i = 0;
+	while (x[i] != 0)
+	{
+		if (x[i] > max[i])
+		{
+			if (sign == -1)
+				return (0);
+			return (-1);
+		}
+		else if (x[i] < max[i])
+			return (1);
+		i++;
+	}
+	return (1);
+}
+
 int	ft_atoi(const char *str)
 {
-	int					i;
-	int					k;
-	unsigned long long	value;
-	int					d;
+	int			i;
+	int			y;
+	long long	val;
+	int			sign;
+	int			zrs;
 
+	sign = 1;
 	i = 0;
-	k = 1;
-	d = 0;
-	value = 0;
-	while (str[i] == ' ' || (str[i] > 8 && str[i] < 14))
-			i++;
-	if (str[i] == '+' || str[i] == '-')
+	while (is_space(str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 		if (str[i++] == '-')
-			k = k * -1;
-	while (str[i] == '0')
-			i++;
-	while (str[i] >= '0' && str[i] <= '9')
+			sign = -1;
+	val = 0;
+	y = 0;
+	zrs = 0;
+	while (str[i + y] != 0 && (str[i + y] >= '0' && str[i + y] <= '9'))
 	{
-		value = (value * 10) + (str[i++] - 48);
-		d++;
+		val = (val * 10) + (str[i + y++] - '0');
+		zrs += (val == 0);
 	}
-	if (d > 19 || value >= 9223372036854775808ULL)
-		return (-(k == 1));
-	return (value * k);
+	if (y - zrs >= 19 && bad_case((char *)str + i + zrs, sign, y, zrs) != 1)
+		return (bad_case((char *)str + i + zrs, sign, y, zrs));
+	return (val * sign);
 }
-// if (k == 1)
-// 			return (-1);
-// 		return (0);

@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/03/25 18:01:49 by bammar           ###   ########.fr        #
+#    Updated: 2023/03/27 03:11:45 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -D $(OS) -g -fsanitize=address
 
-RM = /bin/rm
+	RM = /bin/rm
 
 # LIBS
 LIBFT = libs/libft
@@ -63,7 +63,7 @@ all : $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(MLX)
-	make -C $(LIBFT) && make bonus -C $(LIBFT)
+	make -C $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $(NAME)
 
 clean:
@@ -78,3 +78,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re bonus
+

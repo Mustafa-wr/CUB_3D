@@ -3,35 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 12:38:08 by mradwan           #+#    #+#             */
-/*   Updated: 2022/07/18 13:33:21 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/12 13:57:47 by bammar            #+#    #+#             */
+/*   Updated: 2022/08/14 16:28:23 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned int	i;
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
 
-	if (!dst && !src)
-		return (NULL);
+	d = dst;
+	s = src;
 	i = 0;
 	while (i < n)
 	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		if (&d[i] != &s[i])
+			d[i] = s[i];
 		i++;
 	}
 	return (dst);
 }
-
-// int main()
-//     {
-//         char src[] = "Hello";
-//         char dst[6];
-//       ft_memcpy(dst,src,6);
-//       printf("%s\n",dst);
-//       return (0);
-//   }

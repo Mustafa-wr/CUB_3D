@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/22 17:57:46 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/05 19:44:51 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/24 16:51:36 by bammar            #+#    #+#             */
+/*   Updated: 2022/08/14 16:30:54 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,24 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	c;
-	size_t	d;
+	size_t	i;
+	size_t	y;
+	size_t	dst_len;
+	size_t	src_len;
 
-	if (dstsize <= ft_strlen(dst))
-		return (dstsize + ft_strlen(src));
-	c = ft_strlen(dst);
-	d = 0;
-	while (src[d] != '\0' && c + 1 < dstsize)
-	{
-		dst[c] = src[d];
-		c++;
-		d++;
-	}
-	dst[c] = '\0';
-	return (ft_strlen(dst) + ft_strlen(&src[d]));
-}
-
-char	*ft_strcat(char *dest, const char *src)
-{
-	int	y;
-	int	i;
-
-	y = 0;
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen((char *)src);
+	if (dst_len >= dstsize)
+		return (dstsize + src_len);
 	i = 0;
-	while (dest[y] != '\0')
-		y++;
-	while (src[i] != '\0')
-	{
-		dest[y] = src[i];
-		y++;
+	while (dst[i] != 0)
 		i++;
-	}
-	dest[y] = src[i];
-	return (dest);
+	y = 0;
+	while (i + 1 < dstsize && src[y] != 0)
+		dst[i++] = src[y++];
+	if (i < dstsize)
+		dst[i] = 0;
+	while (src[y++] != 0)
+		i++;
+	return (i);
 }
-
-/*
-int main()
-{
-    char s[] = "as";
-    char d[]  = "sfss";
-    printf("d: %zu\n", ft_strlcat(d,s, 5));
-}
-*/

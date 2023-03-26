@@ -3,45 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/25 17:06:46 by mradwan           #+#    #+#             */
-/*   Updated: 2023/02/28 18:57:47 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/29 22:39:47 by bammar            #+#    #+#             */
+/*   Updated: 2022/08/14 16:31:58 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static char	*empty_string(void)
+{
+	char	*s;
+
+	s = malloc(1);
+	if (!s)
+		return (NULL);
+	s[0] = '\0';
+	return (s);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
-	size_t	j;
-	char	*str;
+	char	*s2;
+	size_t	strlen;
+	size_t	char_count;
 
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < len)
-		len = ft_strlen(s);
-	str = (char *)malloc(sizeof(*s) * (len + 1));
-	if (!str)
+	if (!s || (size_t)start >= ft_strlen((char *)s)
+		|| ft_strlen((char *)s) == 0)
+		return (empty_string());
+	strlen = ft_strlen((char *)s);
+	char_count = 0;
+	if (len + start < strlen)
+		char_count = (len);
+	else
+		char_count = (strlen - (size_t)start);
+	s2 = malloc(char_count + 1);
+	if (!s2)
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (s[i])
+	while (i < char_count)
 	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
+		s2[i] = s[i + (size_t)start];
 		i++;
 	}
-	str[j] = 0;
-	return (str);
+	s2[i] = '\0';
+	return (s2);
 }
-/*
-int	main(void)
-{
-    printf("%s", ft_substr("hello there", 2, 6));
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 19:21:59 by mradwan           #+#    #+#             */
-/*   Updated: 2023/02/25 18:29:46 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/12 12:24:56 by bammar            #+#    #+#             */
+/*   Updated: 2022/08/14 16:25:53 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,11 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
+	size_t			i;
+	unsigned char	*str;
 
 	i = 0;
+	str = (unsigned char *)s;
 	while (i < n)
-	{
-		((char *)s)[i] = 0;
-		i++;
-	}
+		str[i++] = 0;
 }
-/*
-int	main(void)
-{
-	char	bytes[5];
-	int		i;
-
-    bytes[5] = {1, 'i', 3, 4,'x'};
-    ft_bzero(bytes, 5);
-    i = 0;
-    while (i < 5)
-    {
-        printf("%d, ", bytes[i]);
-        i++;
-    }
-    return (0);
-}
-*/

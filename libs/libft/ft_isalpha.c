@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 16:11:23 by mradwan           #+#    #+#             */
-/*   Updated: 2022/07/14 17:16:09 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/12 10:01:38 by bammar            #+#    #+#             */
+/*   Updated: 2022/07/12 10:13:52 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
-
 int	ft_isalpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-	{
 		return (1);
-	}
 	return (0);
 }

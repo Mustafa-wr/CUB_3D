@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 10:19:41 by mradwan           #+#    #+#             */
-/*   Updated: 2022/07/25 23:11:23 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/26 19:33:57 by bammar            #+#    #+#             */
+/*   Updated: 2022/08/14 16:28:18 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,25 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*ss1;
-	unsigned char	*ss2;
+	unsigned char	*s1_byte;
+	unsigned char	*s2_byte;
 	size_t			i;
 
+	s1_byte = (unsigned char *)s1;
+	s2_byte = (unsigned char *)s2;
 	i = 0;
-	ss1 = (unsigned char *)s1;
-	ss2 = (unsigned char *)s2;
 	while (i < n)
 	{
-		if (ss1[i] != ss2[i])
-			return (ss1[i] - ss2[i]);
+		if (s1_byte[i] != s2_byte[i])
+		{
+			if (s1_byte + i != NULL && s2_byte + i != NULL)
+				return (s1_byte[i] - s2_byte[i]);
+			else if (s1_byte + i)
+				return (s1_byte[i]);
+			else if (s2_byte + i)
+				return (s2_byte[i]);
+		}
 		i++;
 	}
 	return (0);
 }
-
-/*
-int	main(void)
-{
-  char *c1;
-  char *c2;
-
-  c1 = "wwwf";
-  c2 = "wwwe";
-  printf("%d", memcmp(c1, c2, 4));
-  return(0);
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 19:02:26 by mradwan           #+#    #+#             */
-/*   Updated: 2022/07/18 13:09:29 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/12 11:59:15 by bammar            #+#    #+#             */
+/*   Updated: 2022/08/14 16:29:15 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,12 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t	i;
-	char	*x;
+	size_t			i;
+	unsigned char	*s;
 
-	x = (char *)b;
+	s = (unsigned char *)b;
 	i = 0;
 	while (i < len)
-	{
-		x[i] = c;
-		i++;
-	}
+		s[i++] = (unsigned char)c;
 	return (b);
 }
-
-// int	main(void)
-// {
-// 	char	c[] = "qwertyuiop";
-
-// 	printf("%s", ft_memset(c, 'A', 3));
-// 	return (0);
-// }

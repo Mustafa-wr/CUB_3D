@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 22:57:42 by mradwan           #+#    #+#             */
-/*   Updated: 2022/10/24 20:32:24 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/27 03:10:47 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*readk(int fd, char *k)
 			return (NULL);
 		}
 		str[n] = '\0';
-		k = ft_strjoin(k, str);
+		k = gl_strjoin(k, str);
 	}
 	free(str);
 	return (k);
