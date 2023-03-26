@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:30:17 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 03:22:12 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/27 03:46:52 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int					ft_toupper(int c);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char				*ft_strfjoin(char *buf, char *new_block);
 
 typedef struct s_list
 {
