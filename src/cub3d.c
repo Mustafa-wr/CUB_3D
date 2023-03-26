@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/26 02:11:06 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/27 03:25:26 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	main(void)
 	t_mlx_vars	mlx;
 	t_hook_vars	hook;
     t_vec       player;
+    // t_ht
 
 	hook.mlx_vars = &mlx;
     mlx.mlx_ptr = mlx_init();

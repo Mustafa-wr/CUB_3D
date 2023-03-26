@@ -6,22 +6,11 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 22:39:47 by bammar            #+#    #+#             */
-/*   Updated: 2022/08/14 16:31:58 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/27 02:52:19 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char	*empty_string(void)
-{
-	char	*s;
-
-	s = malloc(1);
-	if (!s)
-		return (NULL);
-	s[0] = '\0';
-	return (s);
-}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -32,7 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s || (size_t)start >= ft_strlen((char *)s)
 		|| ft_strlen((char *)s) == 0)
-		return (empty_string());
+		return (ft_strdup("\0"));
 	strlen = ft_strlen((char *)s);
 	char_count = 0;
 	if (len + start < strlen)

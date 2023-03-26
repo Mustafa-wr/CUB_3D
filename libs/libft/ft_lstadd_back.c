@@ -6,20 +6,20 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 22:05:36 by bammar            #+#    #+#             */
-/*   Updated: 2022/08/14 16:27:15 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/27 03:22:08 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *n)
 {
 	if (!lst)
 		return ;
 	if (!*lst)
 	{
-		*lst = new;
+		*lst = n;
 		return ;
 	}
-	ft_lstlast(*lst)->next = new;
+	ft_lstlast(*lst)->next = n;
 }

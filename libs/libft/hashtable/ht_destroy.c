@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ht_destroy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 20:55:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 03:21:55 by bammar           ###   ########.fr       */
+/*   Created: 2022/12/24 15:21:49 by bammar            #+#    #+#             */
+/*   Updated: 2023/03/27 02:47:27 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ht.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *n)
+void	ht_destroy(t_ht *table)
 {
-	if (!lst)
+	int	i;
+
+	if (!table)
 		return ;
-	n->next = *(lst);
-	*(lst) = n;
+	ht_clear(table);
+	i = -1;
+	while (table->array[++i])
+	{
+		free(table->array[i]->key);
+		free(table->array[i]->value);
+		free(table->array[i]);
+	}
+	free(table->array);
+	free(table);
 }

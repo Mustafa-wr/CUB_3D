@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ht_replace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 20:55:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 03:21:55 by bammar           ###   ########.fr       */
+/*   Created: 2022/12/24 01:43:40 by bammar            #+#    #+#             */
+/*   Updated: 2023/03/27 02:47:18 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ht.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *n)
+void	ht_replace(t_ht *table, char *key, void *new_value)
 {
-	if (!lst)
+	if (!ht_contains(table, key))
 		return ;
-	n->next = *(lst);
-	*(lst) = n;
+	ht_remove(table, key);
+	ht_set(table, key, new_value);
 }

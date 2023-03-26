@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ht_hash.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 20:55:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 03:21:55 by bammar           ###   ########.fr       */
+/*   Created: 2022/12/18 00:25:12 by bammar            #+#    #+#             */
+/*   Updated: 2023/03/27 02:58:29 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ht.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *n)
+unsigned int	ht_hash(t_ht *table, char *key)
 {
-	if (!lst)
-		return ;
-	n->next = *(lst);
-	*(lst) = n;
+	unsigned int	hash;
+	int				i;
+
+	hash = 5381;
+	i = 0;
+	while (key[i])
+		hash = ((hash << 5) + hash) + key[i++];
+	free((void *)key);
+	return (hash % (table->total_size - 1));
 }

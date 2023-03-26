@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 09:35:40 by bammar            #+#    #+#             */
-/*   Updated: 2022/08/14 16:31:53 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/27 02:52:03 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,6 @@ static int	haschr(char c, char *s)
 		if (s[i++] == c)
 			return (1);
 	return (0);
-}
-
-static char	*empty_string(void)
-{
-	char	*s;
-
-	s = (char *)malloc(1 * sizeof(char));
-	if (!s)
-		return (NULL);
-	s[0] = '\0';
-	return (s);
 }
 
 int	get_sum_of_trimmed(const char *s1, const char *set)
@@ -69,7 +58,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (i >= 0 && (haschr(s1[i--], (char *)set)))
 		end--;
 	if (get_sum_of_trimmed(s1, (char *)set) >= (int)ft_strlen((char *)s1))
-		return (empty_string());
+		return (ft_strdup("\0"));
 	s = (char *)malloc(ft_strlen((char *)s1) - get_sum_of_trimmed(s1,
 				(char *)set) + 1);
 	if (!s)

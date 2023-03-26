@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ht_isempty.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 20:55:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 03:21:55 by bammar           ###   ########.fr       */
+/*   Created: 2022/12/18 01:14:58 by bammar            #+#    #+#             */
+/*   Updated: 2022/12/24 17:05:41 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ht.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *n)
+int	ht_isempty(t_ht *table)
 {
-	if (!lst)
-		return ;
-	n->next = *(lst);
-	*(lst) = n;
+	if (!table)
+		return (-1);
+	return (table->size == 0);
 }

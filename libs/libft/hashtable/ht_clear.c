@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ht_clear.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 20:55:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 03:21:55 by bammar           ###   ########.fr       */
+/*   Created: 2022/12/24 14:16:37 by bammar            #+#    #+#             */
+/*   Updated: 2022/12/30 15:27:21 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ht.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *n)
+void	ht_clear(t_ht *table)
 {
-	if (!lst)
+	char	*reached_key;
+	int		i;
+
+	if (ht_isempty(table))
 		return ;
-	n->next = *(lst);
-	*(lst) = n;
+	i = 0;
+	while (table->array[i] && table->size > 0)
+	{
+		reached_key = table->array[i]->key;
+		while (reached_key != NULL)
+		{
+			ht_remove(table, reached_key);
+			reached_key = table->array[i]->key;
+		}
+		i++;
+	}
 }
