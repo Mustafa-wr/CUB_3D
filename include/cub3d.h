@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/27 21:15:35 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/27 23:05:35 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	draw_line(void *img, t_point p1, t_point p2, int color);
 void	draw_rect(void *img, t_point s, t_size size, int color);
 
 int		temp_exit(t_hook_vars *hook_vars);
-int		key_hook(int keycode, t_hook_vars *hook_vars);
+int		pressed(int keycode, t_hook_vars *hook_vars);
+int		released(int keycode, t_hook_vars *hook_vars);
+int		update(t_hook_vars *hook_vars);
 void	clear_img(void *img, int width, int height);
 void	draw2d(t_hook_vars *hook_vars); // remove later
 void	move_by_key(int keycode, t_vec *vec);

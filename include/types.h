@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 21:15:21 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/28 00:51:12 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_size
 typedef struct s_vec
 {
 	t_point	p;
-	float	angle;
+	double	angle;
 }	t_vec;
 
 typedef struct s_hook_vars
@@ -70,6 +70,7 @@ typedef struct s_hook_vars
 	t_mlx_vars		*mlx_vars;
 	t_vec			*player;
 	t_ht        	*map;
+	t_ht			*keys;
 }	t_hook_vars;
 
 #endif

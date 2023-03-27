@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 21:49:32 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/27 23:05:43 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void draw2d(t_hook_vars *hook_vars)
         hook_vars->mlx_vars->win_ptr, hook_vars->mlx_vars->main_img, 0,0);
 }
 
+// int get_pressed()
+
 int	main(void)
 {
 	t_mlx_vars	mlx;
@@ -95,6 +97,7 @@ int	main(void)
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);	
     mlx.main_img = mlx_new_image(mlx.mlx_ptr, SWIDTH, SHEIGHT);
     hook.map = ht_new(13*6);
+    hook.keys = ht_new(256);
     // test
     int grid[6][13] =
     {
@@ -112,9 +115,10 @@ int	main(void)
     player.angle = 0;
     player.p = (t_point){SWIDTH/2, SHEIGHT/2};
     draw2d(&hook);
-
     mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.main_img, 0, 0);
 	mlx_hook(mlx.win_ptr, ON_DESTROY, 0, temp_exit, &hook);
-	mlx_hook(mlx.win_ptr, 2, 1L<<0, key_hook, &(hook));
+	mlx_hook(mlx.win_ptr, 2, 1L<<0, pressed, &(hook));
+    mlx_hook(mlx.win_ptr, 3, 1L<<1, released, &(hook));
+    mlx_loop_hook(mlx.mlx_ptr, update, &hook);
 	mlx_loop(mlx.mlx_ptr);
 }

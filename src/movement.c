@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:02:27 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 02:15:10 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/28 00:55:21 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@ static void	handle_direction(int keycode, t_vec *vec)
 {
 	if (keycode == KEY_LEFT)
 	{
+		vec->angle -= 20;
 		if (vec->angle <= 0)
-			vec->angle = 360;
-		vec->angle -= 30;
+			vec->angle += 360;
 	}
 	if (keycode == KEY_RIGHT)
 	{
+		
+		vec->angle += 20;
 		if (vec->angle >= 360)
-			vec->angle = 0;
-		vec->angle += 30;
+			vec->angle -= 360;
 	}
 }
 
