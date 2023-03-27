@@ -231,13 +231,40 @@ int	check_for_spaces(t_cub3d *map)
 	return (1);
 }
 
+int	ft_nl_strlen(char *s)
+{
+	int i;
+	
+	i = 0;
+	if(!s)
+		return (0);
+	while (s[i] && s[i] != '\n')
+		i++;
+	return (i);
+}
+
+int	validation(t_cub3d *map)
+{
+	int i = 0;
+	while (map->path[i])
+	{
+		if	(map->path[i][ft_nl_strlen(map->path[i]) - 1] != '1' && \
+				map->path[i][ft_nl_strlen(map->path[i]) - 1] != ' ')
+		{
+			return (printf("%cError\n", map->path[i][ft_nl_strlen(map->path[i]) - 1]) ,0);	
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	main_parse(t_cub3d *cub, int ac, char **av)
 {
 	if(!file_check(ac, av) || !init_map(cub, av[1]) || !init_textures(cub) || !store_the_rpg(cub) || !check_the_valid_char(cub))
 		return (0);
 	if(!check_and_init_the_path(cub))
 		return (0);
-	if(!check_for_spaces(cub))
+	if(!check_for_spaces(cub) || !validation(cub))
 		return (0);
 	return(1);
 }
@@ -254,3 +281,4 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 // 	if(!main_parse(&cub, ac, av))
 // 		return (0);
 // }
+
