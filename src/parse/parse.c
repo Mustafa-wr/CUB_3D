@@ -40,7 +40,7 @@ static int	calcu_map(t_cub3d *map, char *k)
 {
 	int		fd;
 	char	*line;
-	// int		i;
+	int		i;
 
 	fd = open(k, O_RDONLY);
 	if (fd < 0)
@@ -55,7 +55,7 @@ static int	calcu_map(t_cub3d *map, char *k)
 		map->y++;
 	}
 	close(fd);
-	// i = 0;
+	i = 0;
 	map->map = malloc(sizeof(char *) * (map->y + 1));
 	if (!map->map)
 		return (0);
@@ -82,7 +82,7 @@ int	init_map(t_cub3d *map, char *k)
 	}
 	map->x = ft_strlen(map->map[0]) - 1;
 	close(fd);
-	// if (!check_the_td(map) || !check_player_and_exit(map) ||
+	// if (!check_the_td(map) || !check_player_and_exit(map) || \
 	// 	!valid_map_x(map) || !valid_map_y(map))
 	// 	return (0);
 	i = 0;
@@ -200,14 +200,48 @@ int	check_the_valid_char(t_cub3d *check)
 	return (1);
 }
 
+int	check_for_spaces(t_cub3d *map)
+{
+	int i = 0;
+	int j = 0;
+	int tmp = 0;
+	
+	while(map->path[i])
+	{
+		j = 0;
+		while (map->path[i][j])
+		{
+			if(map->path[i][j] == ' ')
+			{
+				tmp = j;
+				while (map->path[i][tmp] == ' ')
+					tmp++;
+				if (map->path[i][tmp] != '1')
+					return (printf("Error\n"), 0);
+				tmp = j;
+				while (map->path[i][tmp] == ' ' && tmp > 0)
+					tmp--;
+				if(map->path[i][tmp] != '1' && tmp != 0)
+					return (printf("Error\n"), 0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	main_parse(t_cub3d *cub, int ac, char **av)
 {
 	if(!file_check(ac, av) || !init_map(cub, av[1]) || !init_textures(cub) || !store_the_rpg(cub) || !check_the_valid_char(cub))
 		return (0);
 	if(!check_and_init_the_path(cub))
 		return (0);
+	if(!check_for_spaces(cub))
+		return (0);
 	return(1);
 }
+
 
 // int	main(int ac, char **av)
 // {
@@ -220,4 +254,3 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 // 	if(!main_parse(&cub, ac, av))
 // 		return (0);
 // }
-
