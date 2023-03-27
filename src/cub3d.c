@@ -6,23 +6,41 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 03:25:26 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/27 21:21:28 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void draw_grid(t_mlx_vars *mlx)
+int  get_mapvalue(t_ht *map, int i, int j)
 {
-    int map[6][13] =
-    {
-        {1,1,0,0,0,0,0,0,1,1,0,1},
-        {1,1,0,0,0,1,0,0,1,1,0,1},
-        {1,1,0,1,0,0,0,0,0,1,0,1},
-        {1,1,0,0,0,0,0,0,0,1,0,1},
-        {1,1,0,0,0,0,0,1,1,1,0,1},
-        {1,1,0,0,0,0,1,0,1,1,0,1},
-    };
+    char    *index_string;
+    char    *val;
+    int     int_val;
+
+    index_string = ft_strfjoin(ft_itoa(i), ft_itoa(j));
+    val = ht_get(map, index_string);
+    if (!val)
+        return (free(index_string), 0);
+    int_val = ft_atoi(val);
+    free(index_string);
+    return (int_val);
+}
+
+void    set_mapvalue(t_ht *map, int i, int j, int val)
+{
+    char    *index_string;
+    char    *vals;
+
+    index_string = ft_strfjoin(ft_itoa(i), ft_itoa(j));
+    vals = ft_itoa(val);
+    ht_set(map, index_string, vals);
+    free(vals);
+    free(index_string);
+}
+
+void draw_grid(t_mlx_vars *mlx, t_ht *map)
+{
     int side_length = SWIDTH/12 - (int)(SWIDTH%12 == 0);
     if (SHEIGHT/6 - (SWIDTH%6 == 0) < side_length)
         side_length = SHEIGHT/6 - (SWIDTH%6 == 0);
@@ -32,9 +50,9 @@ void draw_grid(t_mlx_vars *mlx)
     while (i < 6)
     {
         j = 0;
-        while (j < 12)
+        while (j < 13)
         {
-            if (map[i][j] == 1)
+            if (get_mapvalue(map, i, j) == 1)
                 draw_rect(mlx->main_img, (t_point){side_length*j, side_length*i}, sq_size, WHT);
             j++;
         }
@@ -59,7 +77,7 @@ void draw_player(t_mlx_vars *mlx, t_vec *vec)
 void draw2d(t_hook_vars *hook_vars)
 {
     clear_img(hook_vars->mlx_vars->main_img, SWIDTH, SHEIGHT);
-    draw_grid(hook_vars->mlx_vars);
+    draw_grid(hook_vars->mlx_vars, hook_vars->map);
     draw_player(hook_vars->mlx_vars, hook_vars->player);
     mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,
         hook_vars->mlx_vars->win_ptr, hook_vars->mlx_vars->main_img, 0,0);
@@ -70,14 +88,26 @@ int	main(void)
 	t_mlx_vars	mlx;
 	t_hook_vars	hook;
     t_vec       player;
-    // t_ht
+    
 
 	hook.mlx_vars = &mlx;
     mlx.mlx_ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);	
     mlx.main_img = mlx_new_image(mlx.mlx_ptr, SWIDTH, SHEIGHT);
-    
+    hook.map = ht_new(13*6);
     // test
+    int grid[6][13] =
+    {
+        {1,1,0,0,0,0,0,0,1,1,0,1},
+        {1,1,0,0,0,1,0,0,1,1,0,1},
+        {1,1,0,1,0,0,0,0,0,1,0,1},
+        {1,1,0,0,0,0,0,0,0,1,0,1},
+        {1,1,0,0,0,0,0,1,1,1,0,1},
+        {1,1,0,0,0,0,1,0,1,1,0,1},
+    };
+    for (int i = 0; i < 6; i++)
+        for (int j = 0; j < 13; j++)
+            set_mapvalue(hook.map, i, j, grid[i][j]);
     hook.player = &player;
     player.angle = 0;
     player.p = (t_point){SWIDTH/2, SHEIGHT/2};
