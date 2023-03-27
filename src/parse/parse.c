@@ -216,7 +216,7 @@ int	check_for_spaces(t_cub3d *map)
 				tmp = j;
 				while (map->path[i][tmp] == ' ')
 					tmp++;
-				if (map->path[i][tmp] != '1')
+				if (map->path[i][tmp] != '1' && map->path[i][tmp] != '\0' && map->path[i][tmp] != '\n')
 					return (printf("Error\n"), 0);
 				tmp = j;
 				while (map->path[i][tmp] == ' ' && tmp > 0)
@@ -246,13 +246,15 @@ int	ft_nl_strlen(char *s)
 int	validation(t_cub3d *map)
 {
 	int i = 0;
+	int tmp = 0;
 	while (map->path[i])
 	{
+		tmp = ft_nl_strlen(map->path[i]) - 1;
+		while (map->path[i][tmp] && tmp > 0)
+			tmp--;
 		if	(map->path[i][ft_nl_strlen(map->path[i]) - 1] != '1' && \
 				map->path[i][ft_nl_strlen(map->path[i]) - 1] != ' ')
-		{
 			return (printf("%cError\n", map->path[i][ft_nl_strlen(map->path[i]) - 1]) ,0);	
-		}
 		i++;
 	}
 	return (1);
