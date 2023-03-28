@@ -1,51 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 16:56:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 17:04:25 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/25 17:06:46 by mradwan           #+#    #+#             */
+/*   Updated: 2023/02/28 18:57:47 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
-	int	slen;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-	slen = 0;
-	while (s[slen] != 0)
-		slen++;
-	if (c == 0)
-		return ((char *)s + slen);
-	i = 0;
-	while (s[i] != 0)
-	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_strchr2(char *s, int c)
-{
-	int	i;
-
-	i = 0;
 	if (!s)
 		return (NULL);
-	while (s[i] != '\0')
+	if (ft_strlen(s) < len)
+		len = ft_strlen(s);
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i])
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
 		i++;
 	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (NULL);
+	str[j] = 0;
+	return (str);
 }
+/*
+int	main(void)
+{
+    printf("%s", ft_substr("hello there", 2, 6));
+}
+*/

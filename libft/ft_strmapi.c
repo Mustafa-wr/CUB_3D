@@ -1,51 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 16:56:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 17:04:25 by mradwan          ###   ########.fr       */
+/*   Created: 2022/08/05 15:01:02 by mradwan           #+#    #+#             */
+/*   Updated: 2022/08/05 15:27:35 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
-	int	slen;
+	unsigned int	i;
+	char			*str;
 
-	slen = 0;
-	while (s[slen] != 0)
-		slen++;
-	if (c == 0)
-		return ((char *)s + slen);
-	i = 0;
-	while (s[i] != 0)
-	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_strchr2(char *s, int c)
-{
-	int	i;
-
-	i = 0;
 	if (!s)
+		return (NULL);
+	i = 0;
+	str = (char *)malloc(sizeof(*s) * (ft_strlen(s) + 1));
+	if (!str)
 		return (NULL);
 	while (s[i] != '\0')
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (NULL);
+	str[i] = '\0';
+	return (str);
 }

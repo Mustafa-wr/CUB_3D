@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 00:51:12 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/28 16:04:56 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_vars
 	int	flag;
 	int	tmp;
 }	t_vars;
-
 
 typedef struct s_cub3d
 {
@@ -38,7 +37,6 @@ typedef struct s_cub3d
 	int		y;
 	int		x;
 }	t_cub3d;
-
 
 typedef struct s_mlx_vars
 {

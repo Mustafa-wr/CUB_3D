@@ -1,51 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 16:56:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 17:04:25 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/14 19:21:59 by mradwan           #+#    #+#             */
+/*   Updated: 2023/02/25 18:29:46 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
-	int	slen;
-
-	slen = 0;
-	while (s[slen] != 0)
-		slen++;
-	if (c == 0)
-		return ((char *)s + slen);
-	i = 0;
-	while (s[i] != 0)
-	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_strchr2(char *s, int c)
-{
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (!s)
-		return (NULL);
-	while (s[i] != '\0')
+	while (i < n)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+		((char *)s)[i] = 0;
 		i++;
 	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (NULL);
 }
+/*
+int	main(void)
+{
+	char	bytes[5];
+	int		i;
+
+    bytes[5] = {1, 'i', 3, 4,'x'};
+    ft_bzero(bytes, 5);
+    i = 0;
+    while (i < 5)
+    {
+        printf("%d, ", bytes[i]);
+        i++;
+    }
+    return (0);
+}
+*/

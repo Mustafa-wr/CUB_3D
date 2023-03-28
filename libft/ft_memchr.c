@@ -1,51 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 16:56:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 17:04:25 by mradwan          ###   ########.fr       */
+/*   Created: 2022/07/19 16:55:06 by mradwan           #+#    #+#             */
+/*   Updated: 2022/07/25 23:03:17 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
-	int	slen;
+	unsigned char	x;
+	unsigned char	*str;
+	size_t			i;
 
-	slen = 0;
-	while (s[slen] != 0)
-		slen++;
-	if (c == 0)
-		return ((char *)s + slen);
 	i = 0;
-	while (s[i] != 0)
+	str = (unsigned char *)s;
+	x = (unsigned char)c;
+	while (i < n)
 	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
+		if (str[i] == x)
+		{
+			return (str + i);
+		}
 		i++;
 	}
 	return (NULL);
 }
+// int main(void)
+// {
+//   char x[] = {'q', 'w', 'e', 'r', 't', 'i'};
 
-char	*ft_strchr2(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (NULL);
-}
+//   char *p = ft_memchr(x, 'e', 6);
+//   printf("%c", p[2]);
+//   return (0);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 22:57:42 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/27 03:10:47 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/28 17:05:03 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*readk(int fd, char *k)
 	str = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
 	if (!str)
 		return (NULL);
-	while (ft_strchr(k, '\n') == NULL && n != 0)
+	while (ft_strchr2(k, '\n') == NULL && n != 0)
 	{
 		n = read(fd, str, BUFFER_SIZE);
 		if (n == -1)

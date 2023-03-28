@@ -1,51 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 16:56:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 17:04:25 by mradwan          ###   ########.fr       */
+/*   Created: 2022/08/08 03:09:22 by mradwan           #+#    #+#             */
+/*   Updated: 2022/08/08 03:14:22 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-	int	slen;
-
-	slen = 0;
-	while (s[slen] != 0)
-		slen++;
-	if (c == 0)
-		return ((char *)s + slen);
-	i = 0;
-	while (s[i] != 0)
-	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_strchr2(char *s, int c)
+int	ft_lstsize(t_list *lst)
 {
 	int	i;
 
 	i = 0;
-	if (!s)
-		return (NULL);
-	while (s[i] != '\0')
+	while (lst != NULL)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+		lst = lst -> next;
 		i++;
 	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (NULL);
+	return (i);
 }

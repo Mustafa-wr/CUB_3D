@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
+#    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/03/28 00:54:10 by bammar           ###   ########.fr        #
+#    Updated: 2023/03/28 17:01:05 by mradwan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -D $(OS) -g 
+CFLAGS = -Wall -Wextra -Werror -D $(OS) -g -fsanitize=address
 
 	RM = /bin/rm
 
@@ -51,7 +51,7 @@ LINKS = -lm -L $(MLX) -L libs/libft -lft
 ifeq ($(OS), Linux)
 	LINKS += -L/usr/lib -lmlx -lXext -lX11
 else
-	LINKS += -framework OpenGL -framework AppKit
+	LINKS += -lmlx -framework OpenGL -framework AppKit
 endif
 
 HEADER	= -Iinclude -I/usr/include -I$(MLX) -I$(LIBFT)
