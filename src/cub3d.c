@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 17:00:49 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/28 17:12:52 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,44 +82,34 @@ void draw2d(t_hook_vars *hook_vars)
 							hook_vars->mlx_vars->win_ptr, hook_vars->mlx_vars->main_img, 0, 0);
 }
 
-// int get_pressed()
-
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_mlx_vars mlx;
-	t_hook_vars hook;
-	t_vec player;
-	t_cub3d game;
+	t_mlx_vars	mlx;
+	t_hook_vars	hook;
+    t_vec       player;
+    t_cub3d     game;
 
-	if(!main_parse(&game, ac, av))
-		return (0);
-	hook.mlx_vars = &mlx;
-	mlx.mlx_ptr = mlx_init();
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);
-	mlx.main_img = mlx_new_image(mlx.mlx_ptr, SWIDTH, SHEIGHT);
-	hook.map = ht_new(13 * 6);
-	hook.keys = ht_new(256);
-	// test
-	int grid[6][13] =
-		{
-			{1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1},
-			{1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1},
-			{1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
-			{1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-			{1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1},
-			{1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1},
-		};
-	for (int i = 0; i < 6; i++)
-		for (int j = 0; j < 13; j++)
-			set_mapvalue(hook.map, i, j, grid[i][j]);
-	hook.player = &player;
-	player.angle = 0;
-	player.p = (t_point){SWIDTH / 2, SHEIGHT / 2};
-	draw2d(&hook);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.main_img, 0, 0);
-	mlx_hook(mlx.win_ptr, ON_DESTROY, 0, temp_exit, &hook);
-	mlx_hook(mlx.win_ptr, 2, 1L << 0, pressed, &(hook));
-	mlx_hook(mlx.win_ptr, 3, 1L << 1, released, &(hook));
-	mlx_loop_hook(mlx.mlx_ptr, update, &hook);
+	ft_bzero(&hook, sizeof(t_hook_vars));
+    if (!main_parse(&game, ac, av))
+        return (EXIT_FAILURE);
+    hook.mlx_vars = &mlx;
+    mlx.mlx_ptr = mlx_init();
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);	
+    mlx.main_img = mlx_new_image(mlx.mlx_ptr, SWIDTH, SHEIGHT);
+    hook.map = ht_new(13*6);
+    hook.keys = ht_new(256);
+    // test
+    for (int i = 0; i < game.y; i++)
+        for (int j = 0; j < game.x; j++)
+            set_mapvalue(hook.map, i, j, game.path[i][j] - '0');
+    hook.player = &player;
+    player.angle = 0;
+    player.p = (t_point){SWIDTH/2, SHEIGHT/2};
+    draw2d(&hook);
+    mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.main_img, 0, 0);
+	mlx_hook(mlx.win_ptr, ON_DESTROY, 0, game_exit, &hook);
+	mlx_hook(mlx.win_ptr, 2, 1L<<0, pressed, &(hook));
+    mlx_hook(mlx.win_ptr, 3, 1L<<1, released, &(hook));
+    mlx_loop_hook(mlx.mlx_ptr, update, &hook);
 	mlx_loop(mlx.mlx_ptr);
 }

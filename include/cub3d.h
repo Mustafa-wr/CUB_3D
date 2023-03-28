@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/27 23:05:35 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/28 16:43:07 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	render_pixel(void *img, t_point p1, int color);
 void	draw_line(void *img, t_point p1, t_point p2, int color);
 void	draw_rect(void *img, t_point s, t_size size, int color);
 
-int		temp_exit(t_hook_vars *hook_vars);
+int		game_exit(t_hook_vars *hook_vars);
 int		pressed(int keycode, t_hook_vars *hook_vars);
 int		released(int keycode, t_hook_vars *hook_vars);
 int		update(t_hook_vars *hook_vars);
