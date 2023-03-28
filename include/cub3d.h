@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/28 16:43:07 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/28 21:29:26 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "mlx.h"
 # include <stdio.h>
 # include <stdbool.h>
-# include "get_next_line.h"
 # include "libft.h"
 # include <math.h>
 # include "enums.h"

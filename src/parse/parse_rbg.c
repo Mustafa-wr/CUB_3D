@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rbg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:39:33 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/20 17:40:25 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/28 21:28:43 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ static void	store_the_cieling(t_cub3d *map, int i, int c, char *sub)
 	while (map->ceiling_tmp[i] != ',')
 		i++;
 	sub = ft_substr(map->ceiling_tmp, c, i);
-	map->cieling[1] = ft_atoi(ft_substr(map->ceiling_tmp, c, i));
+	map->cieling[1] = ft_atoi(sub);
 	free(sub);
 	c = i;
 	while (map->ceiling_tmp[i] != ',' && map->ceiling_tmp[i])
 		i++;
 	sub = ft_substr(map->ceiling_tmp, c, i);
-	map->cieling[2] = ft_atoi(ft_substr(map->ceiling_tmp, c, i));
+	map->cieling[2] = ft_atoi(sub);
 	free(sub);
 }
 

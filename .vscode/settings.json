@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"chrono": "c"
+		"chrono": "c",
+		"libft.h": "c",
+		"protos.h": "c"
 	}
 }

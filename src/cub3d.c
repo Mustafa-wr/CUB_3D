@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 17:12:52 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/28 17:37:18 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ int	main(int ac, char **av)
     hook.map = ht_new(13*6);
     hook.keys = ht_new(256);
     // test
-    for (int i = 0; i < game.y; i++)
-        for (int j = 0; j < game.x; j++)
+    for (int i = 0; game.path[i]; i++)
+        for (int j = 0; game.path[i][j]; j++)
             set_mapvalue(hook.map, i, j, game.path[i][j] - '0');
     hook.player = &player;
     player.angle = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   protos.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:30:17 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 17:04:46 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/28 21:30:25 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <limits.h>
+# include <fcntl.h>
+
+
+#ifndef OPEN_MAX
+# define OPEN_MAX FOPEN_MAX
+#endif
+
+# define BUFFER_SIZE 42
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
@@ -70,5 +80,6 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+char				*get_next_line(int fd);
 
 #endif

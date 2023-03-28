@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 18:39:59 by bammar            #+#    #+#              #
-#    Updated: 2023/03/27 03:47:27 by bammar           ###   ########.fr        #
+#    Updated: 2023/03/28 21:17:57 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 ft_lstiter.c ft_lstmap.c \
 hashtable/ht_clear.c     hashtable/ht_destroy.c  hashtable/ht_isempty.c  hashtable/ht_remove.c   hashtable/ht_set.c \
-hashtable/ht_contains.c  hashtable/ht_get.c      hashtable/ht_hash.c  hashtable/ht_new.c      hashtable/ht_replace.c
+hashtable/ht_contains.c  hashtable/ht_get.c      hashtable/ht_hash.c  hashtable/ht_new.c      hashtable/ht_replace.c \
+get_next_line.c
 
 CC = cc	
 
