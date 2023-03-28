@@ -21,7 +21,7 @@ static int	check_for_rbg(t_cub3d *map, int i, int c)
 		i++;
 	}
 	if (c != 2)
-		return (printf("Error\n"), 0);
+		return (free_strings(map->map) ,printf("Error\n"), 0);
 	i = 0;
 	c = 0;
 	while (map->floor_tmp[i])
@@ -31,7 +31,7 @@ static int	check_for_rbg(t_cub3d *map, int i, int c)
 		i++;
 	}
 	if (c != 2)
-		return (printf("Error\n"), 0);
+		return (free_strings(map->map), printf("Error\n"), 0);
 	return (1);
 }
 
