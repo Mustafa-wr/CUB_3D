@@ -82,7 +82,7 @@ void draw2d(t_hook_vars *hook_vars)
 							hook_vars->mlx_vars->win_ptr, hook_vars->mlx_vars->main_img, 0, 0);
 }
 
-// int get_pressed()
+int get_pressed()
 
 int main(int ac, char **av)
 {

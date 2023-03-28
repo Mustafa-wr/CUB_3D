@@ -59,7 +59,7 @@ static int	calcu_map(t_cub3d *map, char *k)
 	map->map = malloc(sizeof(char *) * (map->y + 1));
 	if (!map->map)
 		return (0);
-	map->map[map->y] = NULL;
+	// map->map[map->y] = NULL;
 	return (1);
 }
 
@@ -81,6 +81,7 @@ int	init_map(t_cub3d *map, char *k)
 		i++;
 	}
 	map->x = ft_strlen(map->map[0]) - 1;
+	map->map[i] = NULL;
 	close(fd);
 	// if (!check_the_td(map) || !check_player_and_exit(map) ||
 	// 	!valid_map_x(map) || !valid_map_y(map))
@@ -129,7 +130,7 @@ int	check_path_chars(t_cub3d *p)
 					p->path[i][j] == 'S' || p->path[i][j] == 'E' || p->path[i][j] == 'W' || p->path[i][j] == '\n')
 				j++;
 			else
-				return (printf("Error\n"),0);
+				return (free_strings(p->path), free_strings(p->map), printf("Error\n"), 0);
 		}
 		i++;
 	}
@@ -193,7 +194,7 @@ int	check_the_valid_char(t_cub3d *check)
 				|| check->map[i][x] == '_' || check->map[i][x] == ',' || check->map[i][x] == ' ' || check->map[i][x] == '/')
 					x++;
 			else
-				return (printf("Error\n") ,0);
+				return (free_strings(check->map), printf("Error\n") ,0);
 		}
 		i++;
 	}
@@ -262,8 +263,8 @@ int	validation(t_cub3d *map)
 
 int	main_parse(t_cub3d *cub, int ac, char **av)
 {
-	if (!file_check(ac, av) || !init_map(cub, av[1]) || \
-		!init_textures(cub) || !store_the_rpg(cub) || !check_the_valid_char(cub))
+	if (!file_check(ac, av) || !init_map(cub, av[1]) || !check_the_valid_char(cub) || \
+		!init_textures(cub) || !store_the_rpg(cub))
 		return (0);
 	if (!check_and_init_the_path(cub))
 		return (0);

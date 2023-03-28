@@ -6,11 +6,8 @@
 #    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-<<<<<<< HEAD
 #    Updated: 2023/03/28 17:01:05 by mradwan          ###   ########.fr        #
-=======
 #    Updated: 2023/03/28 16:34:26 by bammar           ###   ########.fr        #
->>>>>>> 054f1dafa308d3fb5fb82e3f6a6300195cfe1baa
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +33,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -D $(OS) -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -D $(OS) -g 
 
 	RM = /bin/rm
 

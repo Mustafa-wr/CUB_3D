@@ -73,7 +73,7 @@ int	init_textures(t_cub3d *t)
 	if (v.flag != 6)
 	{
 		printf("Error\n");
-		return (0);
+		return (free_strings(t->map) ,0);
 	}
 	return (1);
 }
