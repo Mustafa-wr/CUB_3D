@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_rbg.c                                        :+:      :+:    :+:   */
+/*   parse_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:39:33 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/28 21:28:43 by bammar           ###   ########.fr       */
+/*   Updated: 2023/03/30 01:56:11 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_for_rbg(t_cub3d *map, int i, int c)
 		i++;
 	}
 	if (c != 2)
-		return (free_strings(map->map) ,printf("Error\n"), 0);
+		return (free_strings(map->map), printf("Error\n"), 0);
 	i = 0;
 	c = 0;
 	while (map->floor_tmp[i])
@@ -83,7 +83,7 @@ static void	store_the_cieling(t_cub3d *map, int i, int c, char *sub)
 	free(sub);
 }
 
-int	store_the_rpg(t_cub3d *map)
+int	store_the_rgb(t_cub3d *map)
 {
 	int		i;
 	int		c;

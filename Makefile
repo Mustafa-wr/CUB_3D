@@ -3,17 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
+#    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/03/28 21:34:00 by bammar           ###   ########.fr        #
+#    Updated: 2023/03/30 02:13:11 by mradwan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-SRCS =	src/parse/parse_rbg.c			\
+SRCS =	src/parse/parse_rgb.c			\
+		src/parse/wall_error.c			\
 		src/parse/parse_textures.c		\
+		src/parse/init.c				\
+		src/parse/validation.c			\
+		src/parse/init_path.c 			\
 		src/free_functions.c			\
 		src/parse/parse.c				\
 		src/render_pixel.c				\
