@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:46:05 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 01:59:29 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/30 06:00:48 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,15 @@ int	init_map(t_cub3d *map, char *k)
 		return (0);
 	while (i < map->y)
 	{
-		map->map[i] = get_next_line(fd);
-		map->map[i][ft_strlen(map->map[i])] = '\0';
+		map->map[i] = ft_strtrim(get_next_line(fd), "\n");
+		// map->map[i][ft_strlen(map->map[i])] = '\0';
 		i++;
 	}
 	map->x = ft_strlen(map->map[0]) - 1;
 	map->map[i] = NULL;
+	i = 0;
+	// while (map->map[i])
+	// 	puts(map->map[i++]);
 	close(fd);
 	// if (!check_the_td(map) || !check_player_and_exit(map) ||
 	// 	!valid_map_x(map) || !valid_map_y(map))
