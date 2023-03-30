@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 06:19:04 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/30 18:17:59 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	largest_string_length(char **arr)
 {
-	int	i = 0;
-	int	max_len = 0;
+	int	i;
+	int	max_len;
 	int	len;
 
+	i = 0;
+	max_len = 0;
+	len = 0;
 	while (arr[i])
 	{
 		len = ft_strlen(arr[i]);
@@ -30,25 +33,25 @@ int	largest_string_length(char **arr)
 
 void	put_spaces(char **arr)
 {
-	int i = 0;
-	int j = 0;
-	int max_len = largest_string_length(arr);
-	int len;
-	int num_spaces;
+	int	i;
+	int	j;
+	int	max_len;
+	int	len;
+	int	num_spaces;
 
+	max_len = largest_string_length(arr);
+	i = 0;
+	j = -1;
 	while (arr[i])
 	{
 		len = ft_strlen(arr[i]);
 		num_spaces = max_len - len;
-		j = 0;
+		j = -1;
 		if (num_spaces)
 		{
 			arr[i] = realloc(arr[i], max_len + 1);
-			while (j < num_spaces)
-			{
+			while (++j < num_spaces)
 				arr[i][len + j] = ' ';
-				j++;
-			}
 			arr[i][max_len] = '\0';
 		}
 		i++;
@@ -103,8 +106,6 @@ static int	check_the_valid_char(t_cub3d *check)
 	}
 	return (1);
 }
-
-// now i want to create a function that fills spaces to the small strings to be all of them exactly same lenghth of the largest one
 
 int	main_parse(t_cub3d *cub, int ac, char **av)
 {
