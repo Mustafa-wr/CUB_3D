@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:58:01 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 01:58:31 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/30 04:28:20 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	check_and_init_the_path(t_cub3d *p)
 	v.j = 0;
 	v.len = 0;
 	v.tmp = 0;
-	int i = 0;
+	// int i = 0;
 	while (p->map[v.i])
 	{
 		v.j = 0;
@@ -92,8 +92,8 @@ int	check_and_init_the_path(t_cub3d *p)
 	init_the_path(p, &v);
 	if (!check_path_chars(p))
 		return (0);
-	i = 0;
-	while (p->path[i])
-		puts(p->path[i++]);
+	// i = 0;
+	// while (p->path[i])
+	// 	puts(p->path[i++]);
 	return (1);
 }

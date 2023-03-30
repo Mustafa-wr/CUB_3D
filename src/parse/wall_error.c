@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:12:30 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 02:12:51 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/30 04:27:27 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_for_spaces(t_cub3d *map)
 		{
 			if (map->path[v.i][v.j] == ' ')
 			{
-				if(!wall_error(map, &v))
+				if (!wall_error(map, &v))
 					return (0);
 			}
 			v.j++;
