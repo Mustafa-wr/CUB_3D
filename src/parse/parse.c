@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 06:03:43 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/30 06:19:04 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	put_spaces(char **arr)
 				arr[i][len + j] = ' ';
 				j++;
 			}
-			arr[i][max_len] = '\0'; // Add null terminator
+			arr[i][max_len] = '\0';
 		}
 		i++;
 	}
