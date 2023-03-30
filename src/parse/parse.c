@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 22:41:20 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/30 22:43:13 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 		return (0);
 	put_spaces(cub->path);
 	height_and_width(cub);
-	int i = 0;
-	while (cub->path[i])
-	{
-		printf("{%s}\n",(cub->path[i++]));
-		fflush(stdout);
-	}
-	printf("hi\n");
+	// int i = 0;
+	// while (cub->path[i])
+	// {
+	// 	printf("{%s}\n",(cub->path[i++]));
+	// 	fflush(stdout);
+	// }
+	// printf("hi\n");
 	return (1);
 }
 
