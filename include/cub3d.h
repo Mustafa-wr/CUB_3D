@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 02:13:31 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/30 18:19:40 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		check_and_init_the_path(t_cub3d *p);
 int		main_parse(t_cub3d *cub, int ac, char **av);
 int		validation(t_cub3d *map);
 void	free_strings(char **av);
+void	put_spaces(char **arr);
 int		check_for_spaces(t_cub3d *map);
 
 /*********************       Rendering         ********************/

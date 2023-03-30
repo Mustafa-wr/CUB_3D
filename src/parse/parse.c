@@ -6,57 +6,11 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 18:17:59 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/03/30 22:41:20 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	largest_string_length(char **arr)
-{
-	int	i;
-	int	max_len;
-	int	len;
-
-	i = 0;
-	max_len = 0;
-	len = 0;
-	while (arr[i])
-	{
-		len = ft_strlen(arr[i]);
-		if (len > max_len)
-			max_len = len;
-		i++;
-	}
-	return (max_len);
-}
-
-void	put_spaces(char **arr)
-{
-	int	i;
-	int	j;
-	int	max_len;
-	int	len;
-	int	num_spaces;
-
-	max_len = largest_string_length(arr);
-	i = 0;
-	j = -1;
-	while (arr[i])
-	{
-		len = ft_strlen(arr[i]);
-		num_spaces = max_len - len;
-		j = -1;
-		if (num_spaces)
-		{
-			arr[i] = realloc(arr[i], max_len + 1);
-			while (++j < num_spaces)
-				arr[i][len + j] = ' ';
-			arr[i][max_len] = '\0';
-		}
-		i++;
-	}
-}
 
 int	file_check(int ac, char **av)
 {
@@ -107,6 +61,17 @@ static int	check_the_valid_char(t_cub3d *check)
 	return (1);
 }
 
+void	height_and_width(t_cub3d *cub)
+{
+	int	i;
+
+	i = 0;
+	while (cub->path[i])
+		i++;
+	cub->height = i;
+	cub->width = ft_strlen(cub->path[0]);
+}
+
 int	main_parse(t_cub3d *cub, int ac, char **av)
 {
 	if (!file_check(ac, av) || !init_map(cub, av[1]) || \
@@ -118,13 +83,14 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 	if (!check_for_spaces(cub) || !validation(cub))
 		return (0);
 	put_spaces(cub->path);
-	// int i = 0;
-	// while (cub->path[i])
-	// {
-	// 	printf("{%s}\n",(cub->path[i++]));
-	// 	fflush(stdout);
-	// }
-	// printf("hi\n");
+	height_and_width(cub);
+	int i = 0;
+	while (cub->path[i])
+	{
+		printf("{%s}\n",(cub->path[i++]));
+		fflush(stdout);
+	}
+	printf("hi\n");
 	return (1);
 }
 
