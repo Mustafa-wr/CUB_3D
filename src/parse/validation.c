@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:01:21 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 18:26:41 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/04 18:27:47 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	validation(t_cub3d *map)
 	while (map->path[i])
 	{
 		tmp = ft_nl_strlen(map->path[i]) - 1;
-		while (map->path[i][tmp] && tmp > 0)
+		while (map->path[i][tmp] && map->path[i][tmp] == ' ' && tmp > 0)
 			tmp--;
-		if (map->path[i][ft_nl_strlen(map->path[i]) - 1] != '1' && \
-				map->path[i][ft_nl_strlen(map->path[i]) - 1] != ' ')
+		if (map->path[i][tmp] != '1' && \
+				map->path[i][tmp] != ' ' && map->path[i][tmp] != '\0')
 			return (printf("Error\n"), 0);
 		i++;
 	}

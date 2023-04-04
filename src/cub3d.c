@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 21:34:42 by bammar           ###   ########.fr       */
+/*   Updated: 2023/04/04 05:38:54 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int get_mapvalue(t_ht *map, int i, int j)
 
 void set_mapvalue(t_ht *map, int i, int j, int val)
 {
-	char *index_string;
-	char *vals;
+	char	*index_string;
+	char	*vals;
 
 	index_string = ft_strfjoin(ft_itoa(i), ft_itoa(j));
 	vals = ft_itoa(val);
@@ -60,7 +60,7 @@ void draw_grid(t_mlx_vars *mlx, t_ht *map)
 	}
 }
 
-void draw_player(t_mlx_vars *mlx, t_vec *vec)
+void	draw_player(t_mlx_vars *mlx, t_vec *vec)
 {
 	t_point p2;
 	float r;
