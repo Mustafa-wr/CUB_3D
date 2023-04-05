@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 18:19:40 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/05 22:05:16 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		validation(t_cub3d *map);
 void	free_strings(char **av);
 void	put_spaces(char **arr);
 int		check_for_spaces(t_cub3d *map);
+int		valid_path(t_cub3d *p);
 
 /*********************       Rendering         ********************/
 void	render_pixel(void *img, t_point p1, int color);

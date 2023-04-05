@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:58:01 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/03 19:50:38 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/05 22:06:39 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,11 @@ int	check_and_init_the_path(t_cub3d *p)
 	v.j = 0;
 	v.len = 0;
 	v.tmp = 0;
-	// int i = 0;
 	while (p->map[v.i])
 	{
 		v.j = 0;
 		init_the_path_utils(p, &v);
-		if(v.len != 0)
+		if (v.len != 0)
 			break ;
 		v.i++;
 	}
@@ -95,5 +94,30 @@ int	check_and_init_the_path(t_cub3d *p)
 	// i = 0;
 	// while (p->path[i])
 	// 	puts(p->path[i++]);
+	return (1);
+}
+
+int	valid_path(t_cub3d *p)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (p->path[i])
+	{
+		j = 0;
+		while (p->path[i][j])
+		{
+			if (p->path[i + 1])
+			{
+				if (p->path[i][j] == '0')
+					if (p->path[i + 1][j] == ' ')
+						return (printf("Error\n"), 0);
+			}
+			j++;
+		}
+		i++;
+	}
 	return (1);
 }
