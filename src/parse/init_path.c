@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:58:01 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/05 22:06:39 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/06 17:09:31 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ static int	check_path_chars(t_cub3d *p)
 
 	i = 0;
 	j = 0;
+	while (p->path[0][i])
+	{
+		if (p->path[0][i] != ' ' && p->path[0][i] != '1' && p->path[0][i] != '\0')
+			return (free_all(p), printf("Error\n"), 0);
+		i++;
+	}
+	i = 0;	
 	while (p->path[i])
 	{
 		j = 0;
@@ -50,7 +57,7 @@ static int	check_path_chars(t_cub3d *p)
 					p->path[i][j] == 'S' || p->path[i][j] == 'E' || p->path[i][j] == 'W' || p->path[i][j] == '\n')
 				j++;
 			else
-				return (free_strings(p->path), free_strings(p->map), printf("Error\n"), 0);
+				return (free_all(p), printf("Error\n"), 0);
 		}
 		i++;
 	}
@@ -109,11 +116,14 @@ int	valid_path(t_cub3d *p)
 		j = 0;
 		while (p->path[i][j])
 		{
-			if (p->path[i + 1])
+			if (p->path[i + 1] && i > 0)
 			{
 				if (p->path[i][j] == '0')
 					if (p->path[i + 1][j] == ' ')
-						return (printf("Error\n"), 0);
+						return (free_all(p), printf("Error\n"), 0);
+				if (p->path[i][j] == '0')
+					if (p->path[i - 1][j] == ' ')
+						return (free_all(p), printf("Error\n"), 0);
 			}
 			j++;
 		}

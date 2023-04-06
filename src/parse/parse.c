@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/05 22:07:07 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/06 17:14:15 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 // 	// 	return (0);
 // 	// if(!check_and_init_the_path(&cub))
 // 	// 	return 0;
-// 	if(!main_parse(&cub, ac, av))
+// 	if (!main_parse(&cub, ac, av))
 // 		return (0);
 // }
