@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/30 22:32:11 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/11 14:40:49 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_hook_vars
 	t_vec			*player;
 	t_ht        	*map;
 	t_ht			*keys;
+	int				mwidth;
+	int				mheight;
 }	t_hook_vars;
 
 #endif

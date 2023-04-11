@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/06 17:14:18 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/11 14:48:50 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ void set_mapvalue(t_ht *map, int i, int j, int val)
 	free(index_string);
 }
 
-void draw_grid(t_mlx_vars *mlx, t_ht *map)
+void draw_grid(t_mlx_vars *mlx, t_ht *map, int width, int height)
 {
-	int side_length = SWIDTH / 12 - (int)(SWIDTH % 12 == 0);
-	if (SHEIGHT / 6 - (SWIDTH % 6 == 0) < side_length)
-		side_length = SHEIGHT / 6 - (SWIDTH % 6 == 0);
+	int side_length = SWIDTH / width - (int)(SWIDTH % width == 0);
+	if (SHEIGHT / height - (SWIDTH % height == 0) < side_length)
+		side_length = SHEIGHT / height - (SWIDTH % height == 0);
 	t_size sq_size = (t_size){side_length, side_length};
 	int i = 0;
 	int j;
-	while (i < 6)
+	while (i < height)
 	{
 		j = 0;
-		while (j < 13)
+		while (j < width)
 		{
 			if (get_mapvalue(map, i, j) == 1)
 				draw_rect(mlx->main_img, (t_point){side_length * j, side_length * i}, sq_size, WHT);
@@ -76,7 +76,7 @@ void	draw_player(t_mlx_vars *mlx, t_vec *vec)
 void draw2d(t_hook_vars *hook_vars)
 {
 	clear_img(hook_vars->mlx_vars->main_img, SWIDTH, SHEIGHT);
-	draw_grid(hook_vars->mlx_vars, hook_vars->map);
+	draw_grid(hook_vars->mlx_vars, hook_vars->map, hook_vars->mwidth, hook_vars->mheight);
 	draw_player(hook_vars->mlx_vars, hook_vars->player);
 	mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,
 							hook_vars->mlx_vars->win_ptr, hook_vars->mlx_vars->main_img, 0, 0);
@@ -105,6 +105,8 @@ int	main(int ac, char **av)
     hook.player = &player;
     player.angle = 0;
     player.p = (t_point){SWIDTH/2, SHEIGHT/2};
+	hook.mwidth = game.width;
+	hook.mheight = game.height;
     draw2d(&hook);
     mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.main_img, 0, 0);
 	mlx_hook(mlx.win_ptr, ON_DESTROY, 0, game_exit, &hook);
