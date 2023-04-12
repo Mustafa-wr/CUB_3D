@@ -12,6 +12,21 @@
 
 #include "cub3d.h"
 
+static int	check_for_digits(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (ft_isdigit(s[i]) || s[i] == ',' || s[i] == ' ')
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
 static int	check_for_rbg(t_cub3d *map, int i, int c)
 {
 	while (map->ceiling_tmp[i])
@@ -92,8 +107,8 @@ int	store_the_rgb(t_cub3d *map)
 	i = 0;
 	c = 0;
 	sub = NULL;
-	if (!check_for_rbg(map, i, c))
-		return (0);
+	if (!check_for_rbg(map, i, c) || !check_for_digits(map->ceiling_tmp) || !check_for_digits(map->floor_tmp))
+		return (ft_putendl_fd("Error", 2), 0);
 	map->floor = malloc(sizeof(int) * 3);
 	map->cieling = malloc(sizeof(int) * 3);
 	store_the_floor(map, i, c, sub);
