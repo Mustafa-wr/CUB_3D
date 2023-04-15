@@ -6,7 +6,7 @@
 #    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/03/30 18:20:40 by mradwan          ###   ########.fr        #
+#    Updated: 2023/04/12 03:06:12 by mradwan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS =	src/parse/parse_rgb.c			\
 		src/hooks.c						\
 		src/clear_img.c					\
 		src/cub3d.c						\
+		src/test.c
 
 OS = $(shell uname)
 
@@ -35,7 +36,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -D $(OS) -g
+CFLAGS = -Wall -Wextra -Werror -D $(OS) -g -fsanitize=address
 
 	RM = /bin/rm
 

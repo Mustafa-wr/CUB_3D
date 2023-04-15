@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/30 22:32:11 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/12 03:14:46 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_cub3d
 	int		x;
 	int		width;
 	int		height;
+	float *d;
 }	t_cub3d;
 
 typedef struct s_mlx_vars
@@ -72,5 +73,19 @@ typedef struct s_hook_vars
 	t_ht        	*map;
 	t_ht			*keys;
 }	t_hook_vars;
+
+// typedef struct	s_ray
+// {
+// 	float start[2];
+// 	float end[2];
+// 	float ra;
+// 	char dir;
+// }				t_ray;
+
+// typedef struct	s_ray_offset
+// {
+// 	float x;
+// 	float y;
+// }				t_ray_offset;
 
 #endif

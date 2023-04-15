@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/06 17:14:18 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/16 02:27:19 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	main(int ac, char **av)
 	t_mlx_vars	mlx;
 	t_hook_vars	hook;
     t_vec       player;
+
     t_cub3d     game;
 
 	ft_bzero(&hook, sizeof(t_hook_vars));
@@ -107,6 +108,13 @@ int	main(int ac, char **av)
     player.p = (t_point){SWIDTH/2, SHEIGHT/2};
     draw2d(&hook);
     mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.main_img, 0, 0);
+	game.d = cast_rays(player.p.x, player.p.y, player.angle, game.path, game.width, game.height);
+	for (int i = 0; i < 640; i++)
+	{
+		// game.d[i] = calc_rays(&r, &game, game.width, game.height);
+		printf("%f\n", game.d[i]);
+		// draw_line()
+	}
 	mlx_hook(mlx.win_ptr, ON_DESTROY, 0, game_exit, &hook);
 	mlx_hook(mlx.win_ptr, 2, 1L<<0, pressed, &(hook));
     mlx_hook(mlx.win_ptr, 3, 1L<<1, released, &(hook));

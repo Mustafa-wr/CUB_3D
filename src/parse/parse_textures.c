@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:03:14 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/06 17:05:21 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/12 18:02:17 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,33 @@ static void	init_helper(t_cub3d *t, t_vars *v)
 		textures_utils2(&t->floor_tmp, t->map[v->i], v);
 }
 
+static int	checker_for_t(t_cub3d *t)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	int flag = 0;
+	while (t->map[i])
+	{
+		j = 0;
+		while (t->map[i][j])
+		{
+			while (t->map[i][j] == ' ')
+				j++;
+			if (t->map[i][j] == 'C' || t->map[i][j] == 'F')
+				flag++;
+			if (t->map[i][j])
+				j++;
+		}
+		i++;
+	}
+	if (flag != 2)
+		return (0);
+	return(1);
+}
+
 int	init_textures(t_cub3d *t)
 {
 	t_vars	v;
@@ -70,10 +97,10 @@ int	init_textures(t_cub3d *t)
 		init_helper(t, &v);
 		v.i++;
 	}
-	if (v.flag != 6)
+	if (v.flag != 6 || !checker_for_t(t))
 	{
 		printf("Error\n");
-		return (free_strings(t->map) ,0);
+		return (free_strings(t->map), 0);
 	}
 	return (1);
 }

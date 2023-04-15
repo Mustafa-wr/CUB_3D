@@ -6,32 +6,60 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:39:33 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/06 17:05:21 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/12 20:00:51 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static int	check_for_digits(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (ft_isdigit(s[i]) || s[i] == ',' || s[i] == ' ')
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+static int	check_for_rgb_helper(char *str, int i, int c, int tmp)
+{
+	while (str[i])
+	{
+		if (str[i] == ',')
+		{
+			if (i == 0)
+				return (0);
+			tmp = i + 1;
+			while (str[tmp] == ' ')
+				tmp++;
+			if (str[tmp] == ',')
+				return (0);
+			c++;
+		}
+		i++;
+	}
+	if (c != 2)
+		return (0);
+	return (1);
+}
+
 static int	check_for_rbg(t_cub3d *map, int i, int c)
 {
-	while (map->ceiling_tmp[i])
-	{
-		if (map->ceiling_tmp[i] == ',')
-			c++;
-		i++;
-	}
-	if (c != 2)
-		return (free_strings(map->map), printf("Error\n"), 0);
+	int	tmp;
+
+	tmp = 0;
+	if (!check_for_rgb_helper(map->ceiling_tmp, i, c, tmp))
+		return (free_strings(map->map), 0);
 	i = 0;
 	c = 0;
-	while (map->floor_tmp[i])
-	{
-		if (map->floor_tmp[i] == ',')
-			c++;
-		i++;
-	}
-	if (c != 2)
-		return (free_strings(map->map), printf("Error\n"), 0);
+	if (!check_for_rgb_helper(map->floor_tmp, i, c, tmp))
+		return (free_strings(map->map), 0);
 	return (1);
 }
 
@@ -92,8 +120,9 @@ int	store_the_rgb(t_cub3d *map)
 	i = 0;
 	c = 0;
 	sub = NULL;
-	if (!check_for_rbg(map, i, c))
-		return (0);
+	if (!check_for_rbg(map, i, c) || !check_for_digits(map->ceiling_tmp) \
+		|| !check_for_digits(map->floor_tmp))
+		return (ft_putendl_fd("Error", 2), 0);
 	map->floor = malloc(sizeof(int) * 3);
 	map->cieling = malloc(sizeof(int) * 3);
 	store_the_floor(map, i, c, sub);

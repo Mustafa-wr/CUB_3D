@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/06 17:14:15 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/12 19:47:36 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,30 @@ void	height_and_width(t_cub3d *cub)
 	cub->width = ft_strlen(cub->path[0]);
 }
 
+static int	only_one_check(t_cub3d *p)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	int flag = 0;
+	while (p->path[i])
+	{
+		j = 0;
+		while (p->path[i][j])
+		{
+			if (p->path[i][j] == 'N' || p->path[i][j] == 'S' || p->path[i][j] == 'E' || p->path[i][j] == 'W')
+				flag++;
+			j++;
+		}
+		i++;
+	}
+	if (flag != 1)
+		return (free_all(p), printf("Error\n"), 0);
+	return (1);
+}
+
 int	main_parse(t_cub3d *cub, int ac, char **av)
 {
 	if (!file_check(ac, av) || !init_map(cub, av[1]) || \
@@ -84,7 +108,7 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 		return (0);
 	put_spaces(cub->path);
 	height_and_width(cub);
-	if (!valid_path(cub))
+	if (!valid_path(cub) || !only_one_check(cub))
 		return (0);
 	// int i = 0;
 	// while (cub->path[i])
