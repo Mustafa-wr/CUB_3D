@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/12 03:14:46 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/16 03:14:52 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_hook_vars
 	t_vec			*player;
 	t_ht        	*map;
 	t_ht			*keys;
+	int				mwidth;
+	int				mheight;
 }	t_hook_vars;
 
 // typedef struct	s_ray
