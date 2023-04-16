@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:12:30 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/04 18:18:37 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/16 04:30:18 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static int	wall_error(t_cub3d *map, t_vars *v)
 		v->tmp++;
 	if (map->path[v->i][v->tmp] != '1' && map->path[v->i][v->tmp] != '\0' && \
 		map->path[v->i][v->tmp] != '\n')
-		return (printf("Error\n"), 0);
+		return (ft_putendl_fd("Error", 2), 0);
 	v->tmp = v->j;
 	while (map->path[v->i][v->tmp] == ' ' && v->tmp > 0)
 		v->tmp--;
 	if (map->path[v->i][v->tmp] != '1' && v->tmp != 0)
-		return (printf("Error\n"), 0);
+		return (ft_putendl_fd("Error", 2), 0);
 	return (1);
 }
 

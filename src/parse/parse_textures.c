@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:03:14 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 03:13:32 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/16 04:30:18 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	init_textures(t_cub3d *t)
 	}
 	if (v.flag != 6 || !checker_for_t(t))
 	{
-		printf("Error\n");
+		ft_putendl_fd("Error", 2);
 		return (free_strings(t->map), 0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/12 19:47:36 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/16 04:31:00 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	file_check(int ac, char **av)
 			{
 				i++;
 				if (av[1][i] != 'c')
-					return (printf("there is no cub file\n"), 0);
+					return (ft_putendl_fd("there is no cub file", 2), 0);
 				if (av[1][i] == 'c' && av[1][i + 1] == 'u'
 						&& av[1][i + 2] == 'b' && av[1][i + 3] == '\0')
 					return (1);
 			}
 		}
 	}
-	return (printf("there is no cub file\n"), 0);
+	return (ft_putendl_fd("there is no cub file", 2), 0);
 }
 
 static int	check_the_valid_char(t_cub3d *check)
@@ -54,7 +54,7 @@ static int	check_the_valid_char(t_cub3d *check)
 						check->map[i][x] == ' ' || check->map[i][x] == '/')
 					x++;
 			else
-				return (free_strings(check->map), printf("Error\n"), 0);
+				return (free_strings(check->map), ft_putendl_fd("Error", 2), 0);
 		}
 		i++;
 	}
@@ -92,7 +92,7 @@ static int	only_one_check(t_cub3d *p)
 		i++;
 	}
 	if (flag != 1)
-		return (free_all(p), printf("Error\n"), 0);
+		return (free_all(p), ft_putendl_fd("Error", 2), 0);
 	return (1);
 }
 
