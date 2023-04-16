@@ -6,27 +6,47 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:03:14 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 06:33:26 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/17 02:31:37 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <ctype.h>
 
-static void	textures_utils(char **dst, char *src, t_vars *var)
+static int	textures_utils(char **dst, char *src, t_vars *var, t_cub3d *t)
 {
 	char	*tmp;
+	int		i;
 
+	i = 0;
+	while (src[i] == ' ')
+		i++;
+	if (src[i] == 'E' || src[i] == 'S' || src[i] == 'W' || src[i] == 'N')
+		i = i + 3;
+	while (src[i] != '\0' && src[i] == ' ')
+		i++;
+	if (src[i] != '.')
+		return (ft_putendl_fd("Error", 2), free_strings(t->map), exit(1), 0);
 	tmp = ft_strchr(src, '.');
 	(*dst) = ft_strdup(tmp);
 	puts(*dst);
 	var->i = -1;
 	var->flag++;
+	return (1);
 }
 
-static void	textures_utils2(char **dst, char *src, t_vars *var)
+static int	textures_utils2(char **dst, char *src, t_vars *var, t_cub3d *t)
 {
 	char	*tmp;
+	int		i;
 
+	i = 0;
+	while (src[i] == ' ')
+		i++;
+	if (src[i] == 'F' || src[i] == 'C')
+		i = i + 1;
+	if (src[i] != ' ')
+		return (ft_putendl_fd("Error", 2), free_strings(t->map), exit(1), 0);
 	tmp = ft_strchr(src, ' ');
 	var->j = 0;
 	while (tmp[var->j] == ' ')
@@ -35,22 +55,23 @@ static void	textures_utils2(char **dst, char *src, t_vars *var)
 	puts(*dst);
 	var->i = -1;
 	var->flag++;
+	return (1);
 }
 
 static void	init_helper(t_cub3d *t, t_vars *v)
 {
 	if (ft_strncmp(t->map[v->i] + v->j, "NO", 2) == 0 && v->flag == 0)
-		textures_utils(&t->no, t->map[v->i], v);
+		textures_utils(&t->no, t->map[v->i], v, t);
 	else if (ft_strncmp(t->map[v->i] + v->j, "SO", 2) == 0 && v->flag == 1)
-		textures_utils(&t->so, t->map[v->i], v);
+		textures_utils(&t->so, t->map[v->i], v, t);
 	else if (ft_strncmp(t->map[v->i] + v->j, "WE", 2) == 0 && v->flag == 2)
-		textures_utils(&t->we, t->map[v->i], v);
+		textures_utils(&t->we, t->map[v->i], v, t);
 	else if (ft_strncmp(t->map[v->i] + v->j, "EA", 2) == 0 && v->flag == 3)
-		textures_utils(&t->ea, t->map[v->i], v);
+		textures_utils(&t->ea, t->map[v->i], v, t);
 	else if (ft_strncmp(t->map[v->i] + v->j, "C", 1) == 0 && v->flag == 4)
-		textures_utils2(&t->ceiling_tmp, t->map[v->i], v);
+		textures_utils2(&t->ceiling_tmp, t->map[v->i], v, t);
 	else if (ft_strncmp(t->map[v->i] + v->j, "F", 1) == 0 && v->flag == 5)
-		textures_utils2(&t->floor_tmp, t->map[v->i], v);
+		textures_utils2(&t->floor_tmp, t->map[v->i], v, t);
 }
 
 static int	checker_for_t(t_cub3d *t)
