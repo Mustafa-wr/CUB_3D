@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:03:14 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 04:30:18 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/16 06:33:26 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ static int	checker_for_t(t_cub3d *t)
 {
 	int	i;
 	int	j;
+	int	flag;
 
 	i = 0;
 	j = 0;
-	int flag = 0;
+	flag = 0;
 	while (t->map[i])
 	{
 		j = 0;
@@ -77,7 +78,7 @@ static int	checker_for_t(t_cub3d *t)
 	}
 	if (flag != 2)
 		return (0);
-	return(1);
+	return (1);
 }
 
 int	init_textures(t_cub3d *t)
@@ -98,9 +99,6 @@ int	init_textures(t_cub3d *t)
 		v.i++;
 	}
 	if (v.flag != 6 || !checker_for_t(t))
-	{
-		ft_putendl_fd("Error", 2);
-		return (free_strings(t->map), 0);
-	}
+		return (ft_putendl_fd("Error", 2), free_strings(t->map), 0);
 	return (1);
 }

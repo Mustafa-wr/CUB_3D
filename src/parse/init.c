@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:46:05 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 18:32:58 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/16 18:26:29 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	init_map(t_cub3d *map, char *k)
 		free(line);
 		i++;
 	}
-	map->x = ft_strlen(map->map[0]) - 1;
 	map->map[i] = NULL;
 	i = 0;
 	close(fd);

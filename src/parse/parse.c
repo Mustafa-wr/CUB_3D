@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 04:31:00 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/16 06:32:07 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,18 @@ static int	only_one_check(t_cub3d *p)
 {
 	int	i;
 	int	j;
+	int	flag;
 
 	i = 0;
 	j = 0;
-	int flag = 0;
+	flag = 0;
 	while (p->path[i])
 	{
 		j = 0;
 		while (p->path[i][j])
 		{
-			if (p->path[i][j] == 'N' || p->path[i][j] == 'S' || p->path[i][j] == 'E' || p->path[i][j] == 'W')
+			if (p->path[i][j] == 'N' || p->path[i][j] == 'S' || \
+				p->path[i][j] == 'E' || p->path[i][j] == 'W')
 				flag++;
 			j++;
 		}
