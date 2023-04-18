@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:39:33 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 23:34:50 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/18 19:42:30 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,20 +141,13 @@ int	store_the_rgb(t_cub3d *map)
 	map->cieling = malloc(sizeof(int) * 3);
 	if (!store_the_floor(map, i, c, sub) || !store_the_cieling(map, i, c, sub))
 		return (free_strings(map->map), ft_putendl_fd("Error", 2), 0);
-	i = 0;
-	while (i < 3)
-	{
+	i = -1;
+	while (++i < 3)
 		if (map->cieling[i] > 255 || map->cieling[i] < 0)
 			return (free_strings(map->map), ft_putendl_fd("Error", 2), 0);
-		i++;
-	}
-	i = 0;
-	while (i < 3)
-	{
+	i = -1;
+	while (++i < 3)
 		if (map->floor[i] > 255 || map->floor[i] < 0)
 			return (free_strings(map->map), ft_putendl_fd("Error", 2), 0);
-		i++;
-	}
-	// printf("%d\n", map->cieling[0]);
 	return (1);
 }
