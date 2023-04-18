@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:58:01 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 04:30:18 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/17 02:38:42 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,26 @@ static void	init_the_path_utils(t_cub3d *p, t_vars *v)
 	}
 }
 
+static int	check_path_chars_helper(t_cub3d *p, int i, int j)
+{
+	while (p->path[i])
+	{
+		j = 0;
+		while (p->path[i][j])
+		{
+			if (p->path[i][j] == ' ' || p->path[i][j] == '1' || \
+				p->path[i][j] == '0' || p->path[i][j] == 'N' || \
+					p->path[i][j] == 'S' || p->path[i][j] == 'E' || \
+						p->path[i][j] == 'W' || p->path[i][j] == '\n')
+				j++;
+			else
+				return (free_all(p), ft_putendl_fd("Error", 2), 0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 static int	check_path_chars(t_cub3d *p)
 {
 	int	i;
@@ -43,24 +63,14 @@ static int	check_path_chars(t_cub3d *p)
 	j = 0;
 	while (p->path[0][i])
 	{
-		if (p->path[0][i] != ' ' && p->path[0][i] != '1' && p->path[0][i] != '\0')
+		if (p->path[0][i] != ' ' && p->path[0][i] != '1' \
+			&& p->path[0][i] != '\0')
 			return (free_all(p), ft_putendl_fd("Error", 2), 0);
 		i++;
 	}
-	i = 0;	
-	while (p->path[i])
-	{
-		j = 0;
-		while (p->path[i][j])
-		{
-			if (p->path[i][j] == ' ' || p->path[i][j] == '1' || p->path[i][j] == '0' || p->path[i][j] == 'N' || \
-					p->path[i][j] == 'S' || p->path[i][j] == 'E' || p->path[i][j] == 'W' || p->path[i][j] == '\n')
-				j++;
-			else
-				return (free_all(p), ft_putendl_fd("Error", 2), 0);
-		}
-		i++;
-	}
+	i = 0;
+	if (!check_path_chars_helper(p, i, j))
+		return (0);
 	return (1);
 }
 
