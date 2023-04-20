@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/16 04:31:27 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/20 16:01:09 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	draw_player(t_mlx_vars *mlx, t_vec *vec)
 void draw2d(t_hook_vars *hook_vars)
 {
 	clear_img(hook_vars->mlx_vars->main_img, SWIDTH, SHEIGHT);
-	draw_grid(hook_vars->mlx_vars, hook_vars->map, hook_vars->mwidth, hook_vars->mheight);
+	draw_grid(hook_vars->mlx_vars, hook_vars->map,
+		hook_vars->game->width, hook_vars->game->height);
 	draw_player(hook_vars->mlx_vars, hook_vars->player);
 	mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,
 							hook_vars->mlx_vars->win_ptr, hook_vars->mlx_vars->main_img, 0, 0);
@@ -87,11 +88,11 @@ int	main(int ac, char **av)
 	t_mlx_vars	mlx;
 	t_hook_vars	hook;
     t_vec       player;
-
     t_cub3d     game;
 
 	ft_bzero(&hook, sizeof(t_hook_vars));
-    if (!main_parse(&game, ac, av))
+    hook.game = &game;
+	if (!main_parse(&game, ac, av))
         return (EXIT_FAILURE);
     hook.mlx_vars = &mlx;
     mlx.mlx_ptr = mlx_init();
@@ -106,9 +107,8 @@ int	main(int ac, char **av)
     hook.player = &player;
     player.angle = 0;
     player.p = (t_point){SWIDTH/2, SHEIGHT/2};
-	hook.mwidth = game.width;
-	hook.mheight = game.height;
     draw2d(&hook);
+	// draw_ver_lines(&hook);
     // mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.main_img, 0, 0);
 	// game.d = cast_rays(player.p.x, player.p.y, player.angle, game.path, game.width, game.height);
 	// for (int i = 0; i < 640; i++)
