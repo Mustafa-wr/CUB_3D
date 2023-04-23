@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/23 17:40:58 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 18:06:51 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,21 @@ int		store_the_floor(t_cub3d *map, t_vars *v);
 
 // float	calc_rays(t_ray *ray, t_cub3d *map, int x, int y);
 float *cast_rays(float player_x, float player_y, float player_angle, char **map, int map_width, int map_height);
+
 /*********************       Rendering         ********************/
 void	render_pixel(void *img, t_point p1, int color);
 void	draw_line(void *img, t_point p1, t_point p2, int color);
 void	draw_rect(void *img, t_point s, t_size size, int color);
+
+// Main raycasting function, other raycasting functions will come as helpers.
+void	draw_ver_lines(t_hook_vars *hook_vars);
+
+/*
+ *	@brief Sends one single ray towrds the given angle.
+ *		this is used inside a loop.
+ *	@return Ray length, or -1 if it hits nothing within the max depth.
+*/
+double	send_ray(t_cub3d *game, t_vec vec);
 
 int		game_exit(t_hook_vars *hook_vars);
 int		pressed(int keycode, t_hook_vars *hook_vars);

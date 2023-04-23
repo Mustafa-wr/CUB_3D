@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/23 17:29:05 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 18:06:42 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct s_mlx_vars
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }	t_point;
 
 typedef struct s_size
@@ -74,8 +74,7 @@ typedef struct s_hook_vars
 	t_vec			*player;
 	t_ht        	*map;
 	t_ht			*keys;
-	int				mwidth;
-	int				mheight;
+	t_cub3d			*game;
 }	t_hook_vars;
 
 // typedef struct	s_ray
