@@ -34,6 +34,7 @@ void	put_spaces(char **arr);
 int		check_for_spaces(t_cub3d *map);
 int		valid_path(t_cub3d *p);
 void	free_all(t_cub3d *p);
+void	free_tools(t_cub3d *p);
 int		store_the_cieling(t_cub3d *map, t_vars *v);
 int		store_the_floor(t_cub3d *map, t_vars *v);
 

@@ -100,6 +100,14 @@ static int	only_one_check(t_cub3d *p)
 
 int	main_parse(t_cub3d *cub, int ac, char **av)
 {
+	cub->map = NULL;
+	cub->path = NULL;
+	cub->no = NULL;
+	cub->so = NULL;
+	cub->we = NULL;
+	cub->ea = NULL;
+	cub->ceiling_tmp = NULL;
+	cub->floor_tmp = NULL;
 	if (!file_check(ac, av) || !init_map(cub, av[1]) || \
 		!check_the_valid_char(cub) || \
 			!init_textures(cub) || !store_the_rgb(cub))
@@ -125,11 +133,19 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 // int	main(int ac, char **av)
 // {
 // 	t_cub3d	cub;
-	
+// 	// cub.map = NULL;
+// 	// cub.path = NULL;
+// 	// cub.no = NULL;
+// 	// cub.so = NULL;
+// 	// cub.we = NULL;
+// 	// cub.ea = NULL;
+// 	// cub.ceiling_tmp = NULL;
+// 	// cub.floor_tmp = NULL;
 // 	// if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub) || !check_the_valid_char(&cub))
 // 	// 	return (0);
 // 	// if(!check_and_init_the_path(&cub))
 // 	// 	return 0;
 // 	if (!main_parse(&cub, ac, av))
 // 		return (0);
+// 	free_all(&cub);
 // }

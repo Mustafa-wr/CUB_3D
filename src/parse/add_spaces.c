@@ -12,18 +12,61 @@
 
 #include "cub3d.h"
 
-static void	*ft_realloc(void *ptr, size_t size)
-{
-	void	*new_ptr;
+// static void	*ft_realloc(void *ptr, size_t size)
+// {
+// 	void	*new_ptr;
 
-	if (ptr == NULL)
-		return (malloc(size));
-	if (!size)
-		return (ptr);
-	new_ptr = malloc(size);
-	ft_memcpy(new_ptr, ptr, size);
-	return (new_ptr);
+// 	if (ptr == NULL)
+// 		return (malloc(size));
+//   	if (size == 0) {
+//         free(ptr);
+//         return NULL;
+//     }
+// 	new_ptr = malloc(size);
+// 	if (new_ptr == NULL)
+//         return NULL;
+// 	ft_memcpy(new_ptr, ptr, size);
+// 	free(ptr);
+// 	return (new_ptr);
+// }
+
+// static char	*ft_realloc(char *ptr, size_t size)
+// {
+// 	if (!ptr)
+// 		return(malloc(size));
+		
+// }
+#include <malloc.h>
+static void *ft_realloc(void *ptr, size_t size)
+{
+    void *new_ptr;
+    size_t copy_size;
+
+    if (ptr == NULL)
+        return malloc(size);
+
+    if (size == 0) {
+        free(ptr);
+        return NULL;
+    }
+
+    new_ptr = malloc(size);
+    if (new_ptr == NULL)
+        return NULL;
+
+    copy_size = 0;
+    char *src = (char *)ptr;
+    char *dst = (char *)new_ptr;
+    while (copy_size < size && copy_size < malloc_usable_size(ptr)) {
+        *dst++ = *src++;
+        copy_size++;
+    }
+    free(ptr);
+
+    return new_ptr;
 }
+
+
 
 static int	largest_string_length(char **arr)
 {
