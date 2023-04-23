@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:39:33 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/23 17:42:06 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 18:11:53 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,12 @@ int	store_the_rgb(t_cub3d *map)
 	while (++v.i < 3){
 		if (map->cieling[v.i] > 255 || map->cieling[v.i] < 0)
 		{
-			
 			return (free_strings(map->map), ft_putendl_fd("Error", 2), 0);
 		}printf("f%d\n",  map->cieling[v.i]);}
 	v.i = -1;
 	while (++v.i < 3){
 		if (map->floor[v.i] > 255 || map->floor[v.i] < 0)
 		{
-			
 			return (free_strings(map->map), ft_putendl_fd("Error", 2), 0);
 		}printf("f%d\n",  map->floor[v.i]);}
 	return (1);

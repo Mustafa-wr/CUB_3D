@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:12:30 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 06:31:30 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 18:11:14 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,34 @@ int	check_for_spaces(t_cub3d *map)
 			v.j++;
 		}
 		v.i++;
+	}
+	return (1);
+}
+
+int	valid_path(t_cub3d *p)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (p->path[i])
+	{
+		j = 0;
+		while (p->path[i][j])
+		{
+			if (p->path[i + 1] && i > 0)
+			{
+				if (p->path[i][j] == '0')
+					if (p->path[i + 1][j] == ' ')
+						return (free_all(p), ft_putendl_fd("Error", 2), 0);
+				if (p->path[i][j] == '0')
+					if (p->path[i - 1][j] == ' ')
+						return (free_all(p), ft_putendl_fd("Error", 2), 0);
+			}
+			j++;
+		}
+		i++;
 	}
 	return (1);
 }
