@@ -6,13 +6,13 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/19 22:52:11 by bammar           ###   ########.fr       */
+/*   Updated: 2023/04/23 21:17:52 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int game_exit(t_hook_vars *hook_vars)
+int	game_exit(t_hook_vars *hook_vars)
 {
 	mlx_clear_window(hook_vars->mlx_vars->mlx_ptr,
 		hook_vars->mlx_vars->win_ptr);
@@ -39,7 +39,7 @@ int	pressed(int keycode, t_hook_vars *hook_vars)
 	return (free(key), 0);
 }
 
-int		released(int keycode, t_hook_vars *hook_vars)
+int	released(int keycode, t_hook_vars *hook_vars)
 {
 	char	*key;
 
@@ -72,8 +72,6 @@ int	update(t_hook_vars *hook_vars)
 	move_if_pressed(KEY_D, hook_vars->keys, player);
 	move_if_pressed(KEY_LEFT, hook_vars->keys, player);
 	move_if_pressed(KEY_RIGHT, hook_vars->keys, player);
-	// *hook_vars->player = player;
-	// printf("pos:(%.02f, %.02f)\n", player.p.x, player.p.y);
 	draw2d(hook_vars);
-	return (0);	
+	return (0);
 }

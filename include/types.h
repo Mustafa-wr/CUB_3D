@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/23 18:06:42 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 20:23:31 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
+#include "ht.h"
 typedef struct s_vars
 {
 	int		i;
@@ -77,13 +78,11 @@ typedef struct s_hook_vars
 	t_cub3d			*game;
 }	t_hook_vars;
 
-// typedef struct	s_ray
-// {
-// 	float start[2];
-// 	float end[2];
-// 	float ra;
-// 	char dir;
-// }				t_ray;
+typedef struct s_raycast_res
+{
+	double length;
+	int side;
+} t_raycast_res;
 
 // typedef struct	s_ray_offset
 // {

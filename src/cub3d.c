@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/20 16:01:09 by bammar           ###   ########.fr       */
+/*   Updated: 2023/04/23 21:08:52 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void draw_grid(t_mlx_vars *mlx, t_ht *map, int width, int height)
 		while (j < width)
 		{
 			if (get_mapvalue(map, i, j) == 1)
-				draw_rect(mlx->main_img, (t_point){side_length * j, side_length * i}, sq_size, WHT);
+				draw_rect(mlx->main_img, (t_point){side_length * j,
+					side_length * i}, sq_size, WHT);
 			j++;
 		}
 		i++;

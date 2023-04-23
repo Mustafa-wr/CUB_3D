@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
+#    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/04/23 17:41:39 by mradwan          ###   ########.fr        #
+#    Updated: 2023/04/23 21:09:40 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRCS =	src/parse/parse_rgb.c			\
 		src/hooks.c						\
 		src/clear_img.c					\
 		src/cub3d.c						\
-		src/test.c
 
 OS = $(shell uname)
 
@@ -82,5 +81,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
 

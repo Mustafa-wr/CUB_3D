@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/23 18:06:51 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 21:05:52 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_ver_lines(t_hook_vars *hook_vars);
  *		this is used inside a loop.
  *	@return Ray length, or -1 if it hits nothing within the max depth.
 */
-double	send_ray(t_cub3d *game, t_vec vec);
+void	send_ray(t_raycast_res *res, t_cub3d *game, t_vec vec);
 
 int		game_exit(t_hook_vars *hook_vars);
 int		pressed(int keycode, t_hook_vars *hook_vars);
