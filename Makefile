@@ -6,7 +6,7 @@
 #    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/04/16 03:15:52 by mradwan          ###   ########.fr        #
+#    Updated: 2023/04/23 17:41:39 by mradwan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS =	src/parse/parse_rgb.c			\
 		src/parse/wall_error.c			\
 		src/parse/parse_textures.c		\
 		src/parse/add_spaces.c			\
+		src/parse/rgb_init.c			\
 		src/parse/init.c				\
 		src/parse/validation.c			\
 		src/parse/init_path.c 			\

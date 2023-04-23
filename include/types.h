@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/16 03:14:52 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 17:29:05 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 typedef struct s_vars
 {
-	int	i;
-	int	j;
-	int	len;
-	int	flag;
-	int	tmp;
+	int		i;
+	int		j;
+	int		len;
+	int		flag;
+	int		tmp;
+	int		c;
+	char	*sub;
 }	t_vars;
 
 typedef struct s_cub3d
@@ -38,7 +40,7 @@ typedef struct s_cub3d
 	int		x;
 	int		width;
 	int		height;
-	float *d;
+	float 	*d;
 }	t_cub3d;
 
 typedef struct s_mlx_vars

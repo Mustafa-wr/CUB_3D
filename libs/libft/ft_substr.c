@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 22:39:47 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/27 02:52:19 by bammar           ###   ########.fr       */
+/*   Updated: 2023/04/23 15:54:45 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	s2[i] = '\0';
 	return (s2);
 }
+

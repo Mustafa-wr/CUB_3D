@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 03:13:59 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 17:40:58 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	put_spaces(char **arr);
 int		check_for_spaces(t_cub3d *map);
 int		valid_path(t_cub3d *p);
 void	free_all(t_cub3d *p);
+int		store_the_cieling(t_cub3d *map, t_vars *v);
+int		store_the_floor(t_cub3d *map, t_vars *v);
 
 // float	calc_rays(t_ray *ray, t_cub3d *map, int x, int y);
 float *cast_rays(float player_x, float player_y, float player_angle, char **map, int map_width, int map_height);
