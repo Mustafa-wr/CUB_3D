@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/23 18:06:42 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 19:58:39 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ typedef struct s_vars
 	int		flag;
 	int		tmp;
 	int		c;
+	int		max_len;
+	int		num_spaces;
+	char	*new_str;
 	char	*sub;
 }	t_vars;
 

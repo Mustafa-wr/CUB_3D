@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:03:14 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/17 02:32:24 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 19:29:35 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	textures_utils(char **dst, char *src, t_vars *var, t_cub3d *t)
 	while (src[i] != '\0' && src[i] == ' ')
 		i++;
 	if (src[i] != '.')
-		return (ft_putendl_fd("Error", 2), free_tools(t), free_strings(t->map), exit(1), 0);
+		return (ft_putendl_fd("Error", 2), free_tools(t), \
+			free_strings(t->map), exit(1), 0);
 	tmp = ft_strchr(src, '.');
 	(*dst) = ft_strdup(tmp);
 	puts(*dst);

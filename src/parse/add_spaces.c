@@ -6,67 +6,11 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:18:54 by mradwan           #+#    #+#             */
-/*   Updated: 2023/03/30 22:40:46 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/23 19:59:57 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// static void	*ft_realloc(void *ptr, size_t size)
-// {
-// 	void	*new_ptr;
-
-// 	if (ptr == NULL)
-// 		return (malloc(size));
-//   	if (size == 0) {
-//         free(ptr);
-//         return NULL;
-//     }
-// 	new_ptr = malloc(size);
-// 	if (new_ptr == NULL)
-//         return NULL;
-// 	ft_memcpy(new_ptr, ptr, size);
-// 	free(ptr);
-// 	return (new_ptr);
-// }
-
-// static char	*ft_realloc(char *ptr, size_t size)
-// {
-// 	if (!ptr)
-// 		return(malloc(size));
-		
-// }
-#include <malloc.h>
-static void *ft_realloc(void *ptr, size_t size)
-{
-    void *new_ptr;
-    size_t copy_size;
-
-    if (ptr == NULL)
-        return malloc(size);
-
-    if (size == 0) {
-        free(ptr);
-        return NULL;
-    }
-
-    new_ptr = malloc(size);
-    if (new_ptr == NULL)
-        return NULL;
-
-    copy_size = 0;
-    char *src = (char *)ptr;
-    char *dst = (char *)new_ptr;
-    while (copy_size < size && copy_size < malloc_usable_size(ptr)) {
-        *dst++ = *src++;
-        copy_size++;
-    }
-    free(ptr);
-
-    return new_ptr;
-}
-
-
 
 static int	largest_string_length(char **arr)
 {
@@ -89,27 +33,25 @@ static int	largest_string_length(char **arr)
 
 void	put_spaces(char **arr)
 {
-	int	i;
-	int	j;
-	int	max_len;
-	int	len;
-	int	num_spaces;
+	int		i;
+	int		j;
+	int		len;
+	t_vars	v;
 
-	max_len = largest_string_length(arr);
 	i = 0;
-	j = -1;
+	v.max_len = largest_string_length(arr);
 	while (arr[i])
 	{
 		len = ft_strlen(arr[i]);
-		num_spaces = max_len - len;
+		v.num_spaces = v.max_len - len;
+		v.new_str = malloc((v.max_len + 1) * sizeof(char));
+		ft_strlcpy(v.new_str, arr[i], ft_strlen(arr[i]));
 		j = -1;
-		if (num_spaces)
-		{
-			arr[i] = ft_realloc(arr[i], max_len + 1);
-			while (++j < num_spaces)
-				arr[i][len + j] = ' ';
-			arr[i][max_len] = '\0';
-		}
+		while (++j < v.num_spaces)
+			v.new_str[len + j] = ' ';
+		v.new_str[v.max_len] = '\0';
+		free(arr[i]);
+		arr[i] = v.new_str;
 		i++;
 	}
 }
