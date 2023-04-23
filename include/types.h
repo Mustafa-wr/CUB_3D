@@ -6,7 +6,11 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:56:10 by bammar            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/23 20:23:31 by bammar           ###   ########.fr       */
+=======
+/*   Updated: 2023/04/23 19:58:39 by mradwan          ###   ########.fr       */
+>>>>>>> ba68a55111b97b94e614f6632a9a93246187ae0a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +26,9 @@ typedef struct s_vars
 	int		flag;
 	int		tmp;
 	int		c;
+	int		max_len;
+	int		num_spaces;
+	char	*new_str;
 	char	*sub;
 }	t_vars;
 
