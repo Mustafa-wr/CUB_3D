@@ -79,3 +79,16 @@ int	valid_path(t_cub3d *p)
 	}
 	return (1);
 }
+
+	// char	*no;
+	// char	*so;
+	// char	*we;
+	// char	*ea;
+	// char	*ceiling_tmp;
+	// char	*floor_tmp;
+// int	is_empty(t_cub3d *t)
+// {
+// 	if (!t->no || !t->so || !t->we || !t->ea || !t->ceiling_tmp || !t->floor_tmp)
+// 		return (1);
+// 	return (0);
+// }

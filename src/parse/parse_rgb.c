@@ -77,7 +77,7 @@ int	store_the_rgb(t_cub3d *map)
 	map->floor = malloc(sizeof(int) * 3);
 	map->cieling = malloc(sizeof(int) * 3);
 	if (!store_the_floor(map, &v) || !store_the_cieling(map, &v))
-		return (free_strings(map->map), \
+		return (free_strings(map->map), free(map->floor), free(map->cieling), \
 			free_tools(map), ft_putendl_fd("Error", 2), 0);
 	v.i = -1;
 	while (++v.i < 3){

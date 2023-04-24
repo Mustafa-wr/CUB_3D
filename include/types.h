@@ -13,13 +13,14 @@
 #ifndef TYPES_H
 # define TYPES_H
 
-#include "ht.h"
+// #include "ht.h"
 typedef struct s_vars
 {
 	int		i;
 	int		j;
 	int		len;
 	int		flag;
+	int		flag2;
 	int		tmp;
 	int		c;
 	int		max_len;

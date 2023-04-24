@@ -21,7 +21,7 @@ static int	textures_utils(char **dst, char *src, t_vars *var, t_cub3d *t)
 	while (src[i] == ' ')
 		i++;
 	if (src[i] == 'E' || src[i] == 'S' || src[i] == 'W' || src[i] == 'N')
-		i = i + 3;
+		i = i + 2;
 	while (src[i] != '\0' && src[i] == ' ')
 		i++;
 	if (src[i] != '.')
@@ -75,6 +75,34 @@ static void	init_helper(t_cub3d *t, t_vars *v)
 		textures_utils2(&t->floor_tmp, t->map[v->i], v, t);
 }
 
+static int	check_dup(t_cub3d *t)
+{
+	int i = 0;
+	int j = 0;
+	int flag = 0;
+	while (t->map[i])
+	{
+		while (t->map[i][j] && (t->map[i][j] == ' '))
+			j++;
+		if (ft_strncmp(t->map[i] + j, "NO", 2) == 0)
+			flag++;
+		else if (ft_strncmp(t->map[i] + j, "SO", 2) == 0)
+			flag++;
+		else if (ft_strncmp(t->map[i] + j, "WE", 2) == 0)
+			flag++;
+		else if (ft_strncmp(t->map[i] + j, "EA", 2) == 0)
+			flag++;
+		else if (ft_strncmp(t->map[i] + j, "C", 1) == 0)
+			flag++;
+		else if (ft_strncmp(t->map[i] + j, "F", 1) == 0)
+			flag++;
+		i++;
+	}
+	if(flag != 6)
+		return (0);
+	return(1);
+}
+
 static int	checker_for_t(t_cub3d *t)
 {
 	int	i;
@@ -120,7 +148,8 @@ int	init_textures(t_cub3d *t)
 		init_helper(t, &v);
 		v.i++;
 	}
-	if (v.flag != 6 || !checker_for_t(t))
-		return (ft_putendl_fd("Error", 2), free_strings(t->map), 0);
+	if (v.flag != 6 || !checker_for_t(t) || \
+		!check_dup(t))
+		return (ft_putendl_fd("Error", 2), free_tools(t), free_strings(t->map), 0);
 	return (1);
 }
