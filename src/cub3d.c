@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/23 21:08:52 by bammar           ###   ########.fr       */
+/*   Updated: 2023/04/24 18:54:51 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int get_mapvalue(t_ht *map, int i, int j)
 	val = ht_get(map, index_string);
 	if (!val)
 		return (free(index_string), 0);
-	int_val = ft_atoi(val);
+	int_val = (int)*val;
 	free(index_string);
 	return (int_val);
 }
@@ -33,7 +33,9 @@ void set_mapvalue(t_ht *map, int i, int j, int val)
 	char	*vals;
 
 	index_string = ft_strfjoin(ft_itoa(i), ft_itoa(j));
-	vals = ft_itoa(val);
+	vals = malloc(2);
+	vals[0] = val;
+	vals[1] = 0;
 	ht_set(map, index_string, vals);
 	free(vals);
 	free(index_string);
@@ -51,8 +53,8 @@ void draw_grid(t_mlx_vars *mlx, t_ht *map, int width, int height)
 	{
 		j = 0;
 		while (j < width)
-		{
-			if (get_mapvalue(map, i, j) == 1)
+		{	
+			if (get_mapvalue(map, i, j) == '1')
 				draw_rect(mlx->main_img, (t_point){side_length * j,
 					side_length * i}, sq_size, WHT);
 			j++;
@@ -66,12 +68,13 @@ void	draw_player(t_mlx_vars *mlx, t_vec *vec)
 	t_point p2;
 	float r;
 
-	r = 10;
+	r = 100;
 	p2.x = r * cos(vec->angle * PI / 180) + vec->p.x;
 	p2.y = r * sin(vec->angle * PI / 180) + vec->p.y;
-	if (p2.y < SHEIGHT && p2.x < SWIDTH && p2.y > 0 && p2.y > 0)
-		draw_line(mlx->main_img, vec->p, p2, BLUE);
+	draw_line(mlx->main_img, vec->p, p2, BLUE);
 	render_pixel(mlx->main_img, vec->p, RED);
+	draw_rect(mlx->main_img, (t_point){vec->p.x-5, vec->p.y-5},
+				(t_size){10,10}, RED);
 }
 
 void draw2d(t_hook_vars *hook_vars)
@@ -81,7 +84,8 @@ void draw2d(t_hook_vars *hook_vars)
 		hook_vars->game->width, hook_vars->game->height);
 	draw_player(hook_vars->mlx_vars, hook_vars->player);
 	mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,
-							hook_vars->mlx_vars->win_ptr, hook_vars->mlx_vars->main_img, 0, 0);
+							hook_vars->mlx_vars->win_ptr,
+							hook_vars->mlx_vars->main_img, 0, 0);
 }
 
 int	main(int ac, char **av)
@@ -101,14 +105,23 @@ int	main(int ac, char **av)
     mlx.main_img = mlx_new_image(mlx.mlx_ptr, SWIDTH, SHEIGHT);
     hook.map = ht_new(13*6);
     hook.keys = ht_new(256);
-    // test
-    for (int i = 0; game.path[i]; i++)
-        for (int j = 0; game.path[i][j]; j++)
-            set_mapvalue(hook.map, i, j, game.path[i][j] - '0');
+    game.width++;
+	// test
+    for (int i = 0; i < game.height; i++)
+        for (int j = 0; j < game.width; j++)
+            set_mapvalue(hook.map, i, j, game.path[i][j]);
     hook.player = &player;
     player.angle = 0;
     player.p = (t_point){SWIDTH/2, SHEIGHT/2};
-    draw2d(&hook);
+    // draw2d(&hook);
+	draw_ver_lines(&hook);
+	for (int i = 0; i < game.height; i++) {
+		for (int j = 0; j < game.width; j++)
+		{
+			printf("%c", get_mapvalue(hook.map, i, j));
+		}
+		printf("\n");
+	}
 	// draw_ver_lines(&hook);
     // mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.main_img, 0, 0);
 	// game.d = cast_rays(player.p.x, player.p.y, player.angle, game.path, game.width, game.height);

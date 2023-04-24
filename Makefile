@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/04/23 21:09:40 by bammar           ###   ########.fr        #
+#    Updated: 2023/04/24 18:21:32 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,12 @@ SRCS =	src/parse/parse_rgb.c			\
 		src/draw_rect.c					\
 		src/movement.c					\
 		src/hooks.c						\
+		src/raycast.c					\
+		src/draw_ver_lines.c			\
 		src/clear_img.c					\
 		src/cub3d.c						\
 
-OS = $(shell uname)
+OS := $(shell uname)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -38,7 +40,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -D $(OS) -g #-fsanitize=address
 
-	RM = /bin/rm
+RM = /bin/rm
 
 # LIBS
 LIBFT = libs/libft
@@ -61,7 +63,7 @@ endif
 HEADER	= -Iinclude -I/usr/include -I$(MLX) -I$(LIBFT)
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o} $(HEADER)
 
 all : $(NAME)
 
@@ -81,5 +83,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+re2:
+	(cd $(LIBFT) && make fclean)
+	$(RM) -f $(OBJS)
+	make all
 
+.PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/23 21:05:52 by bammar           ###   ########.fr       */
+/*   Updated: 2023/04/24 18:36:35 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	draw_ver_lines(t_hook_vars *hook_vars);
  *		this is used inside a loop.
  *	@return Ray length, or -1 if it hits nothing within the max depth.
 */
-void	send_ray(t_raycast_res *res, t_cub3d *game, t_vec vec);
+void	send_ray(t_raycast_res *res, t_cub3d *game, t_vec ray);
+
+
 
 int		game_exit(t_hook_vars *hook_vars);
 int		pressed(int keycode, t_hook_vars *hook_vars);

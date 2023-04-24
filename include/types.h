@@ -6,14 +6,14 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/23 21:21:20 by bammar           ###   ########.fr       */
+/*   Updated: 2023/04/23 21:21:53 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-#include "ht.h"
+#include "hashtable/ht.h"
 typedef struct s_vars
 {
 	int		i;
