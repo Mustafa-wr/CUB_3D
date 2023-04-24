@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:01:21 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 18:25:35 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/24 19:56:04 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,29 @@ int	ft_nl_strlen(char *s)
 	while (s[i] && s[i] != '\n')
 		i++;
 	return (i);
+}
+
+static int	walls_check(t_cub3d *m)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (m->path[i])
+	{
+		if (m->path[i][0] != '1' && m->path[i][0] != ' ')
+			return (0);
+		i++;
+	}
+	i--;
+	while (m->path[i][j])
+	{
+		if (m->path[i][j] == '0')
+			return (0);
+		j++;
+	}
+	return (1);
 }
 
 int	validation(t_cub3d *map)
@@ -43,5 +66,7 @@ int	validation(t_cub3d *map)
 			return (free_all(map), ft_putendl_fd("Error", 2), 0);
 		i++;
 	}
+	if (!walls_check(map))
+		return (free_all(map), ft_putendl_fd("Error", 2), 0);
 	return (1);
 }
