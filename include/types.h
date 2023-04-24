@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/23 21:21:53 by bammar           ###   ########.fr       */
+/*   Updated: 2023/04/24 19:29:10 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_vars
 	int		j;
 	int		len;
 	int		flag;
+	int		flag2;
 	int		tmp;
 	int		c;
 	int		max_len;

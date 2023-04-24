@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:18:54 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/23 19:59:57 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:24:28 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,22 @@ static int	largest_string_length(char **arr)
 	return (max_len);
 }
 
+static char	*ft_strcpy(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	if (!dest || !src)
+		return (NULL);
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
 void	put_spaces(char **arr)
 {
 	int		i;
@@ -45,7 +61,7 @@ void	put_spaces(char **arr)
 		len = ft_strlen(arr[i]);
 		v.num_spaces = v.max_len - len;
 		v.new_str = malloc((v.max_len + 1) * sizeof(char));
-		ft_strlcpy(v.new_str, arr[i], ft_strlen(arr[i]));
+		ft_strcpy(v.new_str, arr[i]);
 		j = -1;
 		while (++j < v.num_spaces)
 			v.new_str[len + j] = ' ';
