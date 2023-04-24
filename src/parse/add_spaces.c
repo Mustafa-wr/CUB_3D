@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:18:54 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/24 17:21:29 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:24:28 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ void	put_spaces(char **arr)
 		ft_strcpy(v.new_str, arr[i]);
 		j = -1;
 		while (++j < v.num_spaces)
-		{
-			printf("hi\n");
 			v.new_str[len + j] = ' ';
-		}
 		v.new_str[v.max_len] = '\0';
 		free(arr[i]);
 		arr[i] = v.new_str;
