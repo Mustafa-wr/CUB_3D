@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:12:30 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/23 18:11:14 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/24 10:22:41 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,30 @@ int	valid_path(t_cub3d *p)
 	return (1);
 }
 
-	// char	*no;
-	// char	*so;
-	// char	*we;
-	// char	*ea;
-	// char	*ceiling_tmp;
-	// char	*floor_tmp;
-// int	is_empty(t_cub3d *t)
-// {
-// 	if (!t->no || !t->so || !t->we || !t->ea || !t->ceiling_tmp || !t->floor_tmp)
-// 		return (1);
-// 	return (0);
-// }
+int	check_dup(t_cub3d *t)
+{
+	t_vars	v;
+
+	v.flag = 0;
+	v.i = 0;
+	v.j = 0;
+	while (t->map[v.i])
+	{
+		while (t->map[v.i][v.j] && (t->map[v.i][v.j] == ' '))
+			v.j++;
+		if (ft_strncmp(t->map[v.i] + v.j, "NO", 2) == 0)
+			v.flag++;
+		else if (ft_strncmp(t->map[v.i] + v.j, "SO", 2) == 0)
+			v.flag++;
+		else if (ft_strncmp(t->map[v.i] + v.j, "WE", 2) == 0)
+			v.flag++;
+		else if (ft_strncmp(t->map[v.i] + v.j, "EA", 2) == 0)
+			v.flag++;
+		else if (ft_strncmp(t->map[v.i] + v.j, "C", 1) == 0)
+			v.flag++;
+		else if (ft_strncmp(t->map[v.i] + v.j, "F", 1) == 0)
+			v.flag++;
+		v.i++;
+	}
+	return (v.flag == 6);
+}

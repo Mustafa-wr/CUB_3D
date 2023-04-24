@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/23 21:05:52 by bammar           ###   ########.fr       */
+/*   Updated: 2023/04/24 10:22:51 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	free_all(t_cub3d *p);
 void	free_tools(t_cub3d *p);
 int		store_the_cieling(t_cub3d *map, t_vars *v);
 int		store_the_floor(t_cub3d *map, t_vars *v);
+int		check_dup(t_cub3d *t);
 
 // float	calc_rays(t_ray *ray, t_cub3d *map, int x, int y);
 float *cast_rays(float player_x, float player_y, float player_angle, char **map, int map_width, int map_height);
