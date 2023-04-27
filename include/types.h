@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/27 15:17:23 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/27 15:18:25 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_cub3d
 	int		height;
 	int		pos[2];
 	float 	*d;
-	int i;
 }	t_cub3d;
 
 typedef struct s_mlx_vars
