@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:58:01 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/23 18:11:07 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/04/27 14:58:14 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,15 @@ static int	check_path_chars_helper(t_cub3d *p, int i, int j)
 				p->path[i][j] == '0' || p->path[i][j] == 'N' || \
 					p->path[i][j] == 'S' || p->path[i][j] == 'E' || \
 						p->path[i][j] == 'W' || p->path[i][j] == '\n')
+			{
+				if (p->path[i][j] == 'N' || p->path[i][j] == 'S' || \
+					p->path[i][j] == 'E' || p->path[i][j] == 'W')
+				{
+					p->pos[0] = i;
+					p->pos[1] = j;
+				}
 				j++;
-			else
-				return (free_all(p), ft_putendl_fd("Error", 2), 0);
+			}
 		}
 		i++;
 	}
