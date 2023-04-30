@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/27 15:18:25 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/01 03:31:08 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_cub3d
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*ceiling_tmp;
+	char	*cieling_tmp;
 	char	*floor_tmp;
 	int		*floor;
 	int		*cieling;

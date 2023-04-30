@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:39:33 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/23 20:05:24 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/01 03:31:08 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	check_for_rbg(t_cub3d *map, int i, int c)
 	int	tmp;
 
 	tmp = 0;
-	if (!check_for_rgb_helper(map->ceiling_tmp, i, c, tmp))
+	if (!check_for_rgb_helper(map->cieling_tmp, i, c, tmp))
 		return (0);
 	i = 0;
 	c = 0;
@@ -70,7 +70,7 @@ int	store_the_rgb(t_cub3d *map)
 	v.i = 0;
 	v.c = 0;
 	v.sub = NULL;
-	if (!check_for_rbg(map, v.i, v.c) || !check_for_digits(map->ceiling_tmp) \
+	if (!check_for_rbg(map, v.i, v.c) || !check_for_digits(map->cieling_tmp) \
 		|| !check_for_digits(map->floor_tmp))
 		return (free_strings(map->map), free_tools(map), \
 			ft_putendl_fd("Error", 2), 0);

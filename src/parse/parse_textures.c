@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:03:14 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/24 10:55:27 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/01 03:31:08 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int	textures_utils(char **dst, char *src, t_vars *var, t_cub3d *t)
 static int	textures_utils2(char **dst, char *src, t_vars *var, t_cub3d *t)
 {
 	char	*tmp;
+	char	*tmp2;
 	int		i;
 
 	i = 0;
@@ -52,10 +53,12 @@ static int	textures_utils2(char **dst, char *src, t_vars *var, t_cub3d *t)
 	var->j = 0;
 	while (tmp[var->j] == ' ')
 		var->j++;
-	(*dst) = ft_strdup(tmp + var->j);
+	tmp2 = ft_strdup(tmp + var->j);
+	(*dst) = ft_strtrim(tmp2, " ");
 	puts(*dst);
 	var->i = -1;
 	var->flag++;
+	free(tmp2);
 	return (1);
 }
 
@@ -70,7 +73,7 @@ static void	init_helper(t_cub3d *t, t_vars *v)
 	else if (ft_strncmp(t->map[v->i] + v->j, "EA", 2) == 0 && v->flag == 3)
 		textures_utils(&t->ea, t->map[v->i], v, t);
 	else if (ft_strncmp(t->map[v->i] + v->j, "C", 1) == 0 && v->flag == 4)
-		textures_utils2(&t->ceiling_tmp, t->map[v->i], v, t);
+		textures_utils2(&t->cieling_tmp, t->map[v->i], v, t);
 	else if (ft_strncmp(t->map[v->i] + v->j, "F", 1) == 0 && v->flag == 5)
 		textures_utils2(&t->floor_tmp, t->map[v->i], v, t);
 }

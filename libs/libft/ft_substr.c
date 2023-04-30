@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 22:39:47 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/23 15:54:45 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/01 02:13:07 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,29 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (s2);
 }
 
+char	*my_substr(char const *s, int start, int end)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	if (!s)
+		return (NULL);
+	if (start > end || start >= (int)ft_strlen(s) || end < 0)
+		return (ft_strdup(""));
+	if (end >= (int)ft_strlen(s))
+		end = ft_strlen(s) - 1;
+	str = (char *)malloc(sizeof(char) * (end - start + 2));
+	if (!str)
+		return (NULL);
+	i = start;
+	j = 0;
+	while (i <= end)
+	{
+		str[j] = s[i];
+		i++;
+		j++;
+	}
+	str[j] = '\0';
+	return (str);
+}

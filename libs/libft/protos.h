@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   protos.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:30:17 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/28 21:30:25 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/01 02:05:05 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
+char				*my_substr(char const *s, int start, int end);
 char				*ft_itoa(int n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
