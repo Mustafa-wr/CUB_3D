@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:01:21 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/24 19:56:04 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/01 01:48:50 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	walls_check(t_cub3d *m)
 	j = 0;
 	while (m->path[i])
 	{
-		if (m->path[i][0] != '1' && m->path[i][0] != ' ')
+		if (m->path[i][0] != '1' && m->path[i][0] != ' ' && m->path[i][0] != '\0')
 			return (0);
 		i++;
 	}
