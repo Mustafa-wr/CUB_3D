@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:58:01 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/27 14:58:14 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/01 12:36:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static int	check_path_chars_helper(t_cub3d *p, int i, int j)
 				}
 				j++;
 			}
+			else
+				return (free_all(p), ft_putendl_fd("Error", 2), 0);
 		}
 		i++;
 	}
