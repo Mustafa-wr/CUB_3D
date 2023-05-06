@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/01 03:31:08 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/06 22:13:38 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_cub3d
 	char	*floor_tmp;
 	int		*floor;
 	int		*cieling;
+	int		pos[2];
 	int		y;
 	int		x;
 	int		width;
@@ -74,15 +75,30 @@ typedef struct s_vec
 	double	angle;
 }	t_vec;
 
+typedef struct s_pressed
+{
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+	bool	right;
+	bool	left;
+}	t_pressed; 
+
 typedef struct s_hook_vars
 {
 	t_mlx_vars		*mlx_vars;
 	t_vec			*player;
 	t_ht        	*map;
-	t_ht			*keys;
+	t_pressed		*keys;
 	t_cub3d			*game;
+	int				side_length;
 }	t_hook_vars;
 
+/*
+	double length;
+	int side;
+*/
 typedef struct s_raycast_res
 {
 	double length;
