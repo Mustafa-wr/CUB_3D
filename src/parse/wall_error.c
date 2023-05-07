@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:12:30 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/01 01:45:36 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/07 15:47:35 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	check_dup(t_cub3d *t)
 	v.j = 0;
 	while (t->map[v.i])
 	{
+		v.j = 0;
 		while (t->map[v.i][v.j] && (t->map[v.i][v.j] == ' '))
 			v.j++;
 		if (ft_strncmp(t->map[v.i] + v.j, "NO", 2) == 0)
