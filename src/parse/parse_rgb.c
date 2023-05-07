@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:39:33 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/07 16:10:02 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/07 19:01:43 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_for_rgb_helper(char *str, int i, int c, int tmp)
 			tmp = i + 1;
 			while (str[tmp] == ' ')
 				tmp++;
-			if (str[tmp] == ',')
+			if (str[tmp] == ',' || !str[tmp])
 				return (0);
 			c++;
 		}
