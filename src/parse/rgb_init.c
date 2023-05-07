@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 17:39:47 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/01 03:33:40 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/07 16:20:50 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static int	store_floor_helper(t_cub3d *map, t_vars *v)
 		v->i++;
 	if (map->floor_tmp[v->i] == ',' || map->floor_tmp[v->i] == ' ')
 		v->i++;
-	else
-		return (0);
 	while (map->floor_tmp[v->i] == ' ')
 		v->i++;
 	while (map->floor_tmp[v->i] == '0')
@@ -54,8 +52,6 @@ int	store_the_floor(t_cub3d *map, t_vars *v)
 		v->i++;
 	if (map->floor_tmp[v->i] == ',' || map->floor_tmp[v->i] == ' ')
 		v->i++;
-	else
-		return (0);
 	while (map->floor_tmp[v->i] == ' ')
 		v->i++;
 	while (map->floor_tmp[v->i] == '0')
@@ -88,8 +84,6 @@ static int	store_cieling_helper(t_cub3d *map, t_vars *v)
 		v->i++;
 	if (map->cieling_tmp[v->i] == ',' || map->cieling_tmp[v->i] == ' ')
 		v->i++;
-	else
-		return (0);
 	while (map->cieling_tmp[v->i] == ' ')
 		v->i++;
 	while (map->cieling_tmp[v->i] == '0')
@@ -113,8 +107,6 @@ int	store_the_cieling(t_cub3d *map, t_vars *v)
 		v->i++;
 	if (map->cieling_tmp[v->i] == ',' || map->cieling_tmp[v->i] == ' ')
 		v->i++;
-	else
-		return (0);
 	while (map->cieling_tmp[v->i] == ' ')
 		v->i++;
 	while (map->cieling_tmp[v->i] == '0')
