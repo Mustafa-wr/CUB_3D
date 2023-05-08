@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/06 18:15:47 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/08 17:55:12 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ static void	move_if_pressed(int keycode, t_hook_vars *hook_vars)
 	t_pressed	*keys;
 
 	keys = hook_vars->keys;
-	if ((keycode == KEY_W && keys->w)
-		|| (keycode == KEY_A && keys->a)
-		|| (keycode == KEY_S && keys->s)
-		|| (keycode == KEY_D && keys->d)
-		|| (keycode == KEY_LEFT && keys->left)
-		|| (keycode == KEY_RIGHT && keys->right))
+	if (((keycode == KEY_W) && keys->w)
+		|| ((keycode == KEY_A) && keys->a)
+		|| ((keycode == KEY_S) && keys->s)
+		|| ((keycode == KEY_D) && keys->d)
+		|| ((keycode == KEY_LEFT) && keys->left)
+		|| ((keycode == KEY_RIGHT) && keys->right))
 		move_by_key(keycode, hook_vars->player,
 			hook_vars->game->height, hook_vars->game->width);
 }
@@ -89,7 +89,7 @@ int	update(t_hook_vars *hook_vars)
 	move_if_pressed(KEY_LEFT, hook_vars);
 	move_if_pressed(KEY_RIGHT, hook_vars);
 	// draw_ver_lines(hook_vars);
-	send_rays(&res, hook_vars);
+	// send_rays(&res, hook_vars);
 	draw2d(hook_vars);
 	return (0);
 }
