@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/08 21:21:27 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/09 20:07:41 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ typedef struct s_hook_vars
 */
 typedef struct s_raycast_res
 {
-	double length;
-	int side;
+	double	depth;
+	t_point	inter;
 } t_raycast_res;
 
 // typedef struct	s_ray_offset
