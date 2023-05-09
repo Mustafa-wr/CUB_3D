@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/08 17:55:12 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:48:42 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ int	update(t_hook_vars *hook_vars)
 	move_if_pressed(KEY_LEFT, hook_vars);
 	move_if_pressed(KEY_RIGHT, hook_vars);
 	// draw_ver_lines(hook_vars);
-	// send_rays(&res, hook_vars);
+	clear_img(hook_vars->mlx_vars->main_img, SWIDTH, SHEIGHT);
+	send_rays(&res, hook_vars);
 	draw2d(hook_vars);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/08 17:56:03 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:50:08 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	draw_player(t_hook_vars *hook)
 	r = 100;
 	p2.x = (r * cos(vec.angle * PI / 180) + vec.p.x);
 	p2.y = (r * sin(vec.angle * PI / 180) + vec.p.y);
-	// draw_line(hook->mlx_vars->main_img, vec.p, p2, BLUE);
+	draw_line(hook->mlx_vars->main_img, vec.p, p2, BLUE);
 	render_pixel(hook->mlx_vars->main_img, vec.p, RED);
 	draw_rect(hook->mlx_vars->main_img, (t_point){vec.p.x - 5, vec.p.y - 5},
 				(t_size){10,10}, RED);
@@ -85,7 +85,6 @@ void	draw_player(t_hook_vars *hook)
 
 void draw2d(t_hook_vars *hook_vars)
 {
-	clear_img(hook_vars->mlx_vars->main_img, SWIDTH, SHEIGHT);
 	draw_grid(hook_vars);
 	draw_player(hook_vars);
 	mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,

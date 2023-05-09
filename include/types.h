@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/06 22:14:03 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/08 21:21:27 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ typedef struct s_size
 	int	width;
 	int	height;
 }	t_size;
+
+typedef struct s_map_pos
+{
+	int	x;
+	int	y;
+}	t_map_pos;
 
 typedef struct s_vec
 {
