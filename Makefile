@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/05/09 21:20:47 by bammar           ###   ########.fr        #
+#    Updated: 2023/05/10 20:38:33 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS =	src/parse/parse_rgb.c			\
 		src/render_pixel.c				\
 		src/draw_line.c					\
 		src/draw_rect.c					\
+		src/utils.c						\
 		src/movement.c					\
 		src/clear_img.c					\
 		src/cub3d.c						\
@@ -38,7 +39,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -D $(OS) -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -D $(OS) -g -fsanitize=address
 
 RM = /bin/rm
 

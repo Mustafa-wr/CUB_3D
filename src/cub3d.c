@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/08 18:50:08 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/11 00:40:51 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,13 @@ void draw_grid(t_hook_vars *hook)
 
 	height = hook->game->height;
 	width = hook->game->width;
-	hook->side_length = SWIDTH / width - (int)(SWIDTH % width == 0);
-	if (SHEIGHT / height - (SWIDTH % height == 0) < hook->side_length)
-		hook->side_length = SHEIGHT / height - (SWIDTH % height == 0);
 	t_size sq_size = (t_size){hook->side_length, hook->side_length};
 	i = -1;
 	while (++i < height)
 	{
 		j = -1;
 		while (++j < width)
-			if (get_mapvalue(hook->map, i, j) == '1')
+			if (hook->game->path[i][j] == '1')
 				draw_rect(hook->mlx_vars->main_img,
 					(t_point){hook->side_length * j,
 					hook->side_length * i}, sq_size, WHT);
@@ -75,8 +72,8 @@ void	draw_player(t_hook_vars *hook)
 	vec.p.x *= hook->side_length;
 	vec.p.y *= hook->side_length;
 	r = 100;
-	p2.x = (r * cos(vec.angle * PI / 180) + vec.p.x);
-	p2.y = (r * sin(vec.angle * PI / 180) + vec.p.y);
+	p2.x = (r * cos(vec.angle) + vec.p.x);
+	p2.y = (r * sin(vec.angle) + vec.p.y);
 	draw_line(hook->mlx_vars->main_img, vec.p, p2, BLUE);
 	render_pixel(hook->mlx_vars->main_img, vec.p, RED);
 	draw_rect(hook->mlx_vars->main_img, (t_point){vec.p.x - 5, vec.p.y - 5},
@@ -103,15 +100,14 @@ void	set_map(t_hook_vars *hook)
 		j = -1;
         while (++j < hook->game->width)
 		{
-			set_mapvalue(hook->map, i, j, hook->game->path[i][j]);
 			if (hook->game->path[i][j] == 'E')
 				hook->player->angle = 0;
 			else if (hook->game->path[i][j] == 'N')
-				hook->player->angle = 90;
+				hook->player->angle = PI / 2;
 			else if (hook->game->path[i][j] == 'W')
-				hook->player->angle = 180;
+				hook->player->angle = PI;
 			else if (hook->game->path[i][j] == 'S')
-				hook->player->angle = 270;
+				hook->player->angle = 3 * PI / 2;
 			if (hook->game->path[i][j] == 'E' || hook->game->path[i][j] == 'W'
 				|| hook->game->path[i][j] == 'N'
 				|| hook->game->path[i][j] == 'S')
@@ -132,12 +128,12 @@ int	main(int ac, char **av)
     hook.game = &game;
 	if (!main_parse(&game, ac, av))
         return (EXIT_FAILURE);
-	game.width++;
+	hook.side_length = fmin(SWIDTH / game.width - (int)(SWIDTH % game.width
+		== 0), SHEIGHT / game.height - (SWIDTH % game.height == 0));
     hook.mlx_vars = &mlx;
     mlx.mlx_ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);	
     mlx.main_img = mlx_new_image(mlx.mlx_ptr, SWIDTH, SHEIGHT);
-    hook.map = ht_new(13*6);
 	ft_bzero(&player, sizeof(player));
 	ft_bzero(&pressed_keys, sizeof(t_pressed));
     hook.keys = &pressed_keys;

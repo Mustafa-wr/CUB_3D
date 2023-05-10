@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/09 21:19:28 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/11 01:08:28 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,118 +14,116 @@
 
 static void	hor_cast(t_raycast_res *res, double ray_angle, t_hook_vars *hook)
 {
-	t_point		o;
-	t_map_pos	map;
-	t_size		d;
-	double		delta_depth;
+	double	rev_tan;
 
-	o = hook->player->p;
-	map = (t_map_pos){hook->player->p.x, hook->player->p.y};
-
-	if (sin(ray_angle) > 0)
+	rev_tan = -(1 / tan(ray_angle));
+	if (ray_angle > PI)
 	{
-			res->inter.y = map.y + 1;
-			d.height = 1;
+		res->step.y = -hook->side_length;
+		res->step.x = hook->side_length * rev_tan;
+		res->inter.y = (((int)hook->player->p.y / hook->side_length)
+			* hook->side_length) - 0.0001;
+		res->inter.x = (hook->player->p.y - res->inter.y)
+			* rev_tan + hook->player->p.x;
+	}
+	else if (ray_angle < PI)
+	{
+		res->step.y = hook->side_length;
+		res->step.x = -hook->side_length * rev_tan;
+		res->inter.y = (((int)hook->player->p.y / hook->side_length)
+			* hook->side_length) + hook->side_length;
+		res->inter.x = (hook->player->p.y - res->inter.y)
+			* rev_tan + hook->player->p.x;
 	}
 	else
-	{
-		res->inter.y = map.y - 0.0001;
-		d.height = -1;
-	}
-	res->depth = (res->inter.y - o.y) / sin(ray_angle);
-	res->inter.x = o.x + res->depth * cos(ray_angle);
-
-	delta_depth = d.height / sin(ray_angle);
-	d.width = delta_depth / cos(ray_angle);
-	
-	int depth = 10;
-	while (((int)res->inter.y < hook->game->height
-		&& (int)res->inter.x < hook->game->width
-		&& (int)res->inter.y >= 0 && (int)res->inter.x >= 0)
-		&& hook->game->path[(int)res->inter.y][(int)res->inter.x] != '1'
-		&& depth-- > 0)
-	{
-		
-		res->inter.y += d.height;
-		res->inter.x += d.width; 
-		res->depth += delta_depth;
-	}
+		res->inter = hook->player->p;
 }
 
 static void	vert_cast(t_raycast_res *res, double ray_angle, t_hook_vars *hook)
 {
-	t_point		o;
-	t_map_pos	map;
-	t_size		d;
-	double		delta_depth;
+	double	rev_tan;
 
-	o = hook->player->p;
-	map = (t_map_pos){hook->player->p.x, hook->player->p.y};
-
-	if (cos(ray_angle) > 0)
+	rev_tan = -(tan(ray_angle));
+	if (ray_angle > PI / 2 && ray_angle < 3 * PI / 2)
 	{
-			res->inter.x = map.x + 1;
-			d.width = 1;
+		res->step.x = -hook->side_length;
+		res->step.y = hook->side_length * rev_tan;
+		res->inter.x = (((int)hook->player->p.x / hook->side_length)
+			* hook->side_length) - 0.0001;
+		res->inter.y = (hook->player->p.x - res->inter.x)
+			* rev_tan + hook->player->p.y;
+	}
+	else if (ray_angle < PI / 2 || ray_angle > 3 * PI / 2)
+	{
+		res->step.x = hook->side_length;
+		res->step.y = -hook->side_length * rev_tan;
+		res->inter.x = (((int)hook->player->p.x / hook->side_length)
+			* hook->side_length) + hook->side_length;
+		res->inter.y = (hook->player->p.x - res->inter.x)
+			* rev_tan + hook->player->p.y;
 	}
 	else
-	{
-		res->inter.x = map.x - 0.0001;
-		d.width = -1;
-	}
-	res->depth = (res->inter.x - o.x) / cos(ray_angle);
-	res->inter.x = o.x + res->depth * sin(ray_angle);
+		res->inter = hook->player->p;
+}
 
-	delta_depth = d.width / cos(ray_angle);
-	d.height = delta_depth / sin(ray_angle);
-	
-	int depth = 10;
-	while (((int)res->inter.y < hook->game->height
-		&& (int)res->inter.x < hook->game->width
-		&& (int)res->inter.y >= 0 && (int)res->inter.x >= 0)
-		&& hook->game->path[(int)res->inter.y][(int)res->inter.x] != '1'
-		&& depth-- > 0)
+void	move_ray(t_raycast_res *res, t_hook_vars *hook)
+{
+	int			view_depth;
+
+	res->depth = INT_MAX;
+	view_depth = 0;
+	while (view_depth++ < MAX_DEPTH)
 	{
-		
-		res->inter.y += d.height;
-		res->inter.x += d.width; 
-		res->depth += delta_depth;
+		res->map.x = res->inter.x / hook->side_length;
+		res->map.y = res->inter.y / hook->side_length;
+		if (res->map.x >= 0 && res->map.y >= 0
+			&& res->map.x < hook->game->width && res->map.y < hook->game->height
+			&& hook->game->path[res->map.y][res->map.x] == '1')
+			break ;
+		res->inter.x += res->step.x;
+		res->inter.y += res->step.y;
 	}
 }
 
-void	send_rays(t_raycast_res *res, t_hook_vars *hook)
+/**
+ * https://www.youtube.com/watch?v=gYRrGTC7GtA
+ * 
+*/
+void	send_rays(t_hook_vars *hook)
 {
 	double			ray_angle;
 	int				ray;
 	t_raycast_res	resy;
 	t_raycast_res	resx;
 
-	(void)res;
-	ray_angle = (hook->player->angle * PI / 180) - (FOV / 2) + 0.0001;
-	
+	ray_angle = angle(hook->player->angle - (DELTA_ANGLE * SWIDTH) / 2);
 	ray = NUM_RAYS;
 	while (ray)
 	{
-		// if (hook->player->angle == 0 || hook->player->angle == 180)
-		// 	return ;
-		
-		hor_cast(&resy, ray_angle, hook);
-		vert_cast(&resx, ray_angle, hook);
+		hor_cast(&resy, (ray_angle), hook);
+		vert_cast(&resx, (ray_angle), hook);
+		resy.depth = sqrt(pow(resy.inter.y - hook->player->p.y, 2) +
+			pow(resy.inter.x - hook->player->p.x, 2));
+		resx.depth = sqrt(pow(resx.inter.y - hook->player->p.y, 2) +
+			pow(resx.inter.x - hook->player->p.x, 2));
+		move_ray(&resy, hook);
+		move_ray(&resx, hook);
+		if (resx.depth > resy.depth)
+		{
+			if (resy.map.x >= 0 && resy.map.y >= 0
+			&& resy.map.x < hook->game->width && resy.map.y < hook->game->height
+			&& hook->game->path[resy.map.y][resy.map.x] == '1')
+				draw_line(hook->mlx_vars->main_img,
+				(t_point){hook->player->p.x * hook->side_length, hook->player->p.y * hook->side_length},
+				(t_point){resy.map.x * hook->side_length, resy.map.y * hook->side_length}, RED);
+		}
+		else if (resx.map.x >= 0 && resx.map.y >= 0
+			&& resx.map.x < hook->game->width && resx.map.y < hook->game->height
+			&& hook->game->path[resx.map.y][resx.map.x] == '1')
+				draw_line(hook->mlx_vars->main_img,
+				(t_point){hook->player->p.x * hook->side_length, hook->player->p.y * hook->side_length},
+				(t_point){resx.map.x * hook->side_length, resx.map.y * hook->side_length}, RED);
 		--ray;
-		ray_angle += DELTA_ANGLE;
-
-		if (resy.depth <= resx.depth &&
-			(((int)resy.inter.y < hook->game->height && (int)resy.inter.x < hook->game->width
-			&& (int)resy.inter.y >= 0 && (int)resy.inter.x >= 0)
-			&& hook->game->path[(int)resy.inter.y][(int)resy.inter.x] == '1'))
-			draw_line(hook->mlx_vars->main_img,
-				(t_point){hook->player->p.x * hook->side_length, hook->player->p.y * hook->side_length},
-				(t_point){resy.inter.x * hook->side_length, resy.inter.y * hook->side_length}, RED);
-		else if (resy.depth > resx.depth &&
-			(((int)resx.inter.y < hook->game->height && (int)resx.inter.x < hook->game->width
-			&& (int)resx.inter.y >= 0 && (int)resx.inter.x >= 0)
-			&& hook->game->path[(int)resx.inter.y][(int)resx.inter.x] == '1'))
-			draw_line(hook->mlx_vars->main_img,
-				(t_point){hook->player->p.x * hook->side_length, hook->player->p.y * hook->side_length},
-				(t_point){resx.inter.x * hook->side_length, resx.inter.y * hook->side_length}, RED);
+		ray_angle = angle(ray_angle + DELTA_ANGLE);
 	}
 }

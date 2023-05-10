@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/09 20:07:41 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/11 00:45:58 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,20 +100,13 @@ typedef struct s_hook_vars
 	int				side_length;
 }	t_hook_vars;
 
-/*
-	double length;
-	int side;
-*/
 typedef struct s_raycast_res
 {
-	double	depth;
-	t_point	inter;
+	double		depth;
+	t_point		inter;
+	t_point		step;
+	t_map_pos	map;
 } t_raycast_res;
 
-// typedef struct	s_ray_offset
-// {
-// 	float x;
-// 	float y;
-// }				t_ray_offset;
 
 #endif

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 01:52:39 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/10 23:57:08 by bammar           ###   ########.fr       */
+/*   Created: 2023/05/10 20:34:30 by bammar            #+#    #+#             */
+/*   Updated: 2023/05/10 22:25:49 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#include "cub3d.h"
 
-# define SWIDTH 1024
-# define SHEIGHT 512
-# define PNAME "cub3d"
-# define PI 3.141593
-# define PLAYERSPEED 0.1
-# define ROTSPEED (0.08)
-# define FOV (0.523598776)
-# define NUM_RAYS (SWIDTH)
-# define DELTA_ANGLE (0.008726646)
-# define MAX_DEPTH 8
-
-#endif
+double	angle(double rad)
+{
+	if (rad >= 2 * PI)
+		rad -= 2 * PI;
+	else if (rad < 0)
+		rad += 2 * PI;
+	return (rad);
+}

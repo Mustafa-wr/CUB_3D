@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/06 22:10:40 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/11 00:06:12 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		check_dup(t_cub3d *t);
 void	render_pixel(void *img, t_point p1, int color);
 void	draw_line(void *img, t_point p1, t_point p2, int color);
 void	draw_rect(void *img, t_point s, t_size size, int color);
+double	angle(double degrees);
 
 // Main raycasting function, other raycasting functions will come as helpers.
 // void	draw_ver_lines(t_hook_vars *hook_vars);
@@ -55,7 +56,7 @@ void	draw_rect(void *img, t_point s, t_size size, int color);
  *		this is used inside a loop.
  *	@return Ray length, or -1 if it hits nothing within the max depth.
 */
-void	send_rays(t_raycast_res *res, t_hook_vars *hook);
+void	send_rays(t_hook_vars *hook);
 
 
 void	draw2d(t_hook_vars *hook_vars); // remove later
