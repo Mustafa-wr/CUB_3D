@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/06 22:10:40 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/10 16:49:56 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		init_textures(t_cub3d *t);
 int		init_map(t_cub3d *map, char *k);
 int		check_and_init_the_path(t_cub3d *p);
 int		main_parse(t_cub3d *cub, int ac, char **av);
+int		empty_line(t_cub3d *line);
 int		validation(t_cub3d *map);
 void	free_strings(char **av);
 void	put_spaces(char **arr);

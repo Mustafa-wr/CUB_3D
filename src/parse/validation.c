@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:01:21 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/01 03:28:12 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/10 17:01:01 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,43 @@ int	validation(t_cub3d *map)
 	}
 	if (!walls_check(map))
 		return (free_all(map), ft_putendl_fd("Error", 2), 0);
+	return (1);
+}
+
+static int	string_isempty(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (2);
+	while (str[i])
+	{
+		while (str[i] == ' ')
+			i++;
+		return (!str[i]);
+	}
+	return (1);
+}
+
+int	empty_line(t_cub3d *line)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while (line->path[i])
+	{
+		if (string_isempty(line->path[i]))
+		{
+			while (string_isempty(line->path[i]) == 1)
+				i++;
+			if (!string_isempty(line->path[i]))
+				return (free_all(line), ft_putendl_fd("Error", 2), 0);
+		}
+		if (line->path[i])
+			i++;
+	}
 	return (1);
 }

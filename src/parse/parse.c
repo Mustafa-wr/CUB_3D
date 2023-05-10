@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/07 16:09:41 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/10 16:50:18 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 		return (0);
 	put_spaces(cub->path);
 	height_and_width(cub);
-	if (!valid_path(cub) || !only_one_check(cub))
+	if (!valid_path(cub) || !only_one_check(cub) || !empty_line(cub))
 		return (0);
 	int i = 0;
 	while (cub->path[i])
