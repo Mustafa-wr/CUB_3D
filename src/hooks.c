@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/11 00:35:12 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/12 17:26:59 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	game_exit(t_hook_vars *hook_vars)
 		hook_vars->mlx_vars->main_img);
 	mlx_destroy_window(hook_vars->mlx_vars->mlx_ptr,
 		hook_vars->mlx_vars->win_ptr);
-	ht_destroy(hook_vars->map);
 	exit(0);
 	return (0);
 }
@@ -75,7 +74,7 @@ static void	move_if_pressed(int keycode, t_hook_vars *hook_vars)
 		|| ((keycode == KEY_LEFT) && keys->left)
 		|| ((keycode == KEY_RIGHT) && keys->right))
 		move_by_key(keycode, hook_vars->player,
-			hook_vars->game->height, hook_vars->game->width);
+			hook_vars->big_height, hook_vars->big_width);
 }
 
 int	update(t_hook_vars *hook_vars)

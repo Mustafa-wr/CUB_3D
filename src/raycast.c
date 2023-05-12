@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/11 01:08:28 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/12 21:15:35 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,17 @@ static void	vert_cast(t_raycast_res *res, double ray_angle, t_hook_vars *hook)
 
 void	move_ray(t_raycast_res *res, t_hook_vars *hook)
 {
-	int			view_depth;
+	int				view_depth;
 
-	res->depth = INT_MAX;
+	res->depth = 10000;
 	view_depth = 0;
 	while (view_depth++ < MAX_DEPTH)
 	{
 		res->map.x = res->inter.x / hook->side_length;
 		res->map.y = res->inter.y / hook->side_length;
+		// if (res->map.x >= 0 && res->map.y >= 0
+		// 	&& res->map.x < hook->game->width && res->map.y < hook->game->height)
+		// 	printf("%c", hook->game->path[res->map.y][res->map.x]);
 		if (res->map.x >= 0 && res->map.y >= 0
 			&& res->map.x < hook->game->width && res->map.y < hook->game->height
 			&& hook->game->path[res->map.y][res->map.x] == '1')
@@ -87,7 +90,6 @@ void	move_ray(t_raycast_res *res, t_hook_vars *hook)
 
 /**
  * https://www.youtube.com/watch?v=gYRrGTC7GtA
- * 
 */
 void	send_rays(t_hook_vars *hook)
 {
@@ -96,7 +98,7 @@ void	send_rays(t_hook_vars *hook)
 	t_raycast_res	resy;
 	t_raycast_res	resx;
 
-	ray_angle = angle(hook->player->angle - (DELTA_ANGLE * SWIDTH) / 2);
+	ray_angle = angle(hook->player->angle + DELTA_ANGLE);
 	ray = NUM_RAYS;
 	while (ray)
 	{

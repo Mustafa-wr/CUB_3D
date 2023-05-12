@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/11 00:40:51 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/12 17:22:46 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void	draw_player(t_hook_vars *hook)
 	float	r;
 	t_vec	vec = *(hook->player);
 
-	vec.p.x *= hook->side_length;
-	vec.p.y *= hook->side_length;
 	r = 100;
 	p2.x = (r * cos(vec.angle) + vec.p.x);
 	p2.y = (r * sin(vec.angle) + vec.p.y);
@@ -111,7 +109,8 @@ void	set_map(t_hook_vars *hook)
 			if (hook->game->path[i][j] == 'E' || hook->game->path[i][j] == 'W'
 				|| hook->game->path[i][j] == 'N'
 				|| hook->game->path[i][j] == 'S')
-			hook->player->p = (t_point){j, i};
+			hook->player->p = (t_point){j * hook->side_length,
+				i * hook->side_length};
 		}
 	}
 }
@@ -128,8 +127,7 @@ int	main(int ac, char **av)
     hook.game = &game;
 	if (!main_parse(&game, ac, av))
         return (EXIT_FAILURE);
-	hook.side_length = fmin(SWIDTH / game.width - (int)(SWIDTH % game.width
-		== 0), SHEIGHT / game.height - (SWIDTH % game.height == 0));
+	side_length_init(&hook);
     hook.mlx_vars = &mlx;
     mlx.mlx_ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);	

@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/11 00:45:58 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/12 17:21:10 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ typedef struct s_hook_vars
 {
 	t_mlx_vars		*mlx_vars;
 	t_vec			*player;
-	t_ht        	*map;
 	t_pressed		*keys;
 	t_cub3d			*game;
+	int				big_width;
+	int				big_height;
 	int				side_length;
 }	t_hook_vars;
 
