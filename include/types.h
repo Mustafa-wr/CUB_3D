@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/12 17:21:10 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/13 19:49:42 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,16 @@ typedef struct s_mlx_vars
 	void	*main_img;
 }	t_mlx_vars;
 
+typedef struct s_pressed
+{
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+	bool	right;
+	bool	left;
+}	t_pressed; 
+
 typedef struct s_point
 {
 	double	x;
@@ -80,15 +90,11 @@ typedef struct s_vec
 	double	angle;
 }	t_vec;
 
-typedef struct s_pressed
+typedef struct s_bound
 {
-	bool	w;
-	bool	a;
-	bool	s;
-	bool	d;
-	bool	right;
-	bool	left;
-}	t_pressed; 
+	t_point	start;
+	t_point	end;
+}	t_bound;
 
 typedef struct s_hook_vars
 {
@@ -99,15 +105,29 @@ typedef struct s_hook_vars
 	int				big_width;
 	int				big_height;
 	int				side_length;
+	t_bound			*bounds;
+	int				bound_count;
 }	t_hook_vars;
 
-typedef struct s_raycast_res
+/**
+ * Vector of ray and the end point.
+ * There should be an end point because the map should be closed.
+*/
+typedef struct s_ray
 {
-	double		depth;
-	t_point		inter;
-	t_point		step;
-	t_map_pos	map;
-} t_raycast_res;
+	t_vec	ray;
+	t_point	collision;
+}	t_ray;
 
+
+/**
+ * t_bound	*bounds; Which are the walls, WALL_COUNT * 4.
+ * t_ray	*rays; predefined to be rays[NUM_RAYS] in hook.
+*/
+typedef struct s_raycast
+{
+	t_bound	*bounds;
+	t_ray	*rays;
+} t_raycast;
 
 #endif

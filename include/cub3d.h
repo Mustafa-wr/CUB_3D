@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/12 17:19:00 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/13 19:46:26 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	draw_rect(void *img, t_point s, t_size size, int color);
 /* UTILS */
 double	angle(double degrees);
 void	side_length_init(t_hook_vars *hook);
+void	bounds_init(t_hook_vars *hook);
 
 // Main raycasting function, other raycasting functions will come as helpers.
 // void	draw_ver_lines(t_hook_vars *hook_vars);
