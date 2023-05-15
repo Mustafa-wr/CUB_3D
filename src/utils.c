@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:34:30 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/12 17:24:18 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/14 17:16:24 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	side_length_init(t_hook_vars *hook)
 		hook->side_length = side_length[0];
 	else
 		hook->side_length = side_length[1];
-	hook->big_height = map_height * hook->side_length;
-	hook->big_width = map_width * hook->side_length;
+	hook->big_height = (map_height - 1) * hook->side_length;
+	hook->big_width = (map_width - 1) * hook->side_length;
 }

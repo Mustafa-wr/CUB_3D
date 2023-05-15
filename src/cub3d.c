@@ -6,40 +6,11 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/13 20:22:08 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/14 15:43:34 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int get_mapvalue(t_ht *map, int i, int j)
-{
-	char *index_string;
-	char *val;
-	int int_val;
-
-	index_string = ft_strfjoin(ft_itoa(i), ft_itoa(j));
-	val = ht_get(map, index_string);
-	if (!val)
-		return (free(index_string), 0);
-	int_val = (int)*val;
-	free(index_string);
-	return (int_val);
-}
-
-void set_mapvalue(t_ht *map, int i, int j, int val)
-{
-	char	*index_string;
-	char	*vals;
-
-	index_string = ft_strfjoin(ft_itoa(i), ft_itoa(j));
-	vals = malloc(2);
-	vals[0] = val;
-	vals[1] = 0;
-	ht_set(map, index_string, vals);
-	free(vals);
-	free(index_string);
-}
 
 void draw_grid(t_hook_vars *hook)
 {
@@ -49,10 +20,9 @@ void draw_grid(t_hook_vars *hook)
 	while (++i < hook->bound_count)
 	{
 		// printf("i: %d\n", hook->bound_count);
-		// printf("s: (%.02f, %.02f)\n", hook->bounds->start.x, hook->bounds->start.y);
-		// printf("e: (%.02f, %.02f)\n", hook->bounds->end.x, hook->bounds->end.y);
-		draw_line(hook->mlx_vars->main_img, hook->bounds->start,
-			hook->bounds->end, WHT);
+
+		draw_line(hook->mlx_vars->main_img, hook->bounds[i].start,
+				hook->bounds[i].end, RED);
 	}
 }
 
@@ -123,9 +93,9 @@ int	main(int ac, char **av)
         return (EXIT_FAILURE);
 	ft_bzero(&player, sizeof(player));
 	ft_bzero(&pressed_keys, sizeof(t_pressed));
+	// game.width++;
 	hook.keys = &pressed_keys;
 	hook.player = &player;
-	
 	side_length_init(&hook);
 	map_init(&hook);
 	bounds_init(&hook);
