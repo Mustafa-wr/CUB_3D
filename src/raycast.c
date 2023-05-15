@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 02:58:42 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 03:07:44 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,28 @@ void send_rays(t_hook_vars *hook)
     t_point record_p;
     double dist;
     t_point col;
+    int ray_count;
+    t_vec   ray;
 
-    record = INT_MAX;
-    record_p = hook->player->p;
-    b = -1;
-    while (++b < hook->bound_count)
+    ray_count = -1;
+    while (++ray_count < NUM_RAYS)
     {
-        if (!intersection((hook->player), &(hook->bounds[b]), &col))
-            continue ;
-        dist = sqrt(pow(hook->player->p.x - col.x, 2) + pow(hook->player->p.y - col.y, 2));
-        if (dist < record)
+        ray = (t_vec){hook->player->p, hook->player->angle - (FOV / 2) + (ray_count * DELTA_ANGLE)};
+        record = INT_MAX;
+        record_p = hook->player->p;
+        b = -1;
+        while (++b < hook->bound_count)
         {
-            record = dist;
-            record_p = col;
+            if (!intersection(&ray, &(hook->bounds[b]), &col))
+                continue ;
+            dist = sqrt(pow(hook->player->p.x - col.x, 2) + pow(hook->player->p.y - col.y, 2));
+            if (dist < record)
+            {
+                record = dist;
+                record_p = col;
+            }
         }
+        draw_line(hook->mlx_vars->main_img, hook->player->p, record_p, WHT);
     }
-    draw_line(hook->mlx_vars->main_img, hook->player->p, record_p, WHT);
+    
 }
