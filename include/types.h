@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/13 19:49:42 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/15 19:27:35 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,12 @@ typedef struct s_bound
 	t_point	end;
 }	t_bound;
 
+typedef struct s_ray
+{
+	t_vec	ray;
+	t_point	collision;
+}	t_ray;
+
 typedef struct s_hook_vars
 {
 	t_mlx_vars		*mlx_vars;
@@ -107,27 +113,13 @@ typedef struct s_hook_vars
 	int				side_length;
 	t_bound			*bounds;
 	int				bound_count;
+	t_ray			*res;
 }	t_hook_vars;
 
 /**
  * Vector of ray and the end point.
  * There should be an end point because the map should be closed.
 */
-typedef struct s_ray
-{
-	t_vec	ray;
-	t_point	collision;
-}	t_ray;
 
-
-/**
- * t_bound	*bounds; Which are the walls, WALL_COUNT * 4.
- * t_ray	*rays; predefined to be rays[NUM_RAYS] in hook.
-*/
-typedef struct s_raycast
-{
-	t_bound	*bounds;
-	t_ray	*rays;
-} t_raycast;
 
 #endif

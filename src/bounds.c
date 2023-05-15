@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 17:59:51 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/15 18:43:27 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/15 19:20:28 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,13 @@ void set_sqaures(t_hook_vars *hook)
 			hook->bounds[hook->bound_count].start = s;
 			hook->bounds[hook->bound_count].end = (t_point){
 				s.x + hook->side_length, s.y};
-			
 			hook->bounds[++hook->bound_count].start = s;
 			hook->bounds[hook->bound_count].end = (t_point){
 				s.x, s.y + hook->side_length};
-			
 			hook->bounds[++hook->bound_count].start = (t_point){
 				s.x + hook->side_length, s.y};
 			hook->bounds[hook->bound_count].end = (t_point){
 				s.x + hook->side_length, s.y + hook->side_length};
-
 			hook->bounds[++hook->bound_count].start = (t_point){
 				s.x, s.y + hook->side_length};
 			hook->bounds[hook->bound_count++].end = (t_point){
@@ -57,5 +54,4 @@ void	bounds_init(t_hook_vars *hook)
 		exit(EXIT_FAILURE);
 	hook->bound_count = 0;
 	set_sqaures(hook);
-	
 }
