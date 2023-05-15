@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/14 15:43:34 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 03:01:29 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ void draw_grid(t_hook_vars *hook)
 
 void	draw_player(t_hook_vars *hook)
 {
-	t_point	p2;
-	float	r;
+	// t_point	p2;
+	// float	r;
 	t_vec	vec;
 	
 	vec = *(hook->player);
-	r = 100;
-	p2.x = (r * cos(vec.angle) + vec.p.x);
-	p2.y = (r * sin(vec.angle) + vec.p.y);
-	draw_line(hook->mlx_vars->main_img, vec.p, p2, BLUE);
+	// r = 100;
+	// p2.x = (r * cos(vec.angle) + vec.p.x);
+	// p2.y = (r * sin(vec.angle) + vec.p.y);
+	// draw_line(hook->mlx_vars->main_img, vec.p, p2, BLUE);
 	render_pixel(hook->mlx_vars->main_img, vec.p, RED);
 	draw_rect(hook->mlx_vars->main_img, (t_point){vec.p.x - 5, vec.p.y - 5},
 				(t_size){10,10}, RED);
