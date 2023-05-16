@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 19:57:12 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 20:07:49 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void	draw_ver_lines(t_hook_vars *hook)
 		if (draw_end >= SHEIGHT)
 			draw_end = SHEIGHT - 1;
 		draw_line(hook->mlx_vars->main_img, (t_point){i, draw_start},
-			(t_point){i, draw_end}, WHT);
+			(t_point){i, draw_end}, BLUE);
+		draw_line(hook->mlx_vars->main_img, (t_point){i, 0},
+			(t_point){i, draw_start}, *(hook->game->cieling));
+		draw_line(hook->mlx_vars->main_img, (t_point){i, draw_end},
+			(t_point){i, SHEIGHT}, *(hook->game->floor));
 	}
 }
