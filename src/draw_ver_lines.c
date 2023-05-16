@@ -6,11 +6,22 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/17 01:46:13 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 02:20:50 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// static t_tex	*texture(t_ray *res, t_tex *texs)
+// {
+// 	if (res->side == HOR && res->ray.angle < PI)
+// 		return (&(texs[SOUTH]));
+// 	if (res->side == HOR && res->ray.angle > PI)
+// 		return (&(texs[NORTH]));
+// 	if (res->ray.angle > PI / 2 && res->ray.angle < 3 * PI / 2)
+// 		return (&(texs[EAST]));
+// 	return (&(texs[EAST]));
+// }
 
 /**
  * @brief draws the vertical lines

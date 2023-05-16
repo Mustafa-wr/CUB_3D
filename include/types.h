@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/17 01:41:35 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 02:14:43 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,17 @@ typedef struct s_hook_vars
 	t_bound			*bounds;
 	int				bound_count;
 	t_ray			*res;
+	t_tex			*textures;
 }	t_hook_vars;
 
-/**
- * Vector of ray and the end point.
- * There should be an end point because the map should be closed.
-*/
+typedef struct s_tex
+{
+	char	*data;
+	int		bpp;
+	int		endian;
+	int		w;
+	int		h;
+}	t_tex;
 
 
 #endif

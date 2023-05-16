@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 19:59:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/17 01:41:19 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 02:16:29 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,13 @@ typedef enum e_side
 	HOR,
 	VER
 }	t_side;
+
+typedef enum e_tex_num
+{
+	SOUTH,
+	NORTH,
+	EAST,
+	WEST
+}	t_tex_num;
 
 #endif
