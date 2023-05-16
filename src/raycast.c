@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 04:25:02 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 04:31:06 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ bool intersection(const t_vec* ray, const t_bound* bound, t_point* col) {
 void send_rays(t_hook_vars *hook)
 {
     int b;
-    double record;
     double d;
     t_point col;
     int ray_count;
@@ -61,7 +60,7 @@ void send_rays(t_hook_vars *hook)
     {
         ray = (t_vec){hook->player->p,
             hook->player->angle - HALF_FOV + (ray_count * DELTA_ANGLE)};
-        record = INT_MAX;
+        hook->res[ray_count].dist = INT_MAX;
         hook->res[ray_count].collision = hook->player->p;
         b = -1;
         while (++b < hook->bound_count)
@@ -69,9 +68,9 @@ void send_rays(t_hook_vars *hook)
             if (!intersection(&ray, &(hook->bounds[b]), &col))
                 continue ;
             d = dist(hook->player->p, col);
-            if (d < record)
+            if (d < hook->res[ray_count].dist)
             {
-                record = d;
+                hook->res[ray_count].dist = d;
                 hook->res[ray_count].collision = col;
             }
         }

@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 04:22:12 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 05:14:27 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ void	draw_player(t_hook_vars *hook)
 void draw2d(t_hook_vars *hook_vars)
 {
 	draw_grid(hook_vars);
-	draw_player(hook_vars);
-	mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,
-							hook_vars->mlx_vars->win_ptr,
-							hook_vars->mlx_vars->main_img, 0, 0);
+	draw_player(hook_vars);	
 }
 
 void	map_init(t_hook_vars *hook)

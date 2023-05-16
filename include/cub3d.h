@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/16 04:11:53 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 04:27:33 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,13 @@ void	side_length_init(t_hook_vars *hook);
 double	dist(t_point p1, t_point p2);
 void	bounds_init(t_hook_vars *hook);
 
-// Main raycasting function, other raycasting functions will come as helpers.
-// void	draw_ver_lines(t_hook_vars *hook_vars);
-
 /*
  *	@brief Sends one single ray towrds the given angle.
  *		this is used inside a loop.
  *	@return Ray length, or -1 if it hits nothing within the max depth.
 */
 void	send_rays(t_hook_vars *hook);
+void	draw_ver_lines(t_hook_vars *hook);
 
 
 void	draw2d(t_hook_vars *hook_vars); // remove later
