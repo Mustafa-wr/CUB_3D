@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 16:57:23 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 19:57:12 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	draw_ver_lines(t_hook_vars *hook)
 	w = SWIDTH;
 	while (++i < w)
 	{
-		line_height = hook->side_length * SHEIGHT / hook->res[i].dist;
+		line_height = (hook->side_length * SHEIGHT / hook->res[i].dist);
 		draw_start = -line_height / 2 + SHEIGHT / 2;
 		if (draw_start < 0)
 			draw_start = 0;

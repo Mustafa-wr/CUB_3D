@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:52:39 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 16:57:40 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 17:40:49 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define SHEIGHT 512
 # define PNAME "cub3d"
 # define PI 3.141593
-# define PLAYERSPEED 8
-# define ROTSPEED (1)
+# define PLAYERSPEED 6
+# define ROTSPEED (0.05)
 # define FOV (0.78539816339) // PI / 4
 # define HALF_FOV (0.392699082)
 # define NUM_RAYS (SWIDTH) // 45

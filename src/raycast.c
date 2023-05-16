@@ -6,13 +6,15 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 04:31:06 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 17:43:38 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool intersection(const t_vec* ray, const t_bound* bound, t_point* col) {
+bool intersection(const t_vec* ray, const t_bound* bound, t_point* col,
+	double *trig)
+{
     double x1 = bound->start.x;
     double y1 = bound->start.y;
     double x2 = bound->end.x;
@@ -20,12 +22,12 @@ bool intersection(const t_vec* ray, const t_bound* bound, t_point* col) {
 
     double x3 = ray->p.x;
     double y3 = ray->p.y;
-    double x4 = ray->p.x + cos(ray->angle);
-    double y4 = ray->p.y + sin(ray->angle);
+    double x4 = ray->p.x + trig[0];
+    double y4 = ray->p.y + trig[1];
 
     double denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
 
-    if (denominator == 0) {
+    if (fabs(denominator) < 0.001) {
         // The lines are parallel
         return false;
     }
@@ -51,6 +53,7 @@ void send_rays(t_hook_vars *hook)
 {
     int b;
     double d;
+	double trig[2];
     t_point col;
     int ray_count;
     t_vec   ray;
@@ -65,7 +68,9 @@ void send_rays(t_hook_vars *hook)
         b = -1;
         while (++b < hook->bound_count)
         {
-            if (!intersection(&ray, &(hook->bounds[b]), &col))
+			trig[0] = cos(ray.angle);
+			trig[1] = sin(ray.angle);
+            if (!intersection(&ray, &(hook->bounds[b]), &col, trig))
                 continue ;
             d = dist(hook->player->p, col);
             if (d < hook->res[ray_count].dist)
