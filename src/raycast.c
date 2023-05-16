@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 03:07:44 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 04:25:02 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool intersection(const t_vec* ray, const t_bound* bound, t_point* col) {
 }
 
 /**
- * https://www.youtube.com/watch?v=gYRrGTC7GtA
+ * https://www.youtube.com/watch?v=TOEi6T2mtHo
  * maybe set the intersection point inside the bound struct 
  	and update it only when a smaller one is found.
 */
@@ -51,8 +51,7 @@ void send_rays(t_hook_vars *hook)
 {
     int b;
     double record;
-    t_point record_p;
-    double dist;
+    double d;
     t_point col;
     int ray_count;
     t_vec   ray;
@@ -60,22 +59,21 @@ void send_rays(t_hook_vars *hook)
     ray_count = -1;
     while (++ray_count < NUM_RAYS)
     {
-        ray = (t_vec){hook->player->p, hook->player->angle - (FOV / 2) + (ray_count * DELTA_ANGLE)};
+        ray = (t_vec){hook->player->p,
+            hook->player->angle - HALF_FOV + (ray_count * DELTA_ANGLE)};
         record = INT_MAX;
-        record_p = hook->player->p;
+        hook->res[ray_count].collision = hook->player->p;
         b = -1;
         while (++b < hook->bound_count)
         {
             if (!intersection(&ray, &(hook->bounds[b]), &col))
                 continue ;
-            dist = sqrt(pow(hook->player->p.x - col.x, 2) + pow(hook->player->p.y - col.y, 2));
-            if (dist < record)
+            d = dist(hook->player->p, col);
+            if (d < record)
             {
-                record = dist;
-                record_p = col;
+                record = d;
+                hook->res[ray_count].collision = col;
             }
         }
-        draw_line(hook->mlx_vars->main_img, hook->player->p, record_p, WHT);
     }
-    
 }

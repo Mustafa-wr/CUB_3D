@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:34:30 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/14 17:16:24 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 04:18:09 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,9 @@ void	side_length_init(t_hook_vars *hook)
 		hook->side_length = side_length[1];
 	hook->big_height = (map_height - 1) * hook->side_length;
 	hook->big_width = (map_width - 1) * hook->side_length;
+}
+
+double	dist(t_point p1, t_point p2)
+{
+	return (sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2)));
 }
