@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 17:43:38 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 01:52:07 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ void send_rays(t_hook_vars *hook)
             {
                 hook->res[ray_count].dist = d;
                 hook->res[ray_count].collision = col;
+                if (b % 2 == 0)
+                    hook->res[ray_count].side = HOR;
+                else
+                    hook->res[ray_count].side = VER;
             }
         }
     }

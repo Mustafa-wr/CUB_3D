@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 04:30:50 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 01:41:35 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_ray
 	t_vec	ray;
 	t_point	collision;
 	double	dist;
+	t_side	side;
 }	t_ray;
 
 typedef struct s_hook_vars

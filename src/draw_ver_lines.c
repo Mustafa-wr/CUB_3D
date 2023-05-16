@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 21:27:40 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 01:46:13 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@
 void	draw_ver_lines(t_hook_vars *hook)
 {
 	int	i;
-	int	w;
 	int	line_height;
 	int	draw_start;
 	int	draw_end;
 
 	i = -1;
-	w = SWIDTH;
-	while (++i < w)
+	while (++i < SWIDTH)
 	{
 		line_height = (hook->side_length * SHEIGHT / hook->res[i].dist);
 		draw_start = -line_height / 2 + SHEIGHT / 2;
@@ -35,10 +33,16 @@ void	draw_ver_lines(t_hook_vars *hook)
 		draw_end = line_height / 2 + SHEIGHT / 2;
 		if (draw_end >= SHEIGHT)
 			draw_end = SHEIGHT - 1;
-		draw_line(hook->mlx_vars->main_img, (t_point){i, draw_start},
-			(t_point){i, draw_end}, BLUE);
+		if (hook->res[i].side == HOR)
+			draw_line(hook->mlx_vars->main_img, (t_point){i, draw_start},
+				(t_point){i, draw_end}, BLUE);
+		else
+			draw_line(hook->mlx_vars->main_img, (t_point){i, draw_start},
+				(t_point){i, draw_end}, GRN);
+		
 		draw_line(hook->mlx_vars->main_img, (t_point){i, 0},
 			(t_point){i, draw_start}, rgb2hex(hook->game->cieling));
+		
 		draw_line(hook->mlx_vars->main_img, (t_point){i, draw_end},
 			(t_point){i, SHEIGHT}, rgb2hex(hook->game->floor));
 	}

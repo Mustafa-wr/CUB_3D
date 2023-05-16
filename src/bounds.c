@@ -6,12 +6,13 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 17:59:51 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/15 19:20:28 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 01:38:47 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// horizontals are even (bound_count % 2 == 0)
 void set_sqaures(t_hook_vars *hook)
 {
 	int		i;
@@ -35,11 +36,11 @@ void set_sqaures(t_hook_vars *hook)
 			hook->bounds[hook->bound_count].end = (t_point){
 				s.x, s.y + hook->side_length};
 			hook->bounds[++hook->bound_count].start = (t_point){
-				s.x + hook->side_length, s.y};
+				s.x, s.y + hook->side_length};
 			hook->bounds[hook->bound_count].end = (t_point){
 				s.x + hook->side_length, s.y + hook->side_length};
 			hook->bounds[++hook->bound_count].start = (t_point){
-				s.x, s.y + hook->side_length};
+				s.x + hook->side_length, s.y};
 			hook->bounds[hook->bound_count++].end = (t_point){
 				s.x + hook->side_length, s.y + hook->side_length};
 		}
