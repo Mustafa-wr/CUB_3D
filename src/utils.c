@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:34:30 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 17:30:06 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 21:30:26 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,12 @@ double	dist(t_point p1, t_point p2)
 {
 	return (sqrt((p1.x - p2.x) * (p1.x - p2.x)
 		+ (p1.y - p2.y) * (p1.y - p2.y)));
+}
+
+int	rgb2hex(int *colors)
+{
+	int	hex;
+
+	hex = (colors[0] << 16) | (colors[1] << 8) | colors[2];
+	return (hex);
 }

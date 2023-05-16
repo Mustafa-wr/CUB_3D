@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/16 04:27:33 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 21:27:36 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	draw_rect(void *img, t_point s, t_size size, int color);
 double	angle(double rad);
 void	side_length_init(t_hook_vars *hook);
 double	dist(t_point p1, t_point p2);
+int		rgb2hex(int *colors);
 void	bounds_init(t_hook_vars *hook);
 
 /*

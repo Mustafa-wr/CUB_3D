@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 20:07:49 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/16 21:27:40 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	draw_ver_lines(t_hook_vars *hook)
 		draw_line(hook->mlx_vars->main_img, (t_point){i, draw_start},
 			(t_point){i, draw_end}, BLUE);
 		draw_line(hook->mlx_vars->main_img, (t_point){i, 0},
-			(t_point){i, draw_start}, *(hook->game->cieling));
+			(t_point){i, draw_start}, rgb2hex(hook->game->cieling));
 		draw_line(hook->mlx_vars->main_img, (t_point){i, draw_end},
-			(t_point){i, SHEIGHT}, *(hook->game->floor));
+			(t_point){i, SHEIGHT}, rgb2hex(hook->game->floor));
 	}
 }
