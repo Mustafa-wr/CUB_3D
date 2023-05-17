@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/17 02:14:43 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 18:21:32 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define TYPES_H
 
 #include "hashtable/ht.h"
+#include "enums.h"
+
 typedef struct s_vars
 {
 	int		i;
@@ -104,6 +106,15 @@ typedef struct s_ray
 	t_side	side;
 }	t_ray;
 
+typedef struct s_tex
+{
+	char	*data;
+	int		bpp;
+	int		endian;
+	int		w;
+	int		h;
+}	t_tex;
+
 typedef struct s_hook_vars
 {
 	t_mlx_vars		*mlx_vars;
@@ -118,15 +129,6 @@ typedef struct s_hook_vars
 	t_ray			*res;
 	t_tex			*textures;
 }	t_hook_vars;
-
-typedef struct s_tex
-{
-	char	*data;
-	int		bpp;
-	int		endian;
-	int		w;
-	int		h;
-}	t_tex;
 
 
 #endif
