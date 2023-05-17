@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 16:57:46 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 18:23:39 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	main(int ac, char **av)
         return (EXIT_FAILURE);
 	ft_bzero(&player, sizeof(player));
 	ft_bzero(&pressed_keys, sizeof(t_pressed));
-	// game.width++;
 	hook.keys = &pressed_keys;
 	hook.player = &player;
 	side_length_init(&hook);
