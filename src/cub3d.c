@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/17 18:23:39 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/18 15:37:54 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	main(int ac, char **av)
 	t_hook_vars	hook;
     t_cub3d     game;
 	t_vec		player;
+	t_tex		texs[4];
 	t_pressed	pressed_keys;
 
 	ft_bzero(&hook, sizeof(t_hook_vars));

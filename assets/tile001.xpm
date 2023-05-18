@@ -1,0 +1,27 @@
+/* XPM */
+static char *tile001[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 5 1 ",
+"  c #593335",
+". c #181425",
+"X c #3E2731",
+"o c #733E39",
+"O c white",
+/* pixels */
+" . X.    X     .",
+"  ...         .o",
+"   ..o       .o ",
+"    .o      Xo  ",
+"    Xo     X    ",
+"    X     X     ",
+"    X.o         ",
+"   X...XX       ",
+"XXX.Xoo         ",
+" ..Xo           ",
+"  .o       .    ",
+"  .o       o.   ",
+"X Xo        o.  ",
+"  Xo         ..X",
+"      X     .XX ",
+"    X.    ..  X."
+};
