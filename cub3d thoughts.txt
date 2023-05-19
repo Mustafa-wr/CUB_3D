@@ -19,3 +19,28 @@ cub3d thoughts
 	- the end point of a bound when there's no wall infront or if the column is over
 	- another bound is started if the previous one was stopped, and the new one start pos will be the next wall start.
 
+I already know the texture --
+I want to know which vertical line of the image to draw based on something
+I know the player postion on the map and the distance of collision
+from lodev:
+	double wallX; //where exactly the wall was hit
+	if (side == 0) wallX = posY + perpWallDist * rayDirY;
+	else           wallX = posX + perpWallDist * rayDirX;
+	wallX -= floor((wallX));
+maybe in my case there's no ned to multiply by direction becuase I didn't multiply in the beginning
+
+this will give me the x pos from the whole map, so it's divided by the cube width
+not that the remainder is important.
+for example if the texture size is 16x16 and the result of wallX before division is 430
+430 / 16 == 26.875
+so we moved 87.5% in x dirction of the 26th wall
+0.875 * CUBE_SIDE_LENGTH to get the x index for the wall
+
+for the y index of the wall we divide the wall height by line_to_draw height so we can
+	get the amount of time we need to repeat pixels.
+so if our line_to_draw is bigger we will get 16/50 == 0.32 (remainder == .3)
+meaning that our picture height is almost a 1/3 of the line we want to draw
+	so we repeat each pixel 3 times
+but if our picture height is more it will be 16/12 == 1.3 (remainder == .3)
+meaning that line is smaller by 1.3 so we have to skip 0.3 pixels
+but in this program I will not draw anything as it's far.

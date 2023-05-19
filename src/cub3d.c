@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/18 15:37:54 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:30:42 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	main(int ac, char **av)
     mlx.mlx_ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);	
     mlx.main_img = mlx_new_image(mlx.mlx_ptr, SWIDTH, SHEIGHT);
+	textures_init(&hook);
 	mlx_hook(mlx.win_ptr, ON_DESTROY, 0, game_exit, &hook);
 	mlx_hook(mlx.win_ptr, 2, 1L<<0, pressed, &(hook));
     mlx_hook(mlx.win_ptr, 3, 1L<<1, released, &(hook));

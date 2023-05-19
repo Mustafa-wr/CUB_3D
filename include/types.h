@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/18 16:00:34 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:26:07 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_tex
 	void	*img;
 	char	*data;
 	int		bpp;
+	int		size_line;
 	int		endian;
 	int		w;
 	int		h;

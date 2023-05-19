@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/17 18:19:32 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:33:11 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ int	game_exit(t_hook_vars *hook_vars)
 		hook_vars->mlx_vars->win_ptr);
 	mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
 		hook_vars->mlx_vars->main_img);
+	mlx_destroy_image(hook_vars->mlx_vars, hook_vars->textures[NORTH].img);
+	mlx_destroy_image(hook_vars->mlx_vars, hook_vars->textures[EAST].img);
+	mlx_destroy_image(hook_vars->mlx_vars, hook_vars->textures[WEST].img);
+	mlx_destroy_image(hook_vars->mlx_vars, hook_vars->textures[SOUTH].img);
 	mlx_destroy_window(hook_vars->mlx_vars->mlx_ptr,
 		hook_vars->mlx_vars->win_ptr);
 	free(hook_vars->bounds);
 	free_all(hook_vars->game);
 	exit(0);
-	return (0);
 }
 
 int	pressed(int keycode, t_hook_vars *hook_vars)

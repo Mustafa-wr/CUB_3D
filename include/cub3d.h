@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/16 21:27:36 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:30:16 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	side_length_init(t_hook_vars *hook);
 double	dist(t_point p1, t_point p2);
 int		rgb2hex(int *colors);
 void	bounds_init(t_hook_vars *hook);
+void	textures_init(t_hook_vars *hook);
 
 /*
  *	@brief Sends one single ray towrds the given angle.
