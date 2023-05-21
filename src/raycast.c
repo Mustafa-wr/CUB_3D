@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/17 01:52:07 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/21 21:21:54 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ bool intersection(const t_vec* ray, const t_bound* bound, t_point* col,
 
     double denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
 
-    if (fabs(denominator) < 0.001) {
-        // The lines are parallel
+    if (fabs(denominator) < 0.001)
         return false;
-    }
     double t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / denominator;
     double u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / denominator;
 
