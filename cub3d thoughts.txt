@@ -22,11 +22,13 @@ cub3d thoughts
 I already know the texture --
 I want to know which vertical line of the image to draw based on something
 I know the player postion on the map and the distance of collision
+
 from lodev:
 	double wallX; //where exactly the wall was hit
 	if (side == 0) wallX = posY + perpWallDist * rayDirY;
 	else           wallX = posX + perpWallDist * rayDirX;
 	wallX -= floor((wallX));
+
 maybe in my case there's no ned to multiply by direction becuase I didn't multiply in the beginning
 
 this will give me the x pos from the whole map, so it's divided by the cube width
