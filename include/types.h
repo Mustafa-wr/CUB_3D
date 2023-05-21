@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/17 18:40:34 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/21 22:19:00 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-#include "hashtable/ht.h"
-#include "enums.h"
+# include "hashtable/ht.h"
+# include "enums.h"
 
 typedef struct s_vars
 {
@@ -32,6 +32,17 @@ typedef struct s_vars
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	double	x1;
+	double	y1;
+	double	x2;
+	double	y2;
+	double	x3;
+	double	y3;
+	double	x4;
+	double	y4;
+	double	denominator;
+	double	t;
+	double	u;
 }	t_vars;
 
 typedef struct s_cub3d
@@ -51,7 +62,7 @@ typedef struct s_cub3d
 	int		x;
 	int		width;
 	int		height;
-	float 	*d;
+	float	*d;
 }	t_cub3d;
 
 typedef struct s_mlx_vars
@@ -69,7 +80,7 @@ typedef struct s_pressed
 	bool	d;
 	bool	right;
 	bool	left;
-}	t_pressed; 
+}	t_pressed;
 
 typedef struct s_point
 {
@@ -132,6 +143,5 @@ typedef struct s_hook_vars
 	t_ray			*res;
 	t_tex			*textures;
 }	t_hook_vars;
-
 
 #endif

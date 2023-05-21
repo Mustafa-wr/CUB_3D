@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:39:33 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/07 19:56:48 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/21 22:33:57 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,23 +97,21 @@ int	store_the_rgb(t_cub3d *map)
 	if (!check_for_rbg(map, v.i, v.c) || !check_for_digits(map->cieling_tmp) \
 		|| !check_for_digits(map->floor_tmp))
 		return (free_strings(map->map), free_tools(map), \
-			ft_putendl_fd("Error", 2), 0);
+			ft_putendl_fd("Error\nincorrect", 2), 0);
 	map->floor = malloc(sizeof(int) * 3);
 	map->cieling = malloc(sizeof(int) * 3);
 	if (!store_the_floor(map, &v) || !store_the_cieling(map, &v))
 		return (free_strings(map->map), free(map->floor), free(map->cieling), \
-			free_tools(map), ft_putendl_fd("Error", 2), 0);
+			free_tools(map), ft_putendl_fd("Error\nincorrect", 2), 0);
 	v.i = -1;
-	while (++v.i < 3){
+	while (++v.i < 3)
 		if (map->cieling[v.i] > 255 || map->cieling[v.i] < 0)
-		{
-			return (free_strings(map->map), ft_putendl_fd("Error", 2), 0);
-		}printf("f%d\n",  map->cieling[v.i]);}
+			return (free_strings(map->map), \
+				ft_putendl_fd("Error\nincorrect", 2), 0);
 	v.i = -1;
-	while (++v.i < 3){
+	while (++v.i < 3)
 		if (map->floor[v.i] > 255 || map->floor[v.i] < 0)
-		{
-			return (free_strings(map->map), ft_putendl_fd("Error", 2), 0);
-		}printf("f%d\n",  map->floor[v.i]);}
+			return (free_strings(map->map), \
+				ft_putendl_fd("Error\nincorrect", 2), 0);
 	return (1);
 }

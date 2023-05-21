@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/07 16:09:41 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/21 22:34:56 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	file_check(int ac, char **av)
 			{
 				i++;
 				if (av[1][i] != 'c')
-					return (ft_putendl_fd("there is no cub file", 2), 0);
+					return (ft_putendl_fd("Error\nthere is no cub file", 2), 0);
 				if (av[1][i] == 'c' && av[1][i + 1] == 'u'
 						&& av[1][i + 2] == 'b' && av[1][i + 3] == '\0')
 					return (1);
 			}
 		}
 	}
-	return (ft_putendl_fd("there is no cub file", 2), 0);
+	return (ft_putendl_fd("Error\nthere is no cub file", 2), 0);
 }
 
 static int	check_the_valid_char(t_cub3d *check)
@@ -54,7 +54,8 @@ static int	check_the_valid_char(t_cub3d *check)
 						check->map[i][x] == ' ' || check->map[i][x] == '/')
 					x++;
 			else
-				return (free_strings(check->map), ft_putendl_fd("Error", 2), 0);
+				return (free_strings(check->map), \
+					ft_putendl_fd("Error\nincorrect", 2), 0);
 		}
 		i++;
 	}
@@ -86,15 +87,15 @@ static int	only_one_check(t_cub3d *p)
 		j = 0;
 		while (p->path[i][j])
 		{
-			if (p->path[i][j] == 'N' || p->path[i][j] == 'S' || \
-				p->path[i][j] == 'E' || p->path[i][j] == 'W')
+			if (p->path[i][j] == 'N' || p->path[i][j] == 'S'
+				|| p->path[i][j] == 'E' || p->path[i][j] == 'W')
 				flag++;
 			j++;
 		}
 		i++;
 	}
 	if (flag != 1)
-		return (free_all(p), ft_putendl_fd("Error", 2), 0);
+		return (free_all(p), ft_putendl_fd("Error\nincorrect", 2), 0);
 	return (1);
 }
 
@@ -120,31 +121,12 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 	height_and_width(cub);
 	if (!valid_path(cub) || !only_one_check(cub))
 		return (0);
-	int i = 0;
-	while (cub->path[i])
-	{
-		printf("{%s}\n",(cub->path[i++]));
-		fflush(stdout);
-	}
-	// printf("hi\n");
 	return (1);
 }
 
 // int	main(int ac, char **av)
 // {
-// 	t_cub3d	cub;
-// 	// cub.map = NULL;
-// 	// cub.path = NULL;
-// 	// cub.no = NULL;
-// 	// cub.so = NULL;
-// 	// cub.we = NULL;
-// 	// cub.ea = NULL;
-// 	// cub.cieling_tmp = NULL;
-// 	// cub.floor_tmp = NULL;
-// 	// if(!file_check(ac, av) || !init_map(&cub, av[1]) || !init_textures(&cub) || !store_the_rpg(&cub) || !check_the_valid_char(&cub))
-// 	// 	return (0);
-// 	// if(!check_and_init_the_path(&cub))
-// 	// 	return 0;
+
 // 	if (!main_parse(&cub, ac, av))
 // 		return (0);
 // 	free_all(&cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:46:05 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/16 23:36:31 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/21 22:31:20 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	calcu_map(t_cub3d *map, char *k)
 
 	fd = open(k, O_RDONLY);
 	if (fd < 0)
-		return (0);
+		return (ft_putendl_fd("Error\nfile error", 2), 0);
 	line = get_next_line(fd);
 	free(line);
 	map->y = 0;
