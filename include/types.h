@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/17 18:21:32 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/17 18:40:34 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct s_vars
 	int		num_spaces;
 	char	*new_str;
 	char	*sub;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 }	t_vars;
 
 typedef struct s_cub3d
