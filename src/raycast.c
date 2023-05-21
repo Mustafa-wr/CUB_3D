@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/21 21:21:54 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/21 21:23:02 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,32 @@
 bool intersection(const t_vec* ray, const t_bound* bound, t_point* col,
 	double *trig)
 {
-    double x1 = bound->start.x;
-    double y1 = bound->start.y;
-    double x2 = bound->end.x;
-    double y2 = bound->end.y;
+	double x1 = bound->start.x;
+	double y1 = bound->start.y;
+	double x2 = bound->end.x;
+	double y2 = bound->end.y;
 
-    double x3 = ray->p.x;
-    double y3 = ray->p.y;
-    double x4 = ray->p.x + trig[0];
-    double y4 = ray->p.y + trig[1];
+	double x3 = ray->p.x;
+	double y3 = ray->p.y;
+	double x4 = ray->p.x + trig[0];
+	double y4 = ray->p.y + trig[1];
 
-    double denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+	double denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
 
     if (fabs(denominator) < 0.001)
         return false;
     double t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / denominator;
     double u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / denominator;
 
-    if (t > 0 && t < 1 && u > 0) {
-        // The lines intersect within the line segments
-        col->x = x1 + t * (x2 - x1);
-        col->y = y1 + t * (y2 - y1);
-        return true;
-    }
+	if (t > 0 && t < 1 && u > 0)
+	{
+		// The lines intersect within the line segments
+		col->x = x1 + t * (x2 - x1);
+		col->y = y1 + t * (y2 - y1);
+		return true;
+	}
 
-    return false;
+	return false;
 }
 
 /**
