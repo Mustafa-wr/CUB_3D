@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/16 21:27:36 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/21 21:49:21 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ int		store_the_cieling(t_cub3d *map, t_vars *v);
 int		store_the_floor(t_cub3d *map, t_vars *v);
 int		check_dup(t_cub3d *t);
 
-// float	calc_rays(t_ray *ray, t_cub3d *map, int x, int y);
-// float *cast_rays(float player_x, float player_y, float player_angle, char **map, int map_width, int map_height);
-
 /*********************       Rendering         ********************/
 void	render_pixel(void *img, t_point p1, int color);
 void	draw_line(void *img, t_point p1, t_point p2, int color);
@@ -61,8 +58,6 @@ void	bounds_init(t_hook_vars *hook);
 */
 void	send_rays(t_hook_vars *hook);
 void	draw_ver_lines(t_hook_vars *hook);
-
-
 void	draw2d(t_hook_vars *hook_vars); // remove later
 int		game_exit(t_hook_vars *hook_vars);
 int		pressed(int keycode, t_hook_vars *hook_vars);

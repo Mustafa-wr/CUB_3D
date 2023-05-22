@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/21 15:40:22 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/21 22:28:33 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,6 @@ void	draw_player(t_hook_vars *hook)
 			hook->res[i].collision, WHT);
 }
 
-void	draw2d(t_hook_vars *hook_vars)
-{
-	draw_grid(hook_vars);
-	draw_player(hook_vars);
-}
-
 void	map_init(t_hook_vars *hook)
 {
 	int	i;
@@ -71,6 +65,15 @@ void	map_init(t_hook_vars *hook)
 	}
 }
 
+int	main_helper(int ac, char **av, t_hook_vars *hook, t_cub3d *game)
+{
+	ft_bzero(hook, sizeof(t_hook_vars));
+	hook->game = game;
+	if (!main_parse(game, ac, av))
+		return (false);
+	return (true);
+}
+
 int	main(int ac, char **av)
 {
 	t_mlx_vars	mlx;
@@ -79,9 +82,7 @@ int	main(int ac, char **av)
 	t_vec		player;
 	t_pressed	pressed_keys;
 
-	ft_bzero(&hook, sizeof(t_hook_vars));
-	hook.game = &game;
-	if (!main_parse(&game, ac, av))
+	if (!main_helper(ac, av, &hook, &game))
 		return (EXIT_FAILURE);
 	ft_bzero(&player, sizeof(player));
 	ft_bzero(&pressed_keys, sizeof(t_pressed));

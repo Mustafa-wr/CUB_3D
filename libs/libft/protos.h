@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   protos.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:30:17 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/01 02:05:05 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/21 22:41:16 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROTOS_H
 # define PROTOS_H
 
+# include <fcntl.h>
+# include <limits.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
-# include <limits.h>
-# include <fcntl.h>
 
+# ifndef OPEN_MAX
 
-#ifndef OPEN_MAX
-# define OPEN_MAX FOPEN_MAX
-#endif
+#  define OPEN_MAX FOPEN_MAX
+
+# endif
 
 # define BUFFER_SIZE 42
 

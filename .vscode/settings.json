@@ -2,7 +2,6 @@
 	"files.associations": {
 		"chrono": "c",
 		"libft.h": "c",
-		"protos.h": "c",
-		"mlx_int.h": "c"
+		"protos.h": "c"
 	}
 }

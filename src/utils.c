@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:34:30 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/16 21:30:26 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/21 22:15:43 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	side_length_init(t_hook_vars *hook)
 
 double	dist(t_point p1, t_point p2)
 {
-	return (sqrt((p1.x - p2.x) * (p1.x - p2.x)
+	return (sqrt((p1.x - p2.x) * (p1.x - p2.x) \
 		+ (p1.y - p2.y) * (p1.y - p2.y)));
 }
 
