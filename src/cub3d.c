@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/20 07:41:01 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/22 22:27:22 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void	draw_player(t_hook_vars *hook)
 	draw_rect(hook->mlx_vars->main_img, (t_point){vec.p.x - 5, vec.p.y - 5},
 				(t_size){10,10}, RED);
 	i = -1;
-	while (++i < NUM_RAYS)
-		draw_line(hook->mlx_vars->main_img, hook->player->p,
+	while (++i < NUM_RAYS){
+		draw_line(hook->mlx_vars->main_img,
+			hook->player->p,
 			hook->res[i].collision, WHT);
+	}
 }
 
 void draw2d(t_hook_vars *hook_vars)

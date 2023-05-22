@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/21 16:04:15 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/22 22:28:39 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,15 @@ void send_rays(t_hook_vars *hook)
             {
                 hook->res[ray_count].dist = d;
                 hook->res[ray_count].collision = col;
+				hook->res[ray_count].fixed = (t_point){hook->player->p.x + \
+				d * cos(hook->player->angle - hook->res[ray_count].ray.angle),
+					hook->player->p.y};
                 hook->res[ray_count].side = b % 4;
+				hook->res[ray_count].fdist = fabs(d * \
+					cos(hook->player->angle - hook->res[ray_count].ray.angle));
             }
         }
+		// call draw ver lines here for each one so no other loop is needed
+		draw_ver_line(hook, ray_count);
     }
 }

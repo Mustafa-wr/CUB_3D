@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/19 14:26:07 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/22 21:55:28 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ typedef struct s_ray
 	t_point	collision;
 	double	dist;
 	t_side	side;
+	t_point	fixed;
+	double	fdist;
 }	t_ray;
 
 typedef struct s_tex

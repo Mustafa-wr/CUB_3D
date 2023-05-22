@@ -6,24 +6,11 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/22 15:21:24 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/22 22:39:57 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	get_xpos(t_ray res, t_point p)
-{
-	double	x;
-
-	if (res.side == SOUTH || res.side == NORTH)
-		x = p.x + res.dist;
-	else
-		x = p.y + res.dist;
-	x = x - ((unsigned long)x);
-	x *= CUBE_LENGTH;
-	return (x);
-}
 
 // Never changed image pixels, so only one image copy is needed.
 static int	get_pixel(t_tex *tex, int x, int y)
@@ -38,42 +25,42 @@ static int	get_pixel(t_tex *tex, int x, int y)
 
 /**
  * @brief draws the vertical lines
- * @param hook_vars 
+ * @param hook_vars
  */
-void	draw_ver_lines(t_hook_vars *hook)
+void	draw_ver_line(t_hook_vars *hook, int r)
 {
-	int		i;
 	double	line_height;
-	int		draw_start;
-	int		draw_end;
-	t_tex	*tex;
-	t_point	pic;
-	double	ystep_size;
+	t_ray	ray;
+	double	wallX;
+	double		texX;
+	double	stepY;
 
-	i = -1;
-	while (++i < SWIDTH)
+	ray = hook->res[r];
+	line_height = SHEIGHT / ray.fdist;
+	int drawStart = -line_height / 2 + SHEIGHT / 2;
+	if (drawStart < 0)
+		drawStart = 0;
+	int drawEnd = line_height / 2 + SHEIGHT / 2;
+	if (drawEnd >= SHEIGHT)
+		drawEnd = SHEIGHT - 1;
+	if (ray.side % 2 == 0)
+		wallX = hook->player->p.y + ray.fdist * sin(ray.ray.angle);
+	else
+	 	wallX = hook->player->p.x + ray.fdist * cos(ray.ray.angle);
+	wallX -= floor(wallX);
+	texX = wallX * hook->textures[ray.side].w;
+	if (ray.side % 2 == 0 && cos(ray.ray.angle) > 0)
+		texX = hook->textures[ray.side].w - texX - 1;
+	if (ray.side % 2 != 0 && sin(ray.ray.angle) < 0)
+		texX = hook->textures[ray.side].w - texX - 1;
+	stepY = 1.0 * hook->textures[ray.side].h / line_height;
+	double texPos = (drawStart - SHEIGHT / 2.0 + line_height / 2) * stepY;
+	int	y = drawStart - 1;
+	while (++y < drawEnd)
 	{
-		tex = &(hook->textures[hook->res[i].side]);
-		line_height = (hook->side_length * SHEIGHT / (hook->res[i].dist ));
-		ystep_size = CUBE_LENGTH / line_height;
-		draw_start = -line_height / 2 + SHEIGHT / 2.0;
-		if (draw_start < 0)
-			draw_start = 0;
-		draw_end = line_height / 2 + SHEIGHT / 2.0;
-		if (draw_end >= SHEIGHT)
-			draw_end = SHEIGHT - 1;
-		draw_line(hook->mlx_vars->main_img, (t_point){i, 0},
-			(t_point){i, draw_start}, rgb2hex(hook->game->cieling));
-		draw_line(hook->mlx_vars->main_img, (t_point){i, draw_end},
-			(t_point){i, SHEIGHT - 1}, rgb2hex(hook->game->floor));
-		pic.x = get_xpos(hook->res[i], hook->player->p);
-		pic.y = 0;
-		while ((draw_end - draw_start) > 0)
-		{
-			render_pixel(hook->mlx_vars->main_img,
-				(t_point){i, draw_start++},
-				get_pixel(tex, pic.x, (int)pic.y));
-			pic.y += ystep_size;
-		}
+		int texY = (int)texPos & (hook->textures[ray.side].h - 1);
+		texPos += stepY;
+		unsigned int color = get_pixel(&(hook->textures[ray.side]), texX, texY);
+		render_pixel(hook->mlx_vars->main_img, (t_point){r, y}, color);
 	}
 }

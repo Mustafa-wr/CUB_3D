@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/19 14:30:16 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/22 22:08:43 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	textures_init(t_hook_vars *hook);
  *	@return Ray length, or -1 if it hits nothing within the max depth.
 */
 void	send_rays(t_hook_vars *hook);
-void	draw_ver_lines(t_hook_vars *hook);
+void	draw_ver_line(t_hook_vars *hook, int r);
 
 
 void	draw2d(t_hook_vars *hook_vars); // remove later
