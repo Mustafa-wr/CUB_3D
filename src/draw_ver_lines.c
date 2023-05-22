@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/21 19:57:12 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/22 15:21:24 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,23 @@ static int	get_pixel(t_tex *tex, int x, int y)
 void	draw_ver_lines(t_hook_vars *hook)
 {
 	int		i;
-	int		line_height;
+	double	line_height;
 	int		draw_start;
 	int		draw_end;
 	t_tex	*tex;
 	t_point	pic;
-	int		counter;
-	int		repeat_count;
+	double	ystep_size;
 
 	i = -1;
 	while (++i < SWIDTH)
 	{
 		tex = &(hook->textures[hook->res[i].side]);
 		line_height = (hook->side_length * SHEIGHT / (hook->res[i].dist ));
-		repeat_count = line_height / CUBE_LENGTH;
-		counter = 0;
-		draw_start = -line_height / 2 + SHEIGHT / 2;
+		ystep_size = CUBE_LENGTH / line_height;
+		draw_start = -line_height / 2 + SHEIGHT / 2.0;
 		if (draw_start < 0)
 			draw_start = 0;
-		draw_end = line_height / 2 + SHEIGHT / 2;
+		draw_end = line_height / 2 + SHEIGHT / 2.0;
 		if (draw_end >= SHEIGHT)
 			draw_end = SHEIGHT - 1;
 		draw_line(hook->mlx_vars->main_img, (t_point){i, 0},
@@ -72,16 +70,10 @@ void	draw_ver_lines(t_hook_vars *hook)
 		pic.y = 0;
 		while ((draw_end - draw_start) > 0)
 		{
-			
-			counter = repeat_count;
-			while ((draw_end - draw_start) > 0 && counter-- > 0)
-			{
-				
-				render_pixel(hook->mlx_vars->main_img,
-					(t_point){i, draw_start++},
-					get_pixel(tex, pic.x, pic.y));
-			}
-			pic.y++;
+			render_pixel(hook->mlx_vars->main_img,
+				(t_point){i, draw_start++},
+				get_pixel(tex, pic.x, (int)pic.y));
+			pic.y += ystep_size;
 		}
 	}
 }
