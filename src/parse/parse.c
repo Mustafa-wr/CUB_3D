@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/07 16:09:41 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/22 22:26:25 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	check_the_valid_char(t_cub3d *check)
 						check->map[i][x] == ' ' || check->map[i][x] == '/')
 					x++;
 			else
-				return (free_strings(check->map), ft_putendl_fd("Error", 2), 0);
+				return (free_strings(check->map), ft_putendl_fd("Error\nincorrect", 2), 0);
 		}
 		i++;
 	}
@@ -94,7 +94,7 @@ static int	only_one_check(t_cub3d *p)
 		i++;
 	}
 	if (flag != 1)
-		return (free_all(p), ft_putendl_fd("Error", 2), 0);
+		return (free_all(p), ft_putendl_fd("Error\nincorrect", 2), 0);
 	return (1);
 }
 

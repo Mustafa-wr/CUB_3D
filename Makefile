@@ -6,7 +6,7 @@
 #    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/05/17 18:43:49 by mradwan          ###   ########.fr        #
+#    Updated: 2023/05/22 22:23:05 by mradwan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -D $(OS) -Ofast -march=native -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -D $(OS) -Ofast -march=native #-fsanitize=address -g3
 
 RM = /bin/rm
 

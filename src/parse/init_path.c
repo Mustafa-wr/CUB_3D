@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:58:01 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/01 12:36:29 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/22 22:26:25 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	check_path_chars_helper(t_cub3d *p, int i, int j)
 				j++;
 			}
 			else
-				return (free_all(p), ft_putendl_fd("Error", 2), 0);
+				return (free_all(p), ft_putendl_fd("Error\nincorrect", 2), 0);
 		}
 		i++;
 	}
@@ -73,7 +73,7 @@ static int	check_path_chars(t_cub3d *p)
 	{
 		if (p->path[0][i] != ' ' && p->path[0][i] != '1' \
 			&& p->path[0][i] != '\0')
-			return (free_all(p), ft_putendl_fd("Error", 2), 0);
+			return (free_all(p), ft_putendl_fd("Error\nincorrect", 2), 0);
 		i++;
 	}
 	i = 0;
@@ -112,7 +112,7 @@ int	check_and_init_the_path(t_cub3d *p)
 		v.i++;
 	}
 	if (!v.len)
-		return (ft_putendl_fd("Error", 2), 0);
+		return (ft_putendl_fd("Error\nincorrect", 2), 0);
 	init_the_path(p, &v);
 	if (!check_path_chars(p))
 		return (0);
