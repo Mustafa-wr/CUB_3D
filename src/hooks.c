@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/24 01:21:48 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/24 02:36:55 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,28 @@ static void	move_if_pressed(int keycode, t_hook_vars *hook_vars)
 		|| ((keycode == KEY_D) && keys->d)
 		|| ((keycode == KEY_LEFT) && keys->left)
 		|| ((keycode == KEY_RIGHT) && keys->right))
-		move_by_key(keycode, hook_vars->player,
-			hook_vars->big_height, hook_vars->big_width);
+		move_by_key(keycode, hook_vars->player, &(hook_vars->res[NUM_RAYS]));
 }
 
+// By adding 4 more rays for each side we can check for walls.
 int	update(t_hook_vars *hook_vars)
 {
-	t_ray	rays[NUM_RAYS];
+	t_ray	rays[NUM_RAYS + 4];
 
 	hook_vars->res = rays;
 	mlx_do_sync(hook_vars->mlx_vars->mlx_ptr);
-	move_if_pressed(KEY_W, hook_vars);
-	move_if_pressed(KEY_S, hook_vars);
-	move_if_pressed(KEY_A, hook_vars);
-	move_if_pressed(KEY_D, hook_vars);
-	move_if_pressed(KEY_LEFT, hook_vars);
-	move_if_pressed(KEY_RIGHT, hook_vars);
+	
 	clear_img(hook_vars->mlx_vars->main_img, SWIDTH, SHEIGHT);
 	send_rays(hook_vars);
 	draw2d(hook_vars);
 	mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,
 							hook_vars->mlx_vars->win_ptr,
 							hook_vars->mlx_vars->main_img, 0, 0);
+	move_if_pressed(KEY_W, hook_vars);
+	move_if_pressed(KEY_S, hook_vars);
+	move_if_pressed(KEY_A, hook_vars);
+	move_if_pressed(KEY_D, hook_vars);
+	move_if_pressed(KEY_LEFT, hook_vars);
+	move_if_pressed(KEY_RIGHT, hook_vars);
 	return (0);
 }

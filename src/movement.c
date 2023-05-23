@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:02:27 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/22 14:43:38 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/24 02:45:58 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	handle_move(int keycode, t_point *change, t_vec *vec)
 	}
 }
 
-void	move_by_key(int keycode, t_vec *vec, int height, int width)
+void	move_by_key(int keycode, t_vec *vec, t_ray *sides)
 {
 	t_point	change;
 
@@ -59,8 +59,14 @@ void	move_by_key(int keycode, t_vec *vec, int height, int width)
 	handle_direction(keycode, vec);
 	change.x += 0.001;
 	change.y += 0.001;
-	if (vec->p.x + change.x < width && (vec->p.x + change.x > 0))
-		vec->p.x += change.x;
-	if (vec->p.y + change.y < height && (vec->p.y + change.y > 0))
-		vec->p.y += change.y;
+	if (keycode == KEY_W && fabs(sides[0].dist) < PLAYERSPEED)
+		return ;
+	else if (keycode == KEY_A && fabs(sides[1].dist) < PLAYERSPEED)
+		return ;
+	else if (keycode == KEY_S && fabs(sides[2].dist) < PLAYERSPEED)
+		return ;
+	else if (keycode == KEY_D && fabs(sides[3].dist) < PLAYERSPEED)
+		return ;
+	// printf("side dis: %.02f, dist: %d\n", sides[2].dist, PLAYERSPEED);
+	vec->p = (t_point){change.x + vec->p.x, change.y + vec->p.y};
 }
