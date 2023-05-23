@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/23 17:21:22 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/24 01:27:40 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,31 @@
 void draw_grid(t_hook_vars *hook)
 {
 	int	i;
+	t_point	s;
+	t_point	e;
 
 	i = -1;
 	while (++i < hook->bound_count)
-		draw_line(hook->mlx_vars->main_img, hook->bounds[i].start,
-				hook->bounds[i].end, RED);
+	{
+		s = (t_point){hook->bounds[i].start.x / 4, hook->bounds[i].start.y / 4};
+		e = (t_point){hook->bounds[i].end.x / 4, hook->bounds[i].end.y / 4};	
+		draw_line(hook->mlx_vars->main_img, s, e, RED);
+	}
 }
 
 void	draw_player(t_hook_vars *hook)
 {
-	t_vec	vec;
+	t_point	p;
 	int		i;
 	
-	vec = *(hook->player);
-	render_pixel(hook->mlx_vars->main_img, vec.p, RED);
-	draw_rect(hook->mlx_vars->main_img, (t_point){vec.p.x - 5, vec.p.y - 5},
-				(t_size){10,10}, RED);
+	p = (t_point){hook->player->p.x / 4, hook->player->p.y / 4};
+	render_pixel(hook->mlx_vars->main_img, p, RED);
+	draw_rect(hook->mlx_vars->main_img, (t_point){p.x, p.y},
+				(t_size){2,2}, RED);
 	i = -1;
 	while (++i < NUM_RAYS)
-		draw_line(hook->mlx_vars->main_img, hook->player->p,
-			hook->res[i].fixed, WHT);
+		draw_line(hook->mlx_vars->main_img, p,
+			(t_point){hook->res[i].collision.x / 4, hook->res[i].collision.y / 4}, WHT);
 }
 
 void draw2d(t_hook_vars *hook_vars)
