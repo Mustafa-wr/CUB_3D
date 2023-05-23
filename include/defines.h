@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:52:39 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/22 14:53:16 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/23 18:17:52 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define SHEIGHT 512
 # define PNAME "cub3d"
 # define PI 3.141593
-# define PLAYERSPEED 7
+# define PLAYERSPEED 3
 # define ROTSPEED (0.05)
 # define FOV (0.78539816339) // PI / 4
 # define HALF_FOV (0.392699082)
@@ -29,6 +29,6 @@
 # define IMG1_PATH ("assets/tile001.xpm")
 # define IMG2_PATH ("assets/tile002.xpm")
 # define IMG3_PATH ("assets/tile003.xpm")
-# define CUBE_LENGTH 16
+# define CUBE_LENGTH 64
 
 #endif

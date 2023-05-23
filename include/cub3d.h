@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/19 14:30:16 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/23 19:48:32 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,19 @@ int		check_dup(t_cub3d *t);
 void	render_pixel(void *img, t_point p1, int color);
 void	draw_line(void *img, t_point p1, t_point p2, int color);
 void	draw_rect(void *img, t_point s, t_size size, int color);
+void	draw_subimage(void *mimg, t_tex *tex, t_point s, t_point e);
 
 /* UTILS */
 double	angle(double rad);
 void	side_length_init(t_hook_vars *hook);
 double	dist(t_point p1, t_point p2);
 int		rgb2hex(int *colors);
+int		get_pixel(t_tex *tex, int x, int y);
+
+/***/
 void	bounds_init(t_hook_vars *hook);
 void	textures_init(t_hook_vars *hook);
+
 
 /*
  *	@brief Sends one single ray towrds the given angle.
@@ -61,7 +66,7 @@ void	textures_init(t_hook_vars *hook);
  *	@return Ray length, or -1 if it hits nothing within the max depth.
 */
 void	send_rays(t_hook_vars *hook);
-void	draw_ver_lines(t_hook_vars *hook);
+void	draw_ver_line(t_hook_vars *hook, int i);
 
 
 void	draw2d(t_hook_vars *hook_vars); // remove later
@@ -70,7 +75,6 @@ int		pressed(int keycode, t_hook_vars *hook_vars);
 int		released(int keycode, t_hook_vars *hook_vars);
 int		update(t_hook_vars *hook_vars);
 void	clear_img(void *img, int height, int width);
-
 void	move_by_key(int keycode, t_vec *vec, int width, int height);
 
 #endif

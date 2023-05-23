@@ -6,43 +6,34 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/22 15:21:24 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/23 21:28:57 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	get_xpos(t_ray res, t_point p)
+static int	get_xpos(t_ray res)
 {
 	double	x;
+	double	r;
 
 	if (res.side == SOUTH || res.side == NORTH)
-		x = p.x + res.dist;
+		x = res.collision.x;
 	else
-		x = p.y + res.dist;
-	x = x - ((unsigned long)x);
-	x *= CUBE_LENGTH;
+		x = res.collision.y;
+	r = fmod(x, CUBE_LENGTH);
+	x = r * 10;
 	return (x);
 }
 
-// Never changed image pixels, so only one image copy is needed.
-static int	get_pixel(t_tex *tex, int x, int y)
-{
-	int			index;
-	int			*data;
 
-	index = ((y * tex->size_line) + (x * (tex->bpp / 8)));
-	data = (int *)(tex->data + index);
-	return (*data);
-}
 
 /**
  * @brief draws the vertical lines
  * @param hook_vars 
  */
-void	draw_ver_lines(t_hook_vars *hook)
+void	draw_ver_line(t_hook_vars *hook, int i)
 {
-	int		i;
 	double	line_height;
 	int		draw_start;
 	int		draw_end;
@@ -50,11 +41,8 @@ void	draw_ver_lines(t_hook_vars *hook)
 	t_point	pic;
 	double	ystep_size;
 
-	i = -1;
-	while (++i < SWIDTH)
-	{
 		tex = &(hook->textures[hook->res[i].side]);
-		line_height = (hook->side_length * SHEIGHT / (hook->res[i].dist ));
+		line_height = (CUBE_LENGTH * 255 / (hook->res[i].dist));
 		ystep_size = CUBE_LENGTH / line_height;
 		draw_start = -line_height / 2 + SHEIGHT / 2.0;
 		if (draw_start < 0)
@@ -66,14 +54,13 @@ void	draw_ver_lines(t_hook_vars *hook)
 			(t_point){i, draw_start}, rgb2hex(hook->game->cieling));
 		draw_line(hook->mlx_vars->main_img, (t_point){i, draw_end},
 			(t_point){i, SHEIGHT - 1}, rgb2hex(hook->game->floor));
-		pic.x = get_xpos(hook->res[i], hook->player->p);
+		pic.x = get_xpos(hook->res[i]);
 		pic.y = 0;
 		while ((draw_end - draw_start) > 0)
 		{
 			render_pixel(hook->mlx_vars->main_img,
 				(t_point){i, draw_start++},
-				get_pixel(tex, pic.x, (int)pic.y));
-			pic.y += ystep_size;
+				get_pixel(tex, (int)pic.x, (int)pic.y));
+			pic.y += ystep_size + 0.001;
 		}
-	}
 }

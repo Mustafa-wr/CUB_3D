@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:34:30 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/18 15:35:03 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/23 19:47:51 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,15 @@ int	rgb2hex(int *colors)
 
 	hex = (colors[0] << 16) | (colors[1] << 8) | colors[2];
 	return (hex);
+}
+
+// Never changed image pixels, so only one image copy is needed.
+int	get_pixel(t_tex *tex, int x, int y)
+{
+	int			index;
+	int			*data;
+
+	index = ((y * tex->size_line) + (x * (tex->bpp / 8)));
+	data = (int *)(tex->data + index);
+	return (*data);
 }

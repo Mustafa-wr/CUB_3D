@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/21 16:04:15 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/23 21:23:45 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void send_rays(t_hook_vars *hook)
             if (!intersection(&ray, &(hook->bounds[b]), &col, trig))
                 continue ;
             d = dist(hook->player->p, col);
+            d *= cos(ray.angle - hook->player->angle);
             if (d < hook->res[ray_count].dist)
             {
                 hook->res[ray_count].dist = d;
@@ -80,5 +81,7 @@ void send_rays(t_hook_vars *hook)
                 hook->res[ray_count].side = b % 4;
             }
         }
+		// call draw ver lines here for each one so no other loop is needed
+		draw_ver_line(hook, ray_count);
     }
 }
