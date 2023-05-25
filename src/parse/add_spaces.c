@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_spaces.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:18:54 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/25 19:03:37 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 20:40:49 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,27 @@ void	put_walls(t_cub3d *cub)
 		}
 		i++;
 	}
+}
+
+int	xpm_check(t_cub3d *cub)
+{
+	int	fd;
+
+	fd = open(cub->no, O_RDONLY);
+	if (fd < 0)
+		return (free_all(cub), ft_putendl_fd("Error\nincorrect", 2), 0);
+	close(fd);
+	fd = open(cub->ea, O_RDONLY);
+	if (fd < 0)
+		return (free_all(cub), ft_putendl_fd("Error\nincorrect", 2), 0);
+	close(fd);
+	fd = open(cub->we, O_RDONLY);
+	if (fd < 0)
+		return (free_all(cub), ft_putendl_fd("Error\nincorrect", 2), 0);
+	close(fd);
+	fd = open(cub->so, O_RDONLY);
+	if (fd < 0)
+		return (free_all(cub), ft_putendl_fd("Error\nincorrect", 2), 0);
+	close(fd);
+	return (1);
 }

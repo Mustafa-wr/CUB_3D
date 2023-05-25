@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
+#    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/05/25 19:05:58 by bammar           ###   ########.fr        #
+#    Updated: 2023/05/25 20:57:25 by mradwan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS =	src/parse/parse_rgb.c			\
 		src/parse/add_spaces.c			\
 		src/parse/rgb_init.c			\
 		src/parse/init.c				\
+		src/parse/xpms.c				\
 		src/parse/validation.c			\
 		src/parse/init_path.c 			\
 		src/free_functions.c			\
