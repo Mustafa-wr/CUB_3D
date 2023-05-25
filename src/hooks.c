@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/25 16:54:18 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 19:08:01 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,12 @@ int	update(t_hook_vars *hook_vars)
 
 	hook_vars->res = rays;
 	mlx_do_sync(hook_vars->mlx_vars->mlx_ptr);
-	
 	clear_img(hook_vars->mlx_vars->main_img, SWIDTH, SHEIGHT);
 	send_rays(hook_vars);
 	draw2d(hook_vars);
 	mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,
-							hook_vars->mlx_vars->win_ptr,
-							hook_vars->mlx_vars->main_img, 0, 0);
+		hook_vars->mlx_vars->win_ptr,
+		hook_vars->mlx_vars->main_img, 0, 0);
 	move_if_pressed(KEY_W, hook_vars);
 	move_if_pressed(KEY_S, hook_vars);
 	move_if_pressed(KEY_A, hook_vars);

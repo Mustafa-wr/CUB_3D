@@ -13,7 +13,31 @@
 #include "cub3d.h"
 
 // horizontals are even (wall_count % 2 == 0)
-void set_sqaures(t_hook_vars *hook)
+static void	set_squares_helper(t_hook_vars *hook, int i, int j, t_point *s)
+{
+	s->x = j * hook->side_length;
+	s->y = i * hook->side_length;
+	hook->walls[hook->wall_count].start = *s;
+	hook->walls[hook->wall_count].end = (t_point){
+		s->x + hook->side_length, s->y};
+	hook->walls[hook->wall_count].hide = hook->game->path[i][j] == '2';
+	hook->walls[++hook->wall_count].start = *s;
+	hook->walls[hook->wall_count].end = (t_point){
+		s->x, s->y + hook->side_length};
+	hook->walls[hook->wall_count].hide = hook->game->path[i][j] == '2';
+	hook->walls[++hook->wall_count].start = (t_point){
+		s->x, s->y + hook->side_length};
+	hook->walls[hook->wall_count].end = (t_point){
+		s->x + hook->side_length, s->y + hook->side_length};
+	hook->walls[hook->wall_count].hide = hook->game->path[i][j] == '2';
+	hook->walls[++hook->wall_count].start = (t_point){
+		s->x + hook->side_length, s->y};
+	hook->walls[hook->wall_count].end = (t_point){
+		s->x + hook->side_length, s->y + hook->side_length};
+	hook->walls[hook->wall_count++].hide = hook->game->path[i][j] == '2';
+}
+
+void	set_sqaures(t_hook_vars *hook)
 {
 	int		i;
 	int		j;
@@ -27,33 +51,14 @@ void set_sqaures(t_hook_vars *hook)
 		{
 			if (hook->game->path[i][j] != '1' && hook->game->path[i][j] != '2')
 				continue ;
-			s.x = j * hook->side_length;
-			s.y = i * hook->side_length;
-			hook->walls[hook->wall_count].start = s;
-			hook->walls[hook->wall_count].end = (t_point){
-				s.x + hook->side_length, s.y};
-			hook->walls[hook->wall_count].hide = hook->game->path[i][j] == '2';
-			hook->walls[++hook->wall_count].start = s;
-			hook->walls[hook->wall_count].end = (t_point){
-				s.x, s.y + hook->side_length};
-			hook->walls[hook->wall_count].hide = hook->game->path[i][j] == '2';
-			hook->walls[++hook->wall_count].start = (t_point){
-				s.x, s.y + hook->side_length};
-			hook->walls[hook->wall_count].end = (t_point){
-				s.x + hook->side_length, s.y + hook->side_length};
-			hook->walls[hook->wall_count].hide = hook->game->path[i][j] == '2';
-			hook->walls[++hook->wall_count].start = (t_point){
-				s.x + hook->side_length, s.y};
-			hook->walls[hook->wall_count].end = (t_point){
-				s.x + hook->side_length, s.y + hook->side_length};
-			hook->walls[hook->wall_count++].hide = hook->game->path[i][j] == '2';
+			set_squares_helper(hook, i, j, &s);
 		}
 	}
 }
 
 void	walls_init(t_hook_vars *hook)
 {
-	hook->walls = malloc(sizeof(t_wall) * 4
+	hook->walls = malloc(sizeof(t_wall) * 4 \
 		* ((hook->game->width * hook->game->height) + 1));
 	if (!hook->walls)
 		exit(EXIT_FAILURE);

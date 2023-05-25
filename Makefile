@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/05/25 17:50:10 by bammar           ###   ########.fr        #
+#    Updated: 2023/05/25 19:05:58 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS =	src/parse/parse_rgb.c			\
 		src/textures.c					\
 		src/clear_img.c					\
 		src/walls.c						\
+		src/draw_2d.c					\
 		src/cub3d.c						\
 		src/hooks.c						\
 		src/raycast.c					\

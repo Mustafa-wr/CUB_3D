@@ -6,15 +6,15 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/25 16:54:18 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 19:02:59 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-#include "hashtable/ht.h"
-#include "enums.h"
+# include "hashtable/ht.h"
+# include "enums.h"
 
 typedef struct s_vars
 {
@@ -29,6 +29,17 @@ typedef struct s_vars
 	int		num_spaces;
 	char	*new_str;
 	char	*sub;
+	double	x1;
+	double	y1;
+	double	x2;
+	double	y2;
+	double	x3;
+	double	y3;
+	double	x4;
+	double	y4;
+	double	denominator;
+	double	t;
+	double	u;
 }	t_vars;
 
 typedef struct s_cub3d
@@ -50,7 +61,7 @@ typedef struct s_cub3d
 	int		height;
 	int		width2;
 	int		height2;
-	float 	*d;
+	float	*d;
 }	t_cub3d;
 
 typedef struct s_mlx_vars
@@ -68,7 +79,7 @@ typedef struct s_pressed
 	bool	d;
 	bool	right;
 	bool	left;
-}	t_pressed; 
+}	t_pressed;
 
 typedef struct s_point
 {
@@ -135,5 +146,14 @@ typedef struct s_hook_vars
 	t_tex			*textures;
 }	t_hook_vars;
 
+typedef struct s_init
+{
+	t_mlx_vars	mlx;
+	t_hook_vars	hook;
+	t_cub3d		game;
+	t_vec		player;
+	t_tex		texs[4];
+	t_pressed	pressed_keys;
+}	t_init;
 
 #endif

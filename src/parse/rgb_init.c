@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 17:39:47 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/07 16:20:50 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/21 22:18:13 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static int	store_floor_helper(t_cub3d *map, t_vars *v)
 	free(v->sub);
 	while (map->floor_tmp[v->i] == ' ')
 		v->i++;
-	if (map->floor_tmp[v->i] == ',' || map->floor_tmp[v->i] == ' ')
-		v->i++;
+	v->i += (map->floor_tmp[v->i] == ',' || map->floor_tmp[v->i] == ' ');
 	while (map->floor_tmp[v->i] == ' ')
 		v->i++;
 	while (map->floor_tmp[v->i] == '0')
@@ -82,8 +81,7 @@ static int	store_cieling_helper(t_cub3d *map, t_vars *v)
 	free(v->sub);
 	while (map->cieling_tmp[v->i] == ' ')
 		v->i++;
-	if (map->cieling_tmp[v->i] == ',' || map->cieling_tmp[v->i] == ' ')
-		v->i++;
+	v->i += (map->cieling_tmp[v->i] == ',' || map->cieling_tmp[v->i] == ' ');
 	while (map->cieling_tmp[v->i] == ' ')
 		v->i++;
 	while (map->cieling_tmp[v->i] == '0')

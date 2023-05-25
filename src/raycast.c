@@ -6,64 +6,62 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/25 17:41:47 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 19:08:58 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool intersection(const t_vec* ray, const t_wall* wall, t_point* col)
+bool	intersection(const t_vec *ray, const t_wall *wall, t_point *col)
 {
-    double x1 = wall->start.x;
-    double y1 = wall->start.y;
-    double x2 = wall->end.x;
-    double y2 = wall->end.y;
+	t_vars	v;
 
-    double x3 = ray->p.x;
-    double y3 = ray->p.y;
-    double x4 = ray->p.x + cos(ray->angle);
-    double y4 = ray->p.y + sin(ray->angle);
-
-    double denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-
-    if (fabs(denominator) < 0.001) {
-        // The lines are parallel
-        return false;
-    }
-    double t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / denominator;
-    double u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / denominator;
-
-    if (t > 0 && t < 1 && u > 0) {
-        // The lines intersect within the line segments
-        col->x = x1 + t * (x2 - x1);
-        col->y = y1 + t * (y2 - y1);
-        return true;
-    }
-
-    return false;
+	v.x1 = wall->start.x;
+	v.y1 = wall->start.y;
+	v.x2 = wall->end.x;
+	v.y2 = wall->end.y;
+	v.x3 = ray->p.x;
+	v.y3 = ray->p.y;
+	v.x4 = ray->p.x + cos(ray->angle);
+	v.y4 = ray->p.y + sin(ray->angle);
+	v.denominator = (v.x1 - v.x2) * (v.y3 - v.y4) - \
+		(v.y1 - v.y2) * (v.x3 - v.x4);
+	if (fabs(v.denominator) < 0.001)
+		return (false);
+	v.t = ((v.x1 - v.x3) * (v.y3 - v.y4) - (v.y1 - v.y3) * (v.x3 - v.x4))
+		/ v.denominator;
+	v.u = -((v.x1 - v.x2) * (v.y1 - v.y3) - (v.y1 - v.y2) * (v.x1 - v.x3))
+		/ v.denominator;
+	if (v.t > 0 && v.t < 1 && v.u > 0)
+	{
+		col->x = v.x1 + v.t * (v.x2 - v.x1);
+		col->y = v.y1 + v.t * (v.y2 - v.y1);
+		return (true);
+	}
+	return (false);
 }
 
-static void fill_result(t_vec ray, t_ray *res, t_hook_vars *hook)
+static void	fill_result(t_vec ray, t_ray *res, t_hook_vars *hook)
 {
-    int     b;
-    double  d;
-    t_point col;
+	int		b;
+	double	d;
+	t_point	col;
 
-    res->dist = INT_MAX;
-    res->collision = hook->player->p;
-    b = -1;
-    while (++b < hook->wall_count)
-    {
-        if (!intersection(&ray, &(hook->walls[b]), &col))
-            continue ;
-        d = dist(hook->player->p, col) * cos(ray.angle - hook->player->angle);
-        if (d < res->dist)
-        {
-            res->dist = d;
-            res->collision = col;
-            res->side = b % 4;
-        }
-    }
+	res->dist = INT_MAX;
+	res->collision = hook->player->p;
+	b = -1;
+	while (++b < hook->wall_count)
+	{
+		if (!intersection(&ray, &(hook->walls[b]), &col))
+			continue ;
+		d = dist(hook->player->p, col) * cos(ray.angle - hook->player->angle);
+		if (d < res->dist)
+		{
+			res->dist = d;
+			res->collision = col;
+			res->side = b % 4;
+		}
+	}
 }
 
 /**
@@ -71,17 +69,17 @@ static void fill_result(t_vec ray, t_ray *res, t_hook_vars *hook)
  * maybe set the intersection point inside the wall struct 
  	and update it only when a smaller one is found.
 */
-void send_rays(t_hook_vars *hook)
+void	send_rays(t_hook_vars *hook)
 {
-    int ray_count;
-    t_vec   ray;
+	int		ray_count;
+	t_vec	ray;
 
-    ray_count = -1;
-    while (++ray_count < NUM_RAYS)
-    {
-        ray = (t_vec){hook->player->p,
-            hook->player->angle - HALF_FOV + (ray_count * DELTA_ANGLE)};
+	ray_count = -1;
+	while (++ray_count < NUM_RAYS)
+	{
+		ray = (t_vec){hook->player->p,
+			hook->player->angle - HALF_FOV + (ray_count * DELTA_ANGLE)};
 		fill_result(ray, &(hook->res[ray_count]), hook);
 		draw_ver_line(hook, ray_count);
-    }
+	}
 }

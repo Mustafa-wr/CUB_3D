@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:18:54 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/25 17:34:56 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 19:03:37 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,16 @@ void	put_spaces(char **arr)
 void	put_walls(t_cub3d *cub)
 {
 	int	i;
-	int j;
+	int	j;
 
-	i= 0;
+	i = 0;
 	j = 0;
 	while (cub->path[i])
 	{
 		j = 0;
 		while (cub->path[i][j])
 		{
-			if(cub->path[i][j] == ' ')
+			if (cub->path[i][j] == ' ')
 				cub->path[i][j] = '2';
 			j++;
 		}
