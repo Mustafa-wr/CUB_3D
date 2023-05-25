@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/24 02:36:55 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 16:54:18 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	game_exit(t_hook_vars *hook_vars)
 		hook_vars->textures[SOUTH].img);
 	mlx_destroy_window(hook_vars->mlx_vars->mlx_ptr,
 		hook_vars->mlx_vars->win_ptr);
-	free(hook_vars->bounds);
+	free(hook_vars->walls);
 	free_all(hook_vars->game);
 	exit(0);
 }
@@ -82,7 +82,8 @@ static void	move_if_pressed(int keycode, t_hook_vars *hook_vars)
 		|| ((keycode == KEY_D) && keys->d)
 		|| ((keycode == KEY_LEFT) && keys->left)
 		|| ((keycode == KEY_RIGHT) && keys->right))
-		move_by_key(keycode, hook_vars->player, &(hook_vars->res[NUM_RAYS]));
+		move_by_key(keycode, hook_vars->player, hook_vars->big_height - 10,
+			hook_vars->big_width - 10);
 }
 
 // By adding 4 more rays for each side we can check for walls.

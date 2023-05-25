@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/23 21:54:54 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 16:55:55 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	get_xpos(t_ray res)
 	else
 		x = res.collision.y;
 	r = fmod(x, CUBE_LENGTH);
-	x = r * 2;
+	x = r;
 	return (x);
 }
 
@@ -58,9 +58,10 @@ void	draw_ver_line(t_hook_vars *hook, int i)
 		while (draw_start <= draw_end)
 		{
         	pic.y += ystep_size;
+			
 			render_pixel(hook->mlx_vars->main_img,
 				(t_point){i, draw_start++},
-				get_pixel(tex, (int)pic.x, (int)pic.y & (CUBE_LENGTH - 1) ));
+				get_pixel(tex, (int)pic.x, (int)pic.y & (CUBE_LENGTH - 1)));
 			
 		}
 }

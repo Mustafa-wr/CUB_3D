@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:21:18 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/24 01:41:20 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 16:54:18 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_cub3d
 	int		x;
 	int		width;
 	int		height;
+	int		width2;
+	int		height2;
 	float 	*d;
 }	t_cub3d;
 
@@ -92,11 +94,12 @@ typedef struct s_vec
 	double	angle;
 }	t_vec;
 
-typedef struct s_bound
+typedef struct s_wall
 {
 	t_point	start;
 	t_point	end;
-}	t_bound;
+	bool	hide;
+}	t_wall;
 
 typedef struct s_ray
 {
@@ -126,8 +129,8 @@ typedef struct s_hook_vars
 	int				big_width;
 	int				big_height;
 	int				side_length;
-	t_bound			*bounds;
-	int				bound_count;
+	t_wall			*walls;
+	int				wall_count;
 	t_ray			*res;
 	t_tex			*textures;
 }	t_hook_vars;

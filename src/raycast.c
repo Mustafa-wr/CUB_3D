@@ -6,18 +6,18 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/24 02:40:07 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 17:41:47 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool intersection(const t_vec* ray, const t_bound* bound, t_point* col)
+bool intersection(const t_vec* ray, const t_wall* wall, t_point* col)
 {
-    double x1 = bound->start.x;
-    double y1 = bound->start.y;
-    double x2 = bound->end.x;
-    double y2 = bound->end.y;
+    double x1 = wall->start.x;
+    double y1 = wall->start.y;
+    double x2 = wall->end.x;
+    double y2 = wall->end.y;
 
     double x3 = ray->p.x;
     double y3 = ray->p.y;
@@ -52,9 +52,9 @@ static void fill_result(t_vec ray, t_ray *res, t_hook_vars *hook)
     res->dist = INT_MAX;
     res->collision = hook->player->p;
     b = -1;
-    while (++b < hook->bound_count)
+    while (++b < hook->wall_count)
     {
-        if (!intersection(&ray, &(hook->bounds[b]), &col))
+        if (!intersection(&ray, &(hook->walls[b]), &col))
             continue ;
         d = dist(hook->player->p, col) * cos(ray.angle - hook->player->angle);
         if (d < res->dist)
@@ -66,17 +66,9 @@ static void fill_result(t_vec ray, t_ray *res, t_hook_vars *hook)
     }
 }
 
-static void check_walls(t_ray*res, t_hook_vars *hook)
-{
-    t_vec   ray;
-
-    ray = (t_vec){hook->player->p, hook->player->angle};
-    fill_result(ray, res, hook);
-}
-
 /**
  * https://www.youtube.com/watch?v=TOEi6T2mtHo
- * maybe set the intersection point inside the bound struct 
+ * maybe set the intersection point inside the wall struct 
  	and update it only when a smaller one is found.
 */
 void send_rays(t_hook_vars *hook)
@@ -92,8 +84,4 @@ void send_rays(t_hook_vars *hook)
 		fill_result(ray, &(hook->res[ray_count]), hook);
 		draw_ver_line(hook, ray_count);
     }
-    check_walls(&(hook->res[NUM_RAYS + 0]), hook);
-    check_walls(&(hook->res[NUM_RAYS + 1]), hook);
-    check_walls(&(hook->res[NUM_RAYS + 2]), hook);
-    check_walls(&(hook->res[NUM_RAYS + 3]), hook);
 }

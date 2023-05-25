@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/24 02:04:00 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 16:54:18 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		check_and_init_the_path(t_cub3d *p);
 int		main_parse(t_cub3d *cub, int ac, char **av);
 int		validation(t_cub3d *map);
 void	free_strings(char **av);
+void	put_walls(t_cub3d *cub);
 void	put_spaces(char **arr);
 int		check_for_spaces(t_cub3d *map);
 int		valid_path(t_cub3d *p);
@@ -55,7 +56,7 @@ int		rgb2hex(int *colors);
 int		get_pixel(t_tex *tex, int x, int y);
 
 /***/
-void	bounds_init(t_hook_vars *hook);
+void	walls_init(t_hook_vars *hook);
 void	textures_init(t_hook_vars *hook);
 
 
@@ -74,6 +75,6 @@ int		pressed(int keycode, t_hook_vars *hook_vars);
 int		released(int keycode, t_hook_vars *hook_vars);
 int		update(t_hook_vars *hook_vars);
 void	clear_img(void *img, int height, int width);
-void	move_by_key(int keycode, t_vec *vec, t_ray *sides);
+void	move_by_key(int keycode, t_vec *vec, int height, int width);
 
 #endif

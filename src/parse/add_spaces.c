@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_spaces.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:18:54 by mradwan           #+#    #+#             */
-/*   Updated: 2023/04/24 17:24:28 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:34:56 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,26 @@ void	put_spaces(char **arr)
 		v.new_str[v.max_len] = '\0';
 		free(arr[i]);
 		arr[i] = v.new_str;
+		i++;
+	}
+}
+
+void	put_walls(t_cub3d *cub)
+{
+	int	i;
+	int j;
+
+	i= 0;
+	j = 0;
+	while (cub->path[i])
+	{
+		j = 0;
+		while (cub->path[i][j])
+		{
+			if(cub->path[i][j] == ' ')
+				cub->path[i][j] = '2';
+			j++;
+		}
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/24 01:27:40 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 17:40:54 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void draw_grid(t_hook_vars *hook)
 	t_point	e;
 
 	i = -1;
-	while (++i < hook->bound_count)
+	while (++i < hook->wall_count)
 	{
-		s = (t_point){hook->bounds[i].start.x / 4, hook->bounds[i].start.y / 4};
-		e = (t_point){hook->bounds[i].end.x / 4, hook->bounds[i].end.y / 4};	
+		if (hook->walls[i].hide)
+			continue ;
+		s = (t_point){hook->walls[i].start.x / 4, hook->walls[i].start.y / 4};
+		e = (t_point){hook->walls[i].end.x / 4, hook->walls[i].end.y / 4};	
 		draw_line(hook->mlx_vars->main_img, s, e, RED);
 	}
 }
@@ -95,7 +97,7 @@ int	main(int ac, char **av)
 	hook.player = &player;
 	side_length_init(&hook);
 	map_init(&hook);
-	bounds_init(&hook);
+	walls_init(&hook);
     hook.mlx_vars = &mlx;
     mlx.mlx_ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);	

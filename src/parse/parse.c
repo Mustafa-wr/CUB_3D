@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:29 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/07 16:09:41 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 16:48:07 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 	height_and_width(cub);
 	if (!valid_path(cub) || !only_one_check(cub))
 		return (0);
+	put_walls(cub);
 	int i = 0;
 	while (cub->path[i])
 	{

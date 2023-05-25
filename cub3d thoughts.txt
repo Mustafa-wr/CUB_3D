@@ -7,17 +7,17 @@ cub3d thoughts
 - Assuming that the side length a sqaure or cube is 1 we could use the map to do
 	the raycasting.
 
-- To setup all bound of the map we need create them:
-	- for simplicity the bound count will be = box count x 4
-	-- horizantol bounds
-	- we iterate through all rows of the map and for each one we start a bound.
-	- the end point of a bound when there's no wall infront of it or if the row is over.
-	- another bound is started if the previous one was stopped, and the new one start pos will be the next wall start.
-	-- vertical bounds
+- To setup all wall of the map we need create them:
+	- for simplicity the wall count will be = box count x 4
+	-- horizantol walls
+	- we iterate through all rows of the map and for each one we start a wall.
+	- the end point of a wall when there's no wall infront of it or if the row is over.
+	- another wall is started if the previous one was stopped, and the new one start pos will be the next wall start.
+	-- vertical walls
 	- the iteration is flipped.
 	- we iterate through all columns... 		{ i < width then j < height}  
-	- the end point of a bound when there's no wall infront or if the column is over
-	- another bound is started if the previous one was stopped, and the new one start pos will be the next wall start.
+	- the end point of a wall when there's no wall infront or if the column is over
+	- another wall is started if the previous one was stopped, and the new one start pos will be the next wall start.
 
 I already know the texture --
 I want to know which vertical line of the image to draw based on something
