@@ -28,7 +28,7 @@ static int	textures_utils(char **dst, char *src, t_vars *var, t_cub3d *t)
 		return (ft_putendl_fd("Error\nincorrect", 2), free_tools(t), \
 			free_strings(t->map), exit(1), 0);
 	tmp = ft_strchr(src, src[i]);
-	(*dst) = ft_strdup(tmp);
+	(*dst) = ft_strtrim(tmp, " ");
 	var->i = -1;
 	var->flag++;
 	return (1);
