@@ -55,8 +55,8 @@ int	main(int ac, char **av)
 
 	if (!main_helper(ac, av, &init.hook, &init.game))
 		return (EXIT_FAILURE);
-	// free_all(&init.game);
-	// exit(0);
+	free_all(&init.game);
+	exit(0);
 	ft_bzero(&init.player, sizeof(init.player));
 	ft_bzero(&init.pressed_keys, sizeof(t_pressed));
 	init.hook.keys = &init.pressed_keys;

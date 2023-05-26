@@ -41,7 +41,8 @@ static int	check_for_digits(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (ft_isdigit(s[i]) || s[i] == ',' || s[i] == ' ')
+		if (ft_isdigit(s[i]) || s[i] == ',' || s[i] == ' ' \
+			|| s[i] == 'F' || s[i] == 'C')
 			i++;
 		else
 			return (0);
