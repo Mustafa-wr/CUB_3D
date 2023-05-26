@@ -111,7 +111,8 @@ int	check_and_init_the_path(t_cub3d *p)
 		v.i++;
 	}
 	if (!v.len)
-		return (ft_putendl_fd("Error\nincorrect", 2), 0);
+		return (free_tools(p), free_strings(p->map), free(p->cieling), free(p->floor), \
+			ft_putendl_fd("Error\nincorrect", 2), 0);
 	init_the_path(p, &v);
 	if (!check_path_chars(p))
 		return (0);

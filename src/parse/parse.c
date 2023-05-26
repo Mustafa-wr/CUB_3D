@@ -120,7 +120,7 @@ int	main_parse(t_cub3d *cub, int ac, char **av)
 	put_spaces(cub->path);
 	height_and_width(cub);
 	if (!valid_path(cub) || !only_one_check(cub) || \
-		!xpm_check(cub) || !xpm_valid(cub))
+		!xpm_check(cub) || !xpm_valid(cub) || !empty_line(cub))
 		return (0);
 	put_walls(cub);
 	return (1);

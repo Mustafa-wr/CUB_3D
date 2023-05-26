@@ -25,6 +25,7 @@
 /*********************        Parsing         ********************/
 int		store_the_rgb(t_cub3d *map);
 int		init_textures(t_cub3d *t);
+int 	empty_line(t_cub3d *line);
 int		init_map(t_cub3d *map, char *k);
 int		check_and_init_the_path(t_cub3d *p);
 int		xpm_check(t_cub3d *cub);
