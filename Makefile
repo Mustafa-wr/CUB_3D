@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
+#    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/05/25 20:57:25 by mradwan          ###   ########.fr        #
+#    Updated: 2023/05/27 19:30:34 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 
 SRCS =	src/parse/parse_rgb.c			\
 		src/parse/wall_error.c			\
