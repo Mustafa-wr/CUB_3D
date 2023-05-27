@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/27 15:38:55 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/27 16:31:17 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	map_init(t_hook_vars *hook)
 			if (hook->game->path[i][j] == 'E')
 				hook->player->angle = 0;
 			else if (hook->game->path[i][j] == 'N')
-				hook->player->angle = PI / 2;
+				hook->player->angle = 3 * PI / 2;
 			else if (hook->game->path[i][j] == 'W')
 				hook->player->angle = PI;
 			else if (hook->game->path[i][j] == 'S')
-				hook->player->angle = 3 * PI / 2;
+				hook->player->angle = PI / 2;
 			if (hook->game->path[i][j] == 'E' || hook->game->path[i][j] == 'W'
 				|| hook->game->path[i][j] == 'N'
 				|| hook->game->path[i][j] == 'S')
