@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:12:20 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/25 19:05:30 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:38:55 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,8 @@ int	main(int ac, char **av)
 
 	if (!main_helper(ac, av, &init.hook, &init.game))
 		return (EXIT_FAILURE);
-	free_all(&init.game);
-	exit(0);
 	ft_bzero(&init.player, sizeof(init.player));
-	ft_bzero(&init.pressed_keys, sizeof(t_pressed));
+	ft_bzero(&init.pressed_keys, sizeof(init.pressed_keys));
 	init.hook.keys = &init.pressed_keys;
 	init.hook.player = &init.player;
 	side_length_init(&init.hook);
@@ -69,7 +67,8 @@ int	main(int ac, char **av)
 	init.mlx.win_ptr = mlx_new_window(init.mlx.mlx_ptr, SWIDTH, SHEIGHT, PNAME);
 	init.mlx.main_img = mlx_new_image(init.mlx.mlx_ptr, SWIDTH, SHEIGHT);
 	init.hook.textures = init.texs;
-	textures_init(&init.hook);
+	if (!textures_init(&init.hook))
+		game_exit(&init.hook);
 	mlx_hook(init.mlx.win_ptr, ON_DESTROY, 0, game_exit, &init.hook);
 	mlx_hook(init.mlx.win_ptr, 2, 1L << 0, pressed, &(init.hook));
 	mlx_hook(init.mlx.win_ptr, 3, 1L << 1, released, &(init.hook));

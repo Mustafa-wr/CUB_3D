@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:52:39 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/25 19:01:26 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:44:26 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,5 @@
 # define DELTA_ANGLE (0.00076699039)
 # define SCREEN_DIST (1236.07734394)
 # define MAX_DEPTH 8
-# define IMG0_PATH ("assets/tile000.xpm")
-# define IMG1_PATH ("assets/tile001.xpm")
-# define IMG2_PATH ("assets/tile002.xpm")
-# define IMG3_PATH ("assets/tile003.xpm")
-# define CUBE_LENGTH 64
 
 #endif

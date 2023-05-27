@@ -6,13 +6,13 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/25 18:42:56 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:58:37 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	get_xpos(t_ray res)
+static int	get_xpos(t_ray res, int cwidth)
 {
 	double	x;
 	double	r;
@@ -21,7 +21,7 @@ static int	get_xpos(t_ray res)
 		x = res.collision.x;
 	else
 		x = res.collision.y;
-	r = fmod(x, CUBE_LENGTH);
+	r = fmod(x, cwidth);
 	x = r;
 	return (x);
 }
@@ -47,8 +47,8 @@ void	draw_ver_line(t_hook_vars *hook, int i)
 	double			ystep_size;
 
 	tex = &(hook->textures[hook->res[i].side]);
-	line_height = (CUBE_LENGTH * 255 / (hook->res[i].dist));
-	ystep_size = 1.0 * CUBE_LENGTH / line_height;
+	line_height = (64 * 255 / (hook->res[i].dist));
+	ystep_size = 1.0 * hook->textures->h / line_height;
 	draw.x = -line_height / 2 + SHEIGHT / 2.0;
 	if (draw.x < 0)
 		draw.x = 0;
@@ -56,12 +56,12 @@ void	draw_ver_line(t_hook_vars *hook, int i)
 	if (draw.y >= SHEIGHT)
 		draw.y = SHEIGHT - 1;
 	draw_cf(hook, i, draw);
-	pic.x = get_xpos(hook->res[i]);
+	pic.x = get_xpos(hook->res[i], hook->textures->w);
 	pic.y = (draw.x - SHEIGHT / 2 + line_height / 2) * ystep_size;
 	while (draw.x <= draw.y)
 	{
-		pic.y += ystep_size;
 		render_pixel(hook->mlx_vars->main_img, (t_point){i, draw.x++},
-			get_pixel(tex, (int)pic.x, (int)pic.y & (CUBE_LENGTH - 1)));
+			get_pixel(tex, (int)pic.x, (int)pic.y & (hook->textures->h - 1)));
+		pic.y += ystep_size;
 	}
 }

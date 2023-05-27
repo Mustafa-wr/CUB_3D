@@ -6,36 +6,30 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:35:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/25 19:10:34 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:40:42 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	textures_init(t_hook_vars *hook)
+void	texture_init(t_tex *tex, t_mlx_vars *mlx_vars, char *path)
 {
-	hook->textures[NORTH].img = mlx_xpm_file_to_image(hook->mlx_vars->mlx_ptr, \
-		IMG0_PATH, &(hook->textures[NORTH].w), \
-		&(hook->textures[NORTH].h));
-	hook->textures[NORTH].data = mlx_get_data_addr(hook->textures[NORTH].img, \
-		&(hook->textures[NORTH].bpp), &(hook->textures[NORTH].size_line), \
-		&(hook->textures[NORTH].endian));
-	hook->textures[SOUTH].img = mlx_xpm_file_to_image(hook->mlx_vars->mlx_ptr, \
-		IMG1_PATH, &(hook->textures[SOUTH].w), \
-		&(hook->textures[SOUTH].h));
-	hook->textures[SOUTH].data = mlx_get_data_addr(hook->textures[SOUTH].img, \
-		&(hook->textures[SOUTH].bpp), \
-		&(hook->textures[SOUTH].size_line), &(hook->textures[SOUTH].endian));
-	hook->textures[EAST].img = mlx_xpm_file_to_image(hook->mlx_vars->mlx_ptr, \
-		IMG2_PATH, &(hook->textures[EAST].w), \
-		&(hook->textures[EAST].h));
-	hook->textures[EAST].data = mlx_get_data_addr(hook->textures[EAST].img, \
-		&(hook->textures[EAST].bpp), \
-		&(hook->textures[EAST].size_line), &(hook->textures[EAST].endian));
-	hook->textures[WEST].img = mlx_xpm_file_to_image(hook->mlx_vars->mlx_ptr, \
-		IMG3_PATH, &(hook->textures[WEST].w), \
-		&(hook->textures[WEST].h));
-	hook->textures[WEST].data = mlx_get_data_addr(hook->textures[WEST].img, \
-		&(hook->textures[WEST].bpp), \
-		&(hook->textures[WEST].size_line), &(hook->textures[WEST].endian));
+	tex->img = mlx_xpm_file_to_image(mlx_vars->mlx_ptr, \
+		path, &(tex->w), &(tex->h));
+	if (!tex->img)
+		return ;
+	tex->data = mlx_get_data_addr(tex->img, &(tex->bpp), &(tex->size_line), \
+		&(tex->endian));
+}
+
+bool	textures_init(t_hook_vars *hook)
+{
+	texture_init(&hook->textures[NORTH], hook->mlx_vars, hook->game->no);
+	texture_init(&hook->textures[SOUTH], hook->mlx_vars, hook->game->so);
+	texture_init(&hook->textures[EAST], hook->mlx_vars, hook->game->ea);
+	texture_init(&hook->textures[WEST], hook->mlx_vars, hook->game->we);
+	if (!hook->textures[NORTH].img || !hook->textures[SOUTH].img
+		|| !hook->textures[EAST].img || !hook->textures[WEST].img)
+		return (ft_putendl_fd("Error\nBad xpm", 2), false);
+	return (true);
 }

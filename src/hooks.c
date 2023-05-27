@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/25 19:08:01 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:42:40 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,25 @@ int	game_exit(t_hook_vars *hook_vars)
 		hook_vars->mlx_vars->win_ptr);
 	mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
 		hook_vars->mlx_vars->main_img);
-	mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
-		hook_vars->textures[NORTH].img);
-	mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
-		hook_vars->textures[EAST].img);
-	mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
-		hook_vars->textures[WEST].img);
-	mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
-		hook_vars->textures[SOUTH].img);
+	if (hook_vars->textures[NORTH].img)
+		mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
+			hook_vars->textures[NORTH].img);
+	if (hook_vars->textures[SOUTH].img)
+		mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
+			hook_vars->textures[SOUTH].img);
+	if (hook_vars->textures[EAST].img)
+		mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
+			hook_vars->textures[EAST].img);
+	if (hook_vars->textures[WEST].img)
+		mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
+			hook_vars->textures[WEST].img);
 	mlx_destroy_window(hook_vars->mlx_vars->mlx_ptr,
 		hook_vars->mlx_vars->win_ptr);
 	free(hook_vars->walls);
 	free_all(hook_vars->game);
+	if (!hook_vars->textures[NORTH].img || !hook_vars->textures[SOUTH].img
+		|| !hook_vars->textures[EAST].img || !hook_vars->textures[WEST].img)
+		exit(EXIT_FAILURE);
 	exit(0);
 }
 

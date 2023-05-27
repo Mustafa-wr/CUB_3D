@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:27:26 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/25 20:56:36 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/27 15:25:20 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		get_pixel(t_tex *tex, int x, int y);
 
 /***/
 void	walls_init(t_hook_vars *hook);
-void	textures_init(t_hook_vars *hook);
+bool	textures_init(t_hook_vars *hook);
 
 /*
  *	@brief Sends one single ray towrds the given angle.

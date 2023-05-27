@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:58:01 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/22 22:35:16 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/27 15:58:15 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ int	check_and_init_the_path(t_cub3d *p)
 		v.i++;
 	}
 	if (!v.len)
-		return (free_tools(p), free_strings(p->map), free(p->cieling), free(p->floor), \
-			ft_putendl_fd("Error\nincorrect", 2), 0);
+		return (free_tools(p), free_strings(p->map), free(p->cieling),
+			free(p->floor), ft_putendl_fd("Error\nincorrect", 2), 0);
 	init_the_path(p, &v);
 	if (!check_path_chars(p))
 		return (0);
