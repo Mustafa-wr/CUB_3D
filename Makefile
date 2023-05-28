@@ -6,7 +6,7 @@
 #    By: bammar <bammar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 21:00:37 by bammar            #+#    #+#              #
-#    Updated: 2023/05/27 19:30:34 by bammar           ###   ########.fr        #
+#    Updated: 2023/05/28 15:40:52 by bammar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,20 +50,11 @@ RM = /bin/rm
 # LIBS
 LIBFT = libs/libft
 
-
-ifeq ($(OS), Linux)
-	MLX = libs/mlx-linux
-else
-	MLX = libs/mlx-mac
-endif
+MLX = libs/mlx-mac
 
 LINKS = -lm -L $(MLX) -L libs/libft -lft
 
-ifeq ($(OS), Linux)
-	LINKS += -L/usr/lib -lmlx -lXext -lX11
-else
-	LINKS += -lmlx -framework OpenGL -framework AppKit
-endif
+LINKS += -lmlx -framework OpenGL -framework AppKit
 
 HEADER	= -Iinclude -I/usr/include -I$(MLX) -I$(LIBFT)
 
