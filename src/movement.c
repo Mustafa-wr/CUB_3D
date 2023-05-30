@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:02:27 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/05 19:39:41 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 16:39:24 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@ static void	handle_direction(int keycode, t_vec *vec)
 	if (keycode == KEY_LEFT)
 	{
 		vec->angle -= ROTSPEED;
-		if (vec->angle <= 0)
-			vec->angle += 360;
+		angle(vec->angle);
 	}
 	if (keycode == KEY_RIGHT)
 	{
 		vec->angle += ROTSPEED;
-		if (vec->angle >= 360)
-			vec->angle -= 360;
+		angle(vec->angle);
 	}
 }
 
@@ -32,23 +30,23 @@ static void	handle_move(int keycode, t_point *change, t_vec *vec)
 {
 	if (keycode == KEY_W)
 	{
-		change->x = PLAYERSPEED * cos(vec->angle * PI / 180);
-		change->y = PLAYERSPEED * sin(vec->angle * PI / 180);
+		change->x = PLAYERSPEED * (cos(angle(vec->angle)));
+		change->y = PLAYERSPEED * (sin(angle(vec->angle)));
 	}
 	if (keycode == KEY_S)
 	{
-		change->x = -PLAYERSPEED * cos(vec->angle * PI / 180);
-		change->y = -PLAYERSPEED * sin(vec->angle * PI / 180);
+		change->x = -PLAYERSPEED * (cos(angle(vec->angle)));
+		change->y = -PLAYERSPEED * (sin(angle(vec->angle)));
 	}
 	if (keycode == KEY_A)
 	{
-		change->x = PLAYERSPEED * sin(vec->angle * PI / 180);
-		change->y = -PLAYERSPEED * cos(vec->angle * PI / 180);
+		change->x = PLAYERSPEED * (sin(angle(vec->angle)));
+		change->y = -PLAYERSPEED * (cos(angle(vec->angle)));
 	}
 	if (keycode == KEY_D)
 	{
-		change->x = -PLAYERSPEED * sin(vec->angle * PI / 180);
-		change->y = PLAYERSPEED * cos(vec->angle * PI / 180);
+		change->x = -PLAYERSPEED * (sin(angle(vec->angle)));
+		change->y = PLAYERSPEED * (cos(angle(vec->angle)));
 	}
 }
 

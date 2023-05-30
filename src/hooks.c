@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 03:00:24 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/08 17:55:12 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:42:40 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,26 @@ int	game_exit(t_hook_vars *hook_vars)
 		hook_vars->mlx_vars->win_ptr);
 	mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
 		hook_vars->mlx_vars->main_img);
+	if (hook_vars->textures[NORTH].img)
+		mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
+			hook_vars->textures[NORTH].img);
+	if (hook_vars->textures[SOUTH].img)
+		mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
+			hook_vars->textures[SOUTH].img);
+	if (hook_vars->textures[EAST].img)
+		mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
+			hook_vars->textures[EAST].img);
+	if (hook_vars->textures[WEST].img)
+		mlx_destroy_image(hook_vars->mlx_vars->mlx_ptr,
+			hook_vars->textures[WEST].img);
 	mlx_destroy_window(hook_vars->mlx_vars->mlx_ptr,
 		hook_vars->mlx_vars->win_ptr);
-	ht_destroy(hook_vars->map);
+	free(hook_vars->walls);
+	free_all(hook_vars->game);
+	if (!hook_vars->textures[NORTH].img || !hook_vars->textures[SOUTH].img
+		|| !hook_vars->textures[EAST].img || !hook_vars->textures[WEST].img)
+		exit(EXIT_FAILURE);
 	exit(0);
-	return (0);
 }
 
 int	pressed(int keycode, t_hook_vars *hook_vars)
@@ -74,22 +89,28 @@ static void	move_if_pressed(int keycode, t_hook_vars *hook_vars)
 		|| ((keycode == KEY_D) && keys->d)
 		|| ((keycode == KEY_LEFT) && keys->left)
 		|| ((keycode == KEY_RIGHT) && keys->right))
-		move_by_key(keycode, hook_vars->player,
-			hook_vars->game->height, hook_vars->game->width);
+		move_by_key(keycode, hook_vars->player, hook_vars->big_height - 10,
+			hook_vars->big_width - 10);
 }
 
+// By adding 4 more rays for each side we can check for walls.
 int	update(t_hook_vars *hook_vars)
 {
-	t_raycast_res res;
+	t_ray	rays[NUM_RAYS + 4];
+
+	hook_vars->res = rays;
 	mlx_do_sync(hook_vars->mlx_vars->mlx_ptr);
+	clear_img(hook_vars->mlx_vars->main_img, SWIDTH, SHEIGHT);
+	send_rays(hook_vars);
+	draw2d(hook_vars);
+	mlx_put_image_to_window(hook_vars->mlx_vars->mlx_ptr,
+		hook_vars->mlx_vars->win_ptr,
+		hook_vars->mlx_vars->main_img, 0, 0);
 	move_if_pressed(KEY_W, hook_vars);
 	move_if_pressed(KEY_S, hook_vars);
 	move_if_pressed(KEY_A, hook_vars);
 	move_if_pressed(KEY_D, hook_vars);
 	move_if_pressed(KEY_LEFT, hook_vars);
 	move_if_pressed(KEY_RIGHT, hook_vars);
-	// draw_ver_lines(hook_vars);
-	// send_rays(&res, hook_vars);
-	draw2d(hook_vars);
 	return (0);
 }

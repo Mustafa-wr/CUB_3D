@@ -6,14 +6,15 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 19:59:33 by bammar            #+#    #+#             */
-/*   Updated: 2023/03/25 01:53:21 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 19:03:17 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUMS_H
 # define ENUMS_H
 
-#ifdef Linux
+# ifdef Linux
+
 typedef enum key_map
 {
 	ON_DESTROY = 36,
@@ -27,7 +28,9 @@ typedef enum key_map
 	KEY_S = 115,
 	KEY_D = 100
 }					t_key_map;
-#else
+
+# else
+
 typedef enum key_map
 {
 	ON_DESTROY = 17,
@@ -41,7 +44,8 @@ typedef enum key_map
 	KEY_S = 1,
 	KEY_D = 2
 }					t_key_map;
-#endif
+
+# endif
 
 typedef enum colors
 {
@@ -50,5 +54,13 @@ typedef enum colors
 	GRN = 0x00FF00,
 	WHT = 0xFFFFFF
 }		t_colors;
+
+typedef enum e_side
+{
+	SOUTH=0,
+	EAST=1,
+	NORTH=2,
+	WEST=3
+}	t_side;
 
 #endif

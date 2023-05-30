@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:01:21 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/10 17:01:01 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/27 16:00:04 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ int	validation(t_cub3d *map)
 			tmp--;
 		if (map->path[i][tmp] != '1' && \
 				map->path[i][tmp] != ' ' && map->path[i][tmp] != '\0')
-			return (free_all(map), ft_putendl_fd("Error", 2), 0);
+			return (free_all(map), ft_putendl_fd("Error\nincorrect", 2), 0);
 		i++;
 	}
 	if (!walls_check(map))
-		return (free_all(map), ft_putendl_fd("Error", 2), 0);
+		return (free_all(map), ft_putendl_fd("Error\nincorrect", 2), 0);
 	return (1);
 }
 
@@ -91,9 +91,7 @@ static int	string_isempty(char *str)
 int	empty_line(t_cub3d *line)
 {
 	int	i;
-	int	j;
 
-	j = 0;
 	i = 0;
 	while (line->path[i])
 	{

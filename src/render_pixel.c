@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 02:02:28 by bammar            #+#    #+#             */
-/*   Updated: 2023/04/24 18:12:38 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/20 16:57:43 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	render_pixel(void *img, t_point p1, int color)
 	int		endian;
 	int		index;
 
-	if (p1.x > SWIDTH || p1.y > SHEIGHT || p1.x < 0 || p1.y < 0)
+	if (p1.x > SWIDTH - 1 || p1.y > SHEIGHT - 1 || p1.x < 0 || p1.y < 0)
 		return ;
 	data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
-	index = ((int)p1.y * size_line) + ((int)p1.x * (bpp / 8));
+	index = (((int)p1.y) * size_line) + (((int)p1.x) * (bpp / 8));
 	data[index] = color & 0xFF;
 	data[index + 1] = (color >> 8) & 0xFF;
 	data[index + 2] = (color >> 16) & 0xFF;

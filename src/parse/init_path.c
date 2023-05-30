@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:58:01 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/07 23:07:57 by mradwan          ###   ########.fr       */
+/*   Updated: 2023/05/27 15:58:15 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	init_the_path_utils(t_cub3d *p, t_vars *v)
 			v->j++;
 		if (p->map[v->i][v->j] == '1')
 		{	
-			printf("%d\n", v->i);
 			v->tmp = v->i;
 			while (p->map[v->tmp])
 			{
@@ -55,7 +54,7 @@ static int	check_path_chars_helper(t_cub3d *p, int i, int j)
 				j++;
 			}
 			else
-				return (free_all(p), ft_putendl_fd("Error", 2), 0);
+				return (free_all(p), ft_putendl_fd("Error\nincorrect", 2), 0);
 		}
 		i++;
 	}
@@ -73,7 +72,7 @@ static int	check_path_chars(t_cub3d *p)
 	{
 		if (p->path[0][i] != ' ' && p->path[0][i] != '1' \
 			&& p->path[0][i] != '\0')
-			return (free_all(p), ft_putendl_fd("Error", 2), 0);
+			return (free_all(p), ft_putendl_fd("Error\nincorrect", 2), 0);
 		i++;
 	}
 	i = 0;
@@ -112,12 +111,10 @@ int	check_and_init_the_path(t_cub3d *p)
 		v.i++;
 	}
 	if (!v.len)
-		return (ft_putendl_fd("Error", 2), 0);
+		return (free_tools(p), free_strings(p->map), free(p->cieling),
+			free(p->floor), ft_putendl_fd("Error\nincorrect", 2), 0);
 	init_the_path(p, &v);
 	if (!check_path_chars(p))
 		return (0);
-	// i = 0;
-	// while (p->path[i])
-	// 	puts(p->path[i++]);
 	return (1);
 }

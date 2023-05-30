@@ -6,47 +6,80 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 02:54:52 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/06 18:14:37 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/25 19:08:58 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void set_stepsize(double *x, double *y, double angle)
+bool	intersection(const t_vec *ray, const t_wall *wall, t_point *col)
 {
-	*y = -1;
-	if ((angle < 180))
-		*y = 1;
-	*x = -1;
-	if ((angle < 90) || (angle > 270))
-		*x = 1;
+	t_vars	v;
+
+	v.x1 = wall->start.x;
+	v.y1 = wall->start.y;
+	v.x2 = wall->end.x;
+	v.y2 = wall->end.y;
+	v.x3 = ray->p.x;
+	v.y3 = ray->p.y;
+	v.x4 = ray->p.x + cos(ray->angle);
+	v.y4 = ray->p.y + sin(ray->angle);
+	v.denominator = (v.x1 - v.x2) * (v.y3 - v.y4) - \
+		(v.y1 - v.y2) * (v.x3 - v.x4);
+	if (fabs(v.denominator) < 0.001)
+		return (false);
+	v.t = ((v.x1 - v.x3) * (v.y3 - v.y4) - (v.y1 - v.y3) * (v.x3 - v.x4))
+		/ v.denominator;
+	v.u = -((v.x1 - v.x2) * (v.y1 - v.y3) - (v.y1 - v.y2) * (v.x1 - v.x3))
+		/ v.denominator;
+	if (v.t > 0 && v.t < 1 && v.u > 0)
+	{
+		col->x = v.x1 + v.t * (v.x2 - v.x1);
+		col->y = v.y1 + v.t * (v.y2 - v.y1);
+		return (true);
+	}
+	return (false);
+}
+
+static void	fill_result(t_vec ray, t_ray *res, t_hook_vars *hook)
+{
+	int		b;
+	double	d;
+	t_point	col;
+
+	res->dist = INT_MAX;
+	res->collision = hook->player->p;
+	b = -1;
+	while (++b < hook->wall_count)
+	{
+		if (!intersection(&ray, &(hook->walls[b]), &col))
+			continue ;
+		d = dist(hook->player->p, col) * cos(ray.angle - hook->player->angle);
+		if (d < res->dist)
+		{
+			res->dist = d;
+			res->collision = col;
+			res->side = b % 4;
+		}
+	}
 }
 
 /**
- * Squares are unit squares (side length is 1)
- * https://www.youtube.com/watch?v=eOCQfxRQ2pY
- * https://www.youtube.com/watch?v=ECqUrT7IdqQ
+ * https://www.youtube.com/watch?v=TOEi6T2mtHo
+ * maybe set the intersection point inside the wall struct 
+ 	and update it only when a smaller one is found.
 */
-void	send_rays(t_raycast_res *res, t_hook_vars *hook)
+void	send_rays(t_hook_vars *hook)
 {
-	t_size	map_pos;
-	double	length_x;
-	double	length_y;
-	double	xoffset;
-	double	yoffset;
-	double	stepsize_x;
-	double	stepsize_y;
-	double	ray_angle;
-	int		ray;
+	int		ray_count;
+	t_vec	ray;
 
-	xoffset = fabs((hook->player->p.x - (int)hook->player->p.x));
-	yoffset = fabs((hook->player->p.y - (int)hook->player->p.y));
-	set_stepsize(&stepsize_x, &stepsize_y, hook->player->angle);
-	map_pos = (t_size){hook->player->p.x + stepsize_x == -1,
-		hook->player->p.y + stepsize_y == -1};
-	ray_angle = hook->player->angle - FOV / 2 + 0.0001;
-	ray = NUM_RAYS + 1;
-	printf("map pos : (%.02f, %.02f)\nray_angle:%.02f\n", stepsize_x, stepsize_y, ray_angle);
-	
-	
+	ray_count = -1;
+	while (++ray_count < NUM_RAYS)
+	{
+		ray = (t_vec){hook->player->p,
+			hook->player->angle - HALF_FOV + (ray_count * DELTA_ANGLE)};
+		fill_result(ray, &(hook->res[ray_count]), hook);
+		draw_ver_line(hook, ray_count);
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:03:14 by mradwan           #+#    #+#             */
-/*   Updated: 2023/05/07 16:00:08 by bammar           ###   ########.fr       */
+/*   Updated: 2023/05/22 22:35:47 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ static int	textures_utils(char **dst, char *src, t_vars *var, t_cub3d *t)
 	while (src[i] != '\0' && src[i] == ' ')
 		i++;
 	if (!src[i])
-		return (ft_putendl_fd("Error", 2), free_tools(t), \
+		return (ft_putendl_fd("Error\nincorrect", 2), free_tools(t), \
 			free_strings(t->map), exit(1), 0);
 	tmp = ft_strchr(src, src[i]);
-	(*dst) = ft_strdup(tmp);
-	puts(*dst);
+	(*dst) = ft_strtrim(tmp, " ");
 	var->i = -1;
 	var->flag++;
 	return (1);
@@ -47,7 +46,7 @@ static int	textures_utils2(char **dst, char *src, t_vars *var, t_cub3d *t)
 	if (src[i] == 'F' || src[i] == 'C')
 		i = i + 1;
 	if (src[i] != ' ')
-		return (ft_putendl_fd("Error", 2), free_tools(t), \
+		return (ft_putendl_fd("Error\nincorrect", 2), free_tools(t), \
 			free_strings(t->map), exit(1), 0);
 	tmp = ft_strchr(src, ' ');
 	var->j = 0;
@@ -55,7 +54,6 @@ static int	textures_utils2(char **dst, char *src, t_vars *var, t_cub3d *t)
 		var->j++;
 	tmp2 = ft_strdup(tmp + var->j);
 	(*dst) = ft_strtrim(tmp2, " ");
-	puts(*dst);
 	var->i = -1;
 	var->flag++;
 	free(tmp2);
@@ -125,7 +123,7 @@ int	init_textures(t_cub3d *t)
 	}
 	if (v.flag != 6 || !checker_for_t(t) || \
 		!check_dup(t))
-		return (ft_putendl_fd("Error", 2), free_tools(t), \
+		return (ft_putendl_fd("Error\nincorrect", 2), free_tools(t), \
 			free_strings(t->map), 0);
 	return (1);
 }

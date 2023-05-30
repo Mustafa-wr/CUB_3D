@@ -1,8 +1,0 @@
-cub3d thoughts
-- to know which texture to use use the angle of the ray and the side
-	so for example if the angle is in the first half (less than or equal 90) and if the side was X it will be south texture and so on with other angles and sides.
-- to raycast you need to cast rays to each line in the grid, but we have squares.
-	so iterate through the list of squares and get each line of each square and then store all these lines to use them in the raycasting.
-- no need to handle the problems of the 2d rendering for now.
-- Assuming that the side length a sqaure or cube is 1 we could use the map to do
-	the raycasting.
