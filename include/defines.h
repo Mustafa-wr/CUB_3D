@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 01:52:39 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/27 15:44:26 by bammar           ###   ########.fr       */
+/*   Updated: 2023/06/03 19:09:01 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define HALF_WIDTH (512)
 # define PNAME "cub3d"
 # define PI 3.141593
-# define PLAYERSPEED 3
+# define PLAYERSPEED 5
 # define ROTSPEED (0.05)
 # define FOV (0.78539816339)
 # define HALF_FOV (0.392699082)

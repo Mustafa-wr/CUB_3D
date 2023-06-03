@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:50:19 by bammar            #+#    #+#             */
-/*   Updated: 2023/05/27 15:58:37 by bammar           ###   ########.fr       */
+/*   Updated: 2023/06/03 19:08:29 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_ver_line(t_hook_vars *hook, int i)
 	double			ystep_size;
 
 	tex = &(hook->textures[hook->res[i].side]);
-	line_height = (64 * 255 / (hook->res[i].dist));
+	line_height = (100 * SHEIGHT / (hook->res[i].dist));
 	ystep_size = 1.0 * hook->textures->h / line_height;
 	draw.x = -line_height / 2 + SHEIGHT / 2.0;
 	if (draw.x < 0)
